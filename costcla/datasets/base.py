@@ -174,8 +174,6 @@ def load_creditscoring1(cost_mat_parameters=None):
     raw_data = raw_data.loc[(raw_data['MonthlyIncome'] > 0)]
     raw_data = raw_data.loc[(raw_data['DebtRatio'] < 1)]
 
-    n_samples = raw_data.shape[0]
-
     target = raw_data['SeriousDlqin2yrs'].values.astype(np.int)
 
     data = raw_data.drop(['SeriousDlqin2yrs', 'id'], 1)
@@ -191,6 +189,90 @@ def load_creditscoring1(cost_mat_parameters=None):
 
     pi_1 = target.mean()
     cost_mat = _creditscoring_costmat(data['MonthlyIncome'].values, data['DebtRatio'].values, pi_1, cost_mat_parameters)
+
+    return Bunch(data=data.values, target=target, cost_mat=cost_mat,
+                 target_names=['no', 'yes'], DESCR=descr,
+                 feature_names=data.columns.values)
+
+
+def load_creditscoring2(cost_mat_parameters=None):
+    """Load and return the credit scoring PAKDD 2011 competition dataset (classification).
+
+    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.
+
+    Parameters
+    ----------
+    cost_mat_parameters : Dictionary-like object, optional (default=None)
+        If not None, must include 'int_r', 'int_cf', 'cl_max', 'n_term', 'k','lgd'
+
+    Returns
+    -------
+    data : Bunch
+        Dictionary-like object, the interesting attributes are:
+        'data', the data to learn, 'target', the classification labels,
+        'cost_mat', the cost matrix of each example,
+        'target_names', the meaning of the labels, 'feature_names', the
+        meaning of the features, and 'DESCR', the full description of the dataset.
+
+    References
+    ----------
+    .. [1] A. Correa Bahnsen, D.Aouada, B, Ottersten,
+           "Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring",
+           in Proceedings of the International Conference on Machine Learning and Applications,
+           , 2014.
+
+    Examples
+    --------
+    Let's say you are interested in the samples 10, 25, and 50
+
+    >>> from costcla.datasets import load_creditscoring2
+    >>> data = load_creditscoring2()
+    >>> data.target[[10, 17, 50]]
+    array([1, 0, 0])
+    >>> data.cost_mat[[10, 17, 50]]
+    array([[ 209.   ,  547.965,    0.   ,    0.   ],
+           [  24.   ,  274.725,    0.   ,    0.   ],
+           [  89.   ,  371.25 ,    0.   ,    0.   ]])
+    """
+    module_path = dirname(__file__)
+    raw_data = pd.read_csv(join(module_path, 'data', 'creditscoring2.csv.gz'), delimiter='\t', compression='gzip')
+    descr = open(join(module_path, 'descr', 'creditscoring2.rst')).read()
+
+    # Exclude TARGET_LABEL_BAD=1 == 'N'
+    raw_data = raw_data.loc[raw_data['TARGET_LABEL_BAD=1'] != 'N']
+
+    # Exclude 100<PERSONAL_NET_INCOME<10000
+    raw_data = raw_data.loc[(raw_data['PERSONAL_NET_INCOME'].values.astype(np.float) > 100)]
+    raw_data = raw_data.loc[(raw_data['PERSONAL_NET_INCOME'].values.astype(np.float) < 10000)]
+
+    target = raw_data['TARGET_LABEL_BAD=1'].values.astype(np.int)
+
+    # Continuous features
+    cols_con = ['ID_SHOP', 'AGE', 'AREA_CODE_RESIDENCIAL_PHONE', 'PAYMENT_DAY', 'SHOP_RANK',
+                'MONTHS_IN_RESIDENCE', 'MONTHS_IN_THE_JOB', 'PROFESSION_CODE', 'MATE_INCOME',
+                'QUANT_ADDITIONAL_CARDS_IN_THE_APPLICATION', 'PERSONAL_NET_INCOME']
+    data = raw_data[cols_con].astype(float)
+
+    cols_dummies = ['SEX', 'MARITAL_STATUS', 'FLAG_RESIDENCIAL_PHONE', 'RESIDENCE_TYPE',
+                    'FLAG_MOTHERS_NAME', 'FLAG_FATHERS_NAME', 'FLAG_RESIDENCE_TOWN_eq_WORKING_TOWN',
+                    'FLAG_RESIDENCE_STATE_eq_WORKING_STATE', 'FLAG_RESIDENCIAL_ADDRESS_eq_POSTAL_ADDRESS']
+    for col_ in cols_dummies:
+        temp_ = pd.get_dummies(raw_data[col_], prefix=col_)
+        data = data.join(temp_)
+
+    # Calculate cost_mat (see[1])
+    if cost_mat_parameters is None:
+        cost_mat_parameters = {'int_r': 0.63 / 12,
+                               'int_cf': 0.165 / 12,
+                               'cl_max': 25000 * 0.33,
+                               'n_term': 24,
+                               'k': 3,
+                               'lgd': .75}
+
+    n_samples = data.shape[0]
+    pi_1 = target.mean()
+    monthly_income = data['PERSONAL_NET_INCOME'].values * 0.33
+    cost_mat = _creditscoring_costmat(monthly_income, np.zeros(n_samples), pi_1, cost_mat_parameters)
 
     return Bunch(data=data.values, target=target, cost_mat=cost_mat,
                  target_names=['no', 'yes'], DESCR=descr,
