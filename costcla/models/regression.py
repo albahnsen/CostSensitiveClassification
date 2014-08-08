@@ -30,25 +30,6 @@ class CSLogisticRegression():
         self.fitnessfunc = cost
         return None
 
-    # def fitnessfunc_i(theta, y, x, cost_mat, reg):
-    #     def sigmoid(t):
-    #         # TODO: FIX
-    #         #missing to compare if this is faster than without vectorization, since it have to be calculated each time
-    #         def sigmoid2(t):
-    #             if t<-10:
-    #                 return 0.00000001
-    #             else:
-    #                 return 1.0 / ( 1+ math.exp(-t))
-    #         return np.vectorize(sigmoid2)(t)
-    #     m = y.shape[0]
-    #     p = (sigmoid(np.dot(x, theta.transpose()))).reshape(y.shape)
-    #     # TODO: impact in cost by sending probabilities or class prediction
-    #     cost_i = cost_measure(y, p, cost_mat)
-    #     cost_i += reg / m * ((theta ** 2).sum())
-    #     return cost_i
-    #
-    # fitnessfunc = np.vectorize(fitnessfunc_i)
-
     # TODO: Convert parameters to diccionary
     def fit(self, x, y, cost_mat, intercept=True, reg=0, method='BFGS', range1=None, params_ga=[100, 100, 10, 0.25]):
         #Function to fit a Logistic Regression
