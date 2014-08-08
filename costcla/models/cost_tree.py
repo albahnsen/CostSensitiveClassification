@@ -83,8 +83,24 @@ class CostSensitiveDecisionTreeClassifier():
 
     Examples
     --------
+    >>> from sklearn.ensemble import RandomForestClassifier
+    >>> from sklearn.cross_validation import train_test_split
+    >>> from costcla.datasets import load_creditscoring1
+    >>> from costcla.models import CostSensitiveDecisionTreeClassifier
+    >>> from costcla.metrics import savings_score
+    >>> data = load_creditscoring1()
+    >>> sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)
+    >>> X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets
+    >>> y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)
+    >>> f = CostSensitiveDecisionTreeClassifier()
+    >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
+    >>> # Savings using only RandomForest
+    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    0.12454256594
+    >>> # Savings using CSDecisionTree
+    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    0.481916135529
     """
-    #TODO: Add example to DOC
     def __init__(self,
                  criterion='direct_cost',
                  criterion_weight=False,
