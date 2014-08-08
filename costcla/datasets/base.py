@@ -98,7 +98,6 @@ def load_bankmarketing(cost_mat_parameters=None):
 
     target = np.zeros((n_samples,), dtype=np.int)
     target[raw_data['y'].values == 'yes'] = 1
-    raw_data = raw_data.drop('y', 1)
 
     # Create dummies
     data = raw_data[['age', 'balance', 'previous']]
@@ -125,3 +124,156 @@ def load_bankmarketing(cost_mat_parameters=None):
     return Bunch(data=data.values, target=target, cost_mat=cost_mat,
                  target_names=['no', 'yes'], DESCR=descr,
                  feature_names=data.columns.values)
+
+
+def load_creditscoring1(cost_mat_parameters=None):
+    """Load and return the credit scoring Kaggle Credit competition dataset (classification).
+
+    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.
+
+    Parameters
+    ----------
+    cost_mat_parameters : Dictionary-like object, optional (default=None)
+        If not None, must include 'int_r', 'int_cf', 'cl_max', 'n_term', 'k','lgd'
+
+    Returns
+    -------
+    data : Bunch
+        Dictionary-like object, the interesting attributes are:
+        'data', the data to learn, 'target', the classification labels,
+        'cost_mat', the cost matrix of each example,
+        'target_names', the meaning of the labels, 'feature_names', the
+        meaning of the features, and 'DESCR', the full description of the dataset.
+
+    References
+    ----------
+    .. [1] A. Correa Bahnsen, D.Aouada, B, Ottersten,
+           "Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring",
+           in Proceedings of the International Conference on Machine Learning and Applications,
+           , 2014.
+
+    Examples
+    --------
+    Let's say you are interested in the samples 10, 25, and 50
+
+    >>> from costcla.datasets import load_creditscoring1
+    >>> data = load_creditscoring1()
+    >>> data.target[[10, 17, 400]]
+    array([0, 1, 0])
+    >>> data.cost_mat[[10, 17, 400]]
+    array([[  1023.73054104,  18750.        ,      0.        ,      0.        ],
+           [   717.25781516,   6749.25      ,      0.        ,      0.        ],
+           [  1004.32819923,  17990.25      ,      0.        ,      0.        ]])
+    """
+    module_path = dirname(__file__)
+    raw_data = pd.read_csv(join(module_path, 'data', 'creditscoring1.csv.gz'), delimiter=',', compression='gzip')
+    descr = open(join(module_path, 'descr', 'creditscoring1.rst')).read()
+
+    # Exclude MonthlyIncome = nan or =0 or DebtRatio >1
+    raw_data = raw_data.dropna()
+    raw_data = raw_data.loc[(raw_data['MonthlyIncome'] > 0)]
+    raw_data = raw_data.loc[(raw_data['DebtRatio'] < 1)]
+
+    n_samples = raw_data.shape[0]
+
+    target = raw_data['SeriousDlqin2yrs'].values.astype(np.int)
+
+    data = raw_data.drop(['SeriousDlqin2yrs', 'id'], 1)
+
+    # Calculate cost_mat (see[1])
+    if cost_mat_parameters is None:
+        cost_mat_parameters = {'int_r': 0.0479 / 12,
+                               'int_cf': 0.0294 / 12,
+                               'cl_max': 25000,
+                               'n_term': 24,
+                               'k': 3,
+                               'lgd': .75}
+
+    pi_1 = target.mean()
+    cost_mat = _creditscoring_costmat(data['MonthlyIncome'].values, data['DebtRatio'].values, pi_1, cost_mat_parameters)
+
+    return Bunch(data=data.values, target=target, cost_mat=cost_mat,
+                 target_names=['no', 'yes'], DESCR=descr,
+                 feature_names=data.columns.values)
+
+
+def _creditscoring_costmat(income, debt, pi_1, cost_mat_parameters):
+    """ Private function to calculate the cost matrix of credit scoring models.
+
+    Parameters
+    ----------
+    income : array of shape = [n_samples]
+        Monthly income of each example
+
+    debt : array of shape = [n_samples]
+        Debt ratio each example
+
+    pi_1 : float
+        Percentage of positives in the training set
+
+    References
+    ----------
+    .. [1] A. Correa Bahnsen, D.Aouada, B, Ottersten,
+           "Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring",
+           in Proceedings of the International Conference on Machine Learning and Applications,
+           , 2014.
+
+    Returns
+    -------
+    cost_mat : array-like of shape = [n_samples, 4]
+        Cost matrix of the classification problem
+        Where the columns represents the costs of: false positives, false negatives,
+        true positives and true negatives, for each example.
+    """
+    def calculate_a(cl_i, int_, n_term):
+        """ Private function """
+        return cl_i * ((int_ * (1 + int_) ** n_term) / ((1 + int_) ** n_term - 1))
+
+    def calculate_pv(a, int_, n_term):
+        """ Private function """
+        return a / int_ * (1 - 1 / (1 + int_) ** n_term)
+
+    #Calculate credit line Cl
+    def calculate_cl(k, inc_i, cl_max, debt_i, int_r, n_term):
+        """ Private function """
+        cl_k = k * inc_i
+        A = calculate_a(cl_k, int_r, n_term)
+        Cl_debt = calculate_pv(inc_i * min(A / inc_i, 1 - debt_i), int_r, n_term)
+        return min(cl_k, cl_max, Cl_debt)
+
+    #calculate costs
+    def calculate_cost_fn(cl_i, lgd):
+        return cl_i * lgd
+
+    def calculate_cost_fp(cl_i, int_r, n_term, int_cf, pi_1, lgd, cl_avg):
+        a = calculate_a(cl_i, int_r, n_term)
+        pv = calculate_pv(a, int_cf, n_term)
+        r = pv - cl_i
+        r_avg = calculate_pv(calculate_a(cl_avg, int_r, n_term), int_cf, n_term) - cl_avg
+        cost_fp = r - (1 - pi_1) * r_avg + pi_1 * calculate_cost_fn(cl_avg, lgd)
+        return max(0, cost_fp)
+
+    v_calculate_cost_fp = np.vectorize(calculate_cost_fp)
+    v_calculate_cost_fn = np.vectorize(calculate_cost_fn)
+
+    v_calculate_cl = np.vectorize(calculate_cl)
+
+    # Parameters
+    k = cost_mat_parameters['k']
+    int_r = cost_mat_parameters['int_r']
+    n_term = cost_mat_parameters['n_term']
+    int_cf = cost_mat_parameters['int_cf']
+    lgd = cost_mat_parameters['lgd']
+    cl_max = cost_mat_parameters['cl_max']
+
+    cl = v_calculate_cl(k, income, cl_max, debt, int_r, n_term)
+    cl_avg = cl.mean()
+
+    n_samples = income.shape[0]
+    cost_mat = np.zeros((n_samples, 4))  #cost_mat[FP,FN,TP,TN]
+    cost_mat[:, 0] = v_calculate_cost_fp(cl, int_r, n_term, int_cf, pi_1, lgd, cl_avg)
+    cost_mat[:, 1] = v_calculate_cost_fn(cl, lgd)
+    cost_mat[:, 2] = 0.0
+    cost_mat[:, 3] = 0.0
+
+    return cost_mat
