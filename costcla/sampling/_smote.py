@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# https://raw.githubusercontent.com/blacklab/nyan/master/shared_modules/_smote.py
 '''
 The MIT License (MIT)
 Copyright (c) 2012-2013 Karsten Jeschkies <jeskar@web.de>
@@ -20,9 +21,7 @@ PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIG
 HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-'''
 
-'''
 Created on 24.11.2012
 
 @author: karsten jeschkies <jeskar@web.de>
@@ -38,7 +37,7 @@ from sklearn.neighbors import NearestNeighbors
 
 logger = logging.getLogger("main")
 
-def SMOTE(T, N, k, h = 1.0):
+def _SMOTE(T, N, k, h = 1.0):
     """
     Returns (N/100) * n_minority_samples synthetic minority samples.
 
@@ -89,7 +88,7 @@ def SMOTE(T, N, k, h = 1.0):
 
     return S
 
-def borderlineSMOTE(X, y, minority_target, N, k):
+def _borderlineSMOTE(X, y, minority_target, N, k):
     """
     Returns synthetic minority samples.
 
@@ -141,7 +140,7 @@ def borderlineSMOTE(X, y, minority_target, N, k):
             danger_minority_indices.append(i)
 
     #SMOTE danger minority samples
-    synthetic_samples = SMOTE(X[danger_minority_indices], N, k, h = 0.5)
+    synthetic_samples = _SMOTE(X[danger_minority_indices], N, k, h = 0.5)
 
     return (X[safe_minority_indices],
             synthetic_samples,
