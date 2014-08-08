@@ -1,14 +1,9 @@
-#TODO: Update with new format
-# ####################################
-# 22/01/2013
-# Luxembourg University SnT
-# Project PROTECT
-# Alejandro Correa Bahnsen
-#####################################
-# CALCULATE COST-SENSITIVE LOGISTIC REGRESSION
-# MINIMIZING THE COST DUE TO FRAUDS
-#
-#####################################
+"""
+This module include the cost-sensitive logistic regression method.
+"""
+
+# Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
+# License: BSD 3 clause
 
 from ..optimization import GAcont
 from ..metrics import cost_measure
