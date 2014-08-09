@@ -402,6 +402,8 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         if self.pruned:
             self.pruning(X, y, cost_mat)
 
+        self.classes_ = np.array([0, 1])
+
         return self
 
     def _nodes(self, tree):
