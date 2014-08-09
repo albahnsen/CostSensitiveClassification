@@ -22,12 +22,32 @@ from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.utils import check_random_state, column_or_1d
 from sklearn.utils.random import sample_without_replacement
 
-from sklearn.ensemble.base import BaseEnsemble, _partition_estimators
+from sklearn.ensemble.base import BaseEnsemble
+from sklearn.externals.joblib import cpu_count
 
 __all__ = ["BaggingClassifier",
            "BaggingRegressor"]
 
 MAX_INT = np.iinfo(np.int32).max
+
+
+# Is different in 0.15, copy version from 0.16-git
+def _partition_estimators(n_estimators, n_jobs):
+    """Private function used to partition estimators between jobs."""
+    # Compute the number of jobs
+    if n_jobs == -1:
+        n_jobs = min(cpu_count(), n_estimators)
+
+    else:
+        n_jobs = min(n_jobs, n_estimators)
+
+    # Partition estimators between jobs
+    n_estimators_per_job = (n_estimators // n_jobs) * np.ones(n_jobs,
+                                                              dtype=np.int)
+    n_estimators_per_job[:n_estimators % n_jobs] += 1
+    starts = np.cumsum(n_estimators_per_job)
+
+    return n_jobs, n_estimators_per_job.tolist(), [0] + starts.tolist()
 
 
 def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
@@ -218,7 +238,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.random_state = random_state
         self.verbose = verbose
 
-    def fit(self, X, y, sample_weight=None):
+    def fit(self, X, y, cost_mat, sample_weight=None):
         """Build a Bagging ensemble of estimators from the training
            set (X, y).
 
@@ -231,6 +251,11 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         y : array-like, shape = [n_samples]
             The target values (class labels in classification, real numbers in
             regression).
+
+        cost_mat : array-like of shape = [n_samples, 4]
+            Cost matrix of the classification problem
+            Where the columns represents the costs of: false positives, false negatives,
+            true positives and true negatives, for each example.
 
         sample_weight : array-like, shape = [n_samples] or None
             Sample weights. If None, then samples are equally weighted.
@@ -245,7 +270,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         random_state = check_random_state(self.random_state)
 
         # Convert data
-        X, y = check_X_y(X, y, ['csr', 'csc', 'coo'])
+        # X, y = check_X_y(X, y, ['csr', 'csc', 'coo'])  # Not in sklearn verion 0.15
 
         # Remap output
         n_samples, self.n_features_ = X.shape
@@ -288,6 +313,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
                 self,
                 X,
                 y,
+                cost_mat,
                 sample_weight,
                 seeds[starts[i]:starts[i + 1]],
                 verbose=self.verbose)
