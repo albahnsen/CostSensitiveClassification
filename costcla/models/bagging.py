@@ -1,5 +1,6 @@
 """Bagging meta-estimator."""
 
+# https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/ensemble/bagging.py
 # Author: Gilles Louppe <g.louppe@gmail.com>
 # License: BSD 3 clause
 
@@ -12,16 +13,16 @@ from warnings import warn
 from abc import ABCMeta, abstractmethod
 from inspect import getargspec
 
-from ..base import ClassifierMixin, RegressorMixin
-from ..externals.joblib import Parallel, delayed
-from ..externals.six import with_metaclass
-from ..externals.six.moves import zip
-from ..metrics import r2_score, accuracy_score
-from ..tree import DecisionTreeClassifier, DecisionTreeRegressor
-from ..utils import check_random_state, check_X_y, check_array, column_or_1d
-from ..utils.random import sample_without_replacement
+from sklearn.base import ClassifierMixin, RegressorMixin
+from sklearn.externals.joblib import Parallel, delayed
+from sklearn.externals.six import with_metaclass
+from sklearn.externals.six.moves import zip
+from sklearn.metrics import r2_score, accuracy_score
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
+from sklearn.utils import check_random_state, column_or_1d
+from sklearn.utils.random import sample_without_replacement
 
-from .base import BaseEnsemble, _partition_estimators
+from sklearn.ensemble.base import BaseEnsemble, _partition_estimators
 
 __all__ = ["BaggingClassifier",
            "BaggingRegressor"]
@@ -29,8 +30,8 @@ __all__ = ["BaggingClassifier",
 MAX_INT = np.iinfo(np.int32).max
 
 
-def _parallel_build_estimators(n_estimators, ensemble, X, y, sample_weight,
-                               seeds, verbose):
+def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
+                               sample_weight, seeds, verbose):
     """Private function used to build a batch of estimators within a job."""
     # Retrieve settings
     n_samples, n_features = X.shape
@@ -110,7 +111,7 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, sample_weight,
 
             sample_counts = np.bincount(indices, minlength=n_samples)
 
-            estimator.fit((X[indices])[:, features], y[indices])
+            estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
             samples = sample_counts > 0.
 
         estimators.append(estimator)
