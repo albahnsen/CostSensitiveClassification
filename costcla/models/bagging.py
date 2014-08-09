@@ -164,6 +164,21 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
     return proba
 
 
+def _parallel_predict(estimators, estimators_features, X, n_classes):
+    """Private function used to compute predictions within a job."""
+    n_samples = X.shape[0]
+    pred = np.zeros((n_samples, n_classes))
+
+    for estimator, features in zip(estimators, estimators_features):
+        # Resort to voting
+        predictions = estimator.predict(X[:, features])
+
+        for i in range(n_samples):
+            pred[i, int(predictions[i])] += 1
+
+    return pred
+
+
 class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
     """Base class for Bagging meta-estimator.
 
@@ -432,11 +447,34 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
 
         Returns
         -------
-        y : array of shape = [n_samples]
+        pred : array of shape = [n_samples]
             The predicted classes.
         """
-        return self.classes_.take(np.argmax(self.predict_proba(X), axis=1),
-                                  axis=0)
+        # Check data
+        # X = check_array(X, accept_sparse=['csr', 'csc', 'coo'])  # Dont in version 0.15
+
+        if self.n_features_ != X.shape[1]:
+            raise ValueError("Number of features of the model must "
+                             "match the input. Model n_features is {0} and "
+                             "input n_features is {1}."
+                             "".format(self.n_features_, X.shape[1]))
+
+        # Parallel loop
+        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
+                                                             self.n_jobs)
+
+        all_pred = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
+            delayed(_parallel_predict)(
+                self.estimators_[starts[i]:starts[i + 1]],
+                self.estimators_features_[starts[i]:starts[i + 1]],
+                X,
+                self.n_classes_)
+            for i in range(n_jobs))
+
+        # Reduce
+        pred = sum(all_pred) / self.n_estimators
+
+        return self.classes_.take(np.argmax(pred, axis=1), axis=0)
 
     def predict_proba(self, X):
         """Predict class probabilities for X.
