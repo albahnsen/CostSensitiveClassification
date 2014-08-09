@@ -303,6 +303,8 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.estimators_ = None
 
         # Parallel loop
+        #TODO: Dont work with n_jobs>1
+        # PicklingError: Can't pickle <class costcla.models.cost_tree.tree_class at 0x7f3a612154c8>: it's not found as costcla.models.cost_tree.tree_class
         n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
                                                              self.n_jobs)
         seeds = random_state.randint(MAX_INT, size=self.n_estimators)
