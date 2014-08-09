@@ -8,9 +8,10 @@ This module include the cost sensitive decision tree method.
 import numpy as np
 import copy
 from ..metrics import cost_loss
+from sklearn.base import BaseEstimator
 
 
-class CostSensitiveDecisionTreeClassifier():
+class CostSensitiveDecisionTreeClassifier(BaseEstimator):
     """A example-dependent cost-sensitive binary decision tree classifier.
 
     Parameters
