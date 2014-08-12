@@ -136,7 +136,7 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
         # OOB savings
         oob_pred = estimator.predict(X[~samples])
-        oob_savings = savings_score(y[~samples], oob_pred, cost_mat[~samples])
+        oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
 
         estimators.append(estimator)
         estimators_samples.append(samples)
