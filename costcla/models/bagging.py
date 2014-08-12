@@ -23,6 +23,8 @@ from sklearn.utils.random import sample_without_replacement
 from sklearn.ensemble.base import BaseEnsemble
 from sklearn.externals.joblib import cpu_count
 
+from ..metrics import savings_score
+
 __all__ = ["BaggingClassifier", ]
 
 MAX_INT = np.iinfo(np.int32).max
@@ -72,6 +74,7 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
     estimators = []
     estimators_samples = []
     estimators_features = []
+    estimators_weight = []
 
     for i in range(n_estimators):
         if verbose > 1:
@@ -131,11 +134,16 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
             estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
             samples = sample_counts > 0.
 
+        # OOB savings
+        oob_pred = estimator.predict(X[~samples])
+        oob_savings = savings_score(y[~samples], oob_pred, cost_mat[~samples])
+
         estimators.append(estimator)
         estimators_samples.append(samples)
         estimators_features.append(features)
+        estimators_weight.append(oob_savings)
 
-    return estimators, estimators_samples, estimators_features
+    return estimators, estimators_samples, estimators_features, estimators_weight
 
 
 def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
@@ -194,6 +202,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
                  max_features=1.0,
                  bootstrap=True,
                  bootstrap_features=False,
+                 combination='voting',
                  n_jobs=1,
                  random_state=None,
                  verbose=0):
@@ -205,6 +214,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.max_features = max_features
         self.bootstrap = bootstrap
         self.bootstrap_features = bootstrap_features
+        self.combination = combination
         self.n_jobs = n_jobs
         self.random_state = random_state
         self.verbose = verbose
@@ -295,6 +305,8 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
             t[1] for t in all_results))
         self.estimators_features_ = list(itertools.chain.from_iterable(
             t[2] for t in all_results))
+        self.estimators_weight_ = list(itertools.chain.from_iterable(
+            t[3] for t in all_results))
 
         return self
 
@@ -347,6 +359,12 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
 
     bootstrap_features : boolean, optional (default=False)
         Whether features are drawn with replacement.
+
+    combination : string, optional (default="voting")
+        Which combination method to use:
+          - If "voting" then combine by majority voting
+          - If "weighted_voting" then combine by weighted voting using the
+            out of bag savings as the weight for each estimator.
 
     n_jobs : int, optional (default=1)
         The number of jobs to run in parallel for both `fit` and `predict`.
@@ -405,6 +423,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                  max_features=1.0,
                  bootstrap=True,
                  bootstrap_features=False,
+                 combination='voting',
                  n_jobs=1,
                  random_state=None,
                  verbose=0):
@@ -416,6 +435,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             max_features=max_features,
             bootstrap=bootstrap,
             bootstrap_features=bootstrap_features,
+            combination=combination,
             n_jobs=n_jobs,
             random_state=random_state,
             verbose=verbose)
