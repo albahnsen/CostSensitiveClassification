@@ -145,7 +145,7 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
     return estimators, estimators_samples, estimators_features, estimators_weight
 
-
+#TODO: add weighted probability
 def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
     """Private function used to compute (proba-)predictions within a job."""
     n_samples = X.shape[0]
@@ -172,17 +172,21 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
     return proba
 
 
-def _parallel_predict(estimators, estimators_features, X, n_classes):
+def _parallel_predict(estimators, estimators_features, X, n_classes, combination, estimator_weight):
     """Private function used to compute predictions within a job."""
     n_samples = X.shape[0]
     pred = np.zeros((n_samples, n_classes))
+    n_estimators = len(estimators)
 
-    for estimator, features in zip(estimators, estimators_features):
+    for estimator, features, weight in zip(estimators, estimators_features, estimator_weight):
         # Resort to voting
         predictions = estimator.predict(X[:, features])
 
         for i in range(n_samples):
-            pred[i, int(predictions[i])] += 1
+            if combination == 'weighted_voting':
+                pred[i, int(predictions[i])] += 1 * weight
+            else:
+                pred[i, int(predictions[i])] += 1
 
     return pred
 
@@ -305,8 +309,10 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
             t[1] for t in all_results))
         self.estimators_features_ = list(itertools.chain.from_iterable(
             t[2] for t in all_results))
-        self.estimators_weight_ = list(itertools.chain.from_iterable(
+        estimators_weight = list(itertools.chain.from_iterable(
             t[3] for t in all_results))
+
+        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
 
         return self
 
@@ -488,7 +494,9 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                 self.estimators_[starts[i]:starts[i + 1]],
                 self.estimators_features_[starts[i]:starts[i + 1]],
                 X,
-                self.n_classes_)
+                self.n_classes_,
+                self.combination,
+                self.estimators_weight_[starts[i]:starts[i + 1]])
             for i in range(n_jobs))
 
         # Reduce
