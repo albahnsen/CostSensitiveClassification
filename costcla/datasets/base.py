@@ -123,7 +123,7 @@ def load_bankmarketing(cost_mat_parameters=None):
 
     return Bunch(data=data.values, target=target, cost_mat=cost_mat,
                  target_names=['no', 'yes'], DESCR=descr,
-                 feature_names=data.columns.values)
+                 feature_names=data.columns.values, name='DirectMarketing')
 
 
 def load_creditscoring1(cost_mat_parameters=None):
@@ -192,11 +192,11 @@ def load_creditscoring1(cost_mat_parameters=None):
 
     return Bunch(data=data.values, target=target, cost_mat=cost_mat,
                  target_names=['no', 'yes'], DESCR=descr,
-                 feature_names=data.columns.values)
+                 feature_names=data.columns.values, name='CreditScoring_Kaggle2011')
 
 
 def load_creditscoring2(cost_mat_parameters=None):
-    """Load and return the credit scoring PAKDD 2011 competition dataset (classification).
+    """Load and return the credit scoring PAKDD 2009 competition dataset (classification).
 
     The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.
 
@@ -276,7 +276,7 @@ def load_creditscoring2(cost_mat_parameters=None):
 
     return Bunch(data=data.values, target=target, cost_mat=cost_mat,
                  target_names=['no', 'yes'], DESCR=descr,
-                 feature_names=data.columns.values)
+                 feature_names=data.columns.values, name='CreditScoring_PAKDD2009')
 
 
 def _creditscoring_costmat(income, debt, pi_1, cost_mat_parameters):
