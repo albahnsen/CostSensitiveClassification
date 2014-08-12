@@ -9,7 +9,8 @@ import numpy as np
 import copy
 from ..metrics import cost_loss
 from sklearn.base import BaseEstimator
-
+from sklearn.externals import six
+import numbers
 
 class CostSensitiveDecisionTreeClassifier(BaseEstimator):
     """A example-dependent cost-sensitive binary decision tree classifier.
@@ -124,12 +125,14 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         self.min_gain = min_gain
         self.pruned = pruned
 
+        self.n_features_ = None
+        self.max_features_ = None
+
         class tree_class():
             def __init__(self):
                 self.n_nodes = 0
                 self.tree = dict()
                 self.tree_pruned = dict()
-                self.selected_features = []
                 self.nodes = []
                 self.n_nodes_pruned = 0
 
@@ -277,8 +280,21 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         pred = np.zeros((n_features, num_pct))
         splits = np.zeros((n_features, num_pct))
 
+        # Selected features
+        selected_features = np.arange(0, self.n_features_)
+        # Add random state
+        np.random.shuffle(selected_features)
+        selected_features = selected_features[:self.max_features_]
+        selected_features.sort()
+
+        #TODO:  # Skip the CPU intensive evaluation of the impurity criterion for
+                # features that were already detected as constant (hence not suitable
+                # for good splitting) by ancestor nodes and save the information on
+                # newly discovered constant features to spare computation on descendant
+                # nodes.
+
         # For each feature test all possible splits
-        for j in range(n_features):
+        for j in selected_features:
             splits[j, :] = np.percentile(X[:, j], np.arange(0, 100, 100.0 / num_pct).tolist())
 
             for l in range(num_pct):
@@ -387,17 +403,32 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
 
         #TODO: Check input
         #TODO: Add random state
-        n_samples, n_features = X.shape
+        n_samples, self.n_features_ = X.shape
 
-        # Selected features
-        self.tree_.selected_features = np.arange(0, n_features)
-        if self.max_features == 'log2':
-            # https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/tree/tree.py#L187
-            max_features = max(1, int(np.log2(n_features)))
-            np.random.shuffle(self.tree_.selected_features)
-            self.tree_.selected_features = self.tree_.selected_features[:max_features]
+        # Maximum number of features to be taken into account per split
+        if isinstance(self.max_features, six.string_types):
+            if self.max_features == "auto":
+                max_features = max(1, int(np.sqrt(self.n_features_)))
+            elif self.max_features == "sqrt":
+                max_features = max(1, int(np.sqrt(self.n_features_)))
+            elif self.max_features == "log2":
+                max_features = max(1, int(np.log2(self.n_features_)))
+            else:
+                raise ValueError(
+                    'Invalid value for max_features. Allowed string '
+                    'values are "auto", "sqrt" or "log2".')
+        elif self.max_features is None:
+            max_features = self.n_features_
+        elif isinstance(self.max_features, (numbers.Integral, np.integer)):
+            max_features = self.max_features
+        else:  # float
+            if self.max_features > 0.0:
+                max_features = max(1, int(self.max_features * self.n_features_))
+            else:
+                max_features = 1  # On sklearn is 0.
+        self.max_features_ = max_features
 
-        self.tree_.tree = self._tree_grow(y, X[:, self.tree_.selected_features], cost_mat)
+        self.tree_.tree = self._tree_grow(y, X, cost_mat)
 
         if self.pruned:
             self.pruning(X, y, cost_mat)
@@ -499,7 +530,7 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         else:
             tree_ = self.tree_.tree
 
-        return self._classify(X[:, self.tree_.selected_features], tree_, proba=False)
+        return self._classify(X, tree_, proba=False)
 
     def predict_proba(self, X):
         """Predict class probabilities of the input samples X.
@@ -523,7 +554,7 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         else:
             tree_ = self.tree_.tree
 
-        prob[:, 1] = self._classify(X[:, self.tree_.selected_features], tree_, proba=True)
+        prob[:, 1] = self._classify(X, tree_, proba=True)
         prob[:, 0] = 1 - prob[:, 1]
 
         return prob
@@ -636,6 +667,6 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         """
         self.tree_.tree_pruned = copy.deepcopy(self.tree_.tree)
         if self.tree_.n_nodes > 0:
-            self._pruning(X[:, self.tree_.selected_features], y, cost_mat)
+            self._pruning(X, y, cost_mat)
             nodes_pruned = self._nodes(self.tree_.tree_pruned)
             self.tree_.n_nodes_pruned = len(nodes_pruned)
