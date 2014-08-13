@@ -206,7 +206,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
                  max_features=1.0,
                  bootstrap=True,
                  bootstrap_features=False,
-                 combination='voting',
+                 combination='majority_voting',
                  n_jobs=1,
                  random_state=None,
                  verbose=0):
@@ -366,9 +366,9 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
     bootstrap_features : boolean, optional (default=False)
         Whether features are drawn with replacement.
 
-    combination : string, optional (default="voting")
+    combination : string, optional (default="majority_voting")
         Which combination method to use:
-          - If "voting" then combine by majority voting
+          - If "majority_voting" then combine by majority voting
           - If "weighted_voting" then combine by weighted voting using the
             out of bag savings as the weight for each estimator.
 
