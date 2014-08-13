@@ -152,7 +152,7 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
 
     return proba
 
-
+#TODO: Add combination by stacking
 def _parallel_predict(estimators, estimators_features, X, n_classes, combination, estimator_weight):
     """Private function used to compute predictions within a job."""
     n_samples = X.shape[0]

@@ -1,4 +1,7 @@
 from directcost import BayesMinimumRiskClassifier
 from cost_tree import CostSensitiveDecisionTreeClassifier
-
+from cost_ensemble import PastingCostSensitiveDecisionTreeClassifier
+from cost_ensemble import RandomPatchesCostSensitiveDecisionTreeClassifier
+from cost_ensemble import BaggingCostSensitiveDecisionTreeClassifier
+from cost_ensemble import CostSensitiveRandomForestClassifier
 
