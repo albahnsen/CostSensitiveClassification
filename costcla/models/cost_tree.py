@@ -128,15 +128,7 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         self.n_features_ = None
         self.max_features_ = None
 
-        class tree_class():
-            def __init__(self):
-                self.n_nodes = 0
-                self.tree = dict()
-                self.tree_pruned = dict()
-                self.nodes = []
-                self.n_nodes_pruned = 0
-
-        self.tree_ = tree_class()
+        self.tree_ = []
 
     def set_param(self, attribute, value):
         setattr(self, attribute, value)
@@ -374,6 +366,14 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
 
         return tree
 
+    class _tree_class():
+        def __init__(self):
+            self.n_nodes = 0
+            self.tree = dict()
+            self.tree_pruned = dict()
+            self.nodes = []
+            self.n_nodes_pruned = 0
+
     def fit(self, X, y, cost_mat, check_input=False):
         """ Build a example-dependent cost-sensitive decision tree from the training set (X, y, cost_mat)
 
@@ -404,6 +404,8 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
         #TODO: Check input
         #TODO: Add random state
         n_samples, self.n_features_ = X.shape
+
+        self.tree_ = self._tree_class()
 
         # Maximum number of features to be taken into account per split
         if isinstance(self.max_features, six.string_types):
