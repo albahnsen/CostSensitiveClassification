@@ -67,8 +67,6 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
     bootstrap = ensemble.bootstrap
     bootstrap_features = ensemble.bootstrap_features
-    support_sample_weight = ("sample_weight" in
-                             getargspec(ensemble.base_estimator_.fit)[0])
 
     # Build estimators
     estimators = []
@@ -97,42 +95,18 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
                                                   max_features,
                                                   random_state=random_state)
 
-        # Draw samples, using sample weights, and then fit
-        if support_sample_weight:
-            if sample_weight is None:
-                curr_sample_weight = np.ones((n_samples,))
-            else:
-                curr_sample_weight = sample_weight.copy()
-
-            if bootstrap:
-                indices = random_state.randint(0, n_samples, max_samples)
-                sample_counts = np.bincount(indices, minlength=n_samples)
-                curr_sample_weight *= sample_counts
-
-            else:
-                not_indices = sample_without_replacement(
-                    n_samples,
-                    n_samples - max_samples,
-                    random_state=random_state)
-
-                curr_sample_weight[not_indices] = 0
-
-            estimator.fit(X[:, features], y, sample_weight=curr_sample_weight)
-            samples = curr_sample_weight > 0.
-
         # Draw samples, using a mask, and then fit
+        if bootstrap:
+            indices = random_state.randint(0, n_samples, max_samples)
         else:
-            if bootstrap:
-                indices = random_state.randint(0, n_samples, max_samples)
-            else:
-                indices = sample_without_replacement(n_samples,
-                                                     max_samples,
-                                                     random_state=random_state)
+            indices = sample_without_replacement(n_samples,
+                                                 max_samples,
+                                                 random_state=random_state)
 
-            sample_counts = np.bincount(indices, minlength=n_samples)
+        sample_counts = np.bincount(indices, minlength=n_samples)
 
-            estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
-            samples = sample_counts > 0.
+        estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
+        samples = sample_counts > 0.
 
         # OOB savings
         oob_pred = estimator.predict(X[~samples])
