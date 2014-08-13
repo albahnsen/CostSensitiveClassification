@@ -50,7 +50,7 @@ def _partition_estimators(n_estimators, n_jobs):
 
 
 def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
-                               sample_weight, seeds, verbose):
+                               seeds, verbose):
     """Private function used to build a batch of estimators within a job."""
     # Retrieve settings
     n_samples, n_features = X.shape
@@ -109,8 +109,15 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
         samples = sample_counts > 0.
 
         # OOB savings
-        oob_pred = estimator.predict(X[~samples])
-        oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
+        # Test if all examples where used for training
+        if not np.any(~samples):
+            # Then use training
+            oob_pred = estimator.predict(X)
+            oob_savings = max(0, savings_score(y, oob_pred, cost_mat))
+        else:
+            # Then use OOB
+            oob_pred = estimator.predict(X[~samples])
+            oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
 
         estimators.append(estimator)
         estimators_samples.append(samples)
@@ -271,7 +278,6 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
                 X,
                 y,
                 cost_mat,
-                sample_weight,
                 seeds[starts[i]:starts[i + 1]],
                 verbose=self.verbose)
             for i in range(n_jobs))
