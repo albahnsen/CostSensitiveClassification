@@ -126,29 +126,18 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
     return estimators, estimators_samples, estimators_features, estimators_weight
 
-#TODO: add weighted probability
-def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
+
+def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combination, estimator_weight):
     """Private function used to compute (proba-)predictions within a job."""
     n_samples = X.shape[0]
     proba = np.zeros((n_samples, n_classes))
 
-    for estimator, features in zip(estimators, estimators_features):
-        if hasattr(estimator, "predict_proba"):
-            proba_estimator = estimator.predict_proba(X[:, features])
-
-            if n_classes == len(estimator.classes_):
-                proba += proba_estimator
-
-            else:
-                proba[:, estimator.classes_] += \
-                    proba_estimator[:, range(len(estimator.classes_))]
-
+    for estimator, features, weight in zip(estimators, estimators_features, estimator_weight):
+        proba_estimator = estimator.predict_proba(X[:, features])
+        if combination == 'weighted_voting':
+            proba += proba_estimator * weight
         else:
-            # Resort to voting
-            predictions = estimator.predict(X[:, features])
-
-            for i in range(n_samples):
-                proba[i, predictions[i]] += 1
+            proba += proba_estimator
 
     return proba
 
@@ -524,10 +513,15 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                 self.estimators_[starts[i]:starts[i + 1]],
                 self.estimators_features_[starts[i]:starts[i + 1]],
                 X,
-                self.n_classes_)
+                self.n_classes_,
+                self.combination,
+                self.estimators_weight_[starts[i]:starts[i + 1]])
             for i in range(n_jobs))
 
         # Reduce
-        proba = sum(all_proba) / self.n_estimators
+        if self.combination == 'majority_voting':
+            proba = sum(all_proba) / self.n_estimators
+        else:
+            proba = sum(all_proba)
 
         return proba
