@@ -24,6 +24,7 @@ from sklearn.ensemble.base import BaseEnsemble
 from sklearn.externals.joblib import cpu_count
 
 from ..metrics import savings_score
+from costcla.models import CostSensitiveLogisticRegression
 
 __all__ = ["BaggingClassifier", ]
 
@@ -127,12 +128,12 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
     return estimators, estimators_samples, estimators_features, estimators_weight
 
 
-def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combination, estimator_weight):
+def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combination, estimators_weight):
     """Private function used to compute (proba-)predictions within a job."""
     n_samples = X.shape[0]
     proba = np.zeros((n_samples, n_classes))
 
-    for estimator, features, weight in zip(estimators, estimators_features, estimator_weight):
+    for estimator, features, weight in zip(estimators, estimators_features, estimators_weight):
         proba_estimator = estimator.predict_proba(X[:, features])
         if combination == 'weighted_voting':
             proba += proba_estimator * weight
@@ -141,14 +142,14 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combi
 
     return proba
 
-#TODO: Add combination by stacking
-def _parallel_predict(estimators, estimators_features, X, n_classes, combination, estimator_weight):
+
+def _parallel_predict(estimators, estimators_features, X, n_classes, combination, estimators_weight):
     """Private function used to compute predictions within a job."""
     n_samples = X.shape[0]
     pred = np.zeros((n_samples, n_classes))
     n_estimators = len(estimators)
 
-    for estimator, features, weight in zip(estimators, estimators_features, estimator_weight):
+    for estimator, features, weight in zip(estimators, estimators_features, estimators_weight):
         # Resort to voting
         predictions = estimator.predict(X[:, features])
 
@@ -159,6 +160,20 @@ def _parallel_predict(estimators, estimators_features, X, n_classes, combination
                 pred[i, int(predictions[i])] += 1
 
     return pred
+
+#TODO: Create stacking set in parallel
+def _create_stacking_set(estimators, estimators_features, estimators_weight, X):
+    """Private function used to create the stacking training set."""
+    n_samples = X.shape[0]
+
+    valid_estimators = np.nonzero(estimators_weight)[0]
+    n_valid_estimators = valid_estimators.shape[0]
+    X_stacking = np.zeros((n_samples, n_valid_estimators))
+
+    for e in range(n_valid_estimators):
+        X_stacking[:, e] = estimators[valid_estimators[e]].predict(X[:, estimators_features[valid_estimators[e]]])
+
+    return X_stacking
 
 
 class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
@@ -281,6 +296,14 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
         self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
 
+        if self.combination == 'stacking':
+
+            # Learn the additional model
+            self.f_staking = CostSensitiveLogisticRegression(verbose=self.verbose)
+            X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
+                                              self.estimators_weight_, X)
+            self.f_staking.fit(X_stacking, y, cost_mat)
+
         return self
 
     def _validate_y(self, y):
@@ -338,6 +361,8 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
           - If "majority_voting" then combine by majority voting
           - If "weighted_voting" then combine by weighted voting using the
             out of bag savings as the weight for each estimator.
+          - If "stacking" then a Cost Sensitive Logistic Regression is used
+            to learn the combination.
 
     n_jobs : int, optional (default=1)
         The number of jobs to run in parallel for both `fit` and `predict`.
@@ -452,24 +477,31 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "input n_features is {1}."
                              "".format(self.n_features_, X.shape[1]))
 
-        # Parallel loop
-        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
-                                                             self.n_jobs)
+        if self.combination == 'stacking':
 
-        all_pred = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
-            delayed(_parallel_predict)(
-                self.estimators_[starts[i]:starts[i + 1]],
-                self.estimators_features_[starts[i]:starts[i + 1]],
-                X,
-                self.n_classes_,
-                self.combination,
-                self.estimators_weight_[starts[i]:starts[i + 1]])
-            for i in range(n_jobs))
+            X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
+                                              self.estimators_weight_, X)
+            return self.f_staking.predict(X_stacking)
 
-        # Reduce
-        pred = sum(all_pred) / self.n_estimators
+        else:
+            # Parallel loop
+            n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
+                                                                 self.n_jobs)
 
-        return self.classes_.take(np.argmax(pred, axis=1), axis=0)
+            all_pred = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
+                delayed(_parallel_predict)(
+                    self.estimators_[starts[i]:starts[i + 1]],
+                    self.estimators_features_[starts[i]:starts[i + 1]],
+                    X,
+                    self.n_classes_,
+                    self.combination,
+                    self.estimators_weight_[starts[i]:starts[i + 1]])
+                for i in range(n_jobs))
+
+            # Reduce
+            pred = sum(all_pred) / self.n_estimators
+
+            return self.classes_.take(np.argmax(pred, axis=1), axis=0)
 
     def predict_proba(self, X):
         """Predict class probabilities for X.
