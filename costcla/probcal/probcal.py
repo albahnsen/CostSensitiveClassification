@@ -10,7 +10,6 @@ import numpy as np
 
 #TODO: Add isotonic regression from sklearn
 #TODO: Add Platt calibration
-# http://ift.tt/XuMk3s
 
 class ROCConvexHull:
     """Implementation the the calibration method ROCConvexHull
