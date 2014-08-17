@@ -5,15 +5,13 @@ This module include the cost-sensitive logistic regression method.
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-from pyea import GeneticAlgorithmOptimizer
-from ..metrics import cost_loss
-
 import numpy as np
 import math
 from scipy.optimize import minimize
 from sklearn.base import BaseEstimator
-from sklearn.linear_model.logistic import _intercept_dot
-
+# from sklearn.linear_model.logistic import _intercept_dot
+from pyea import GeneticAlgorithmOptimizer
+from ..metrics import cost_loss
 
 # Not in sklearn 0.15, is in 0.16-git
 #TODO: replace once sklearn 0.16 is release
@@ -45,13 +43,23 @@ def _sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
 
+def _logistic_cost_loss_i(w, X, y, cost_mat, alpha):
+    n_samples = X.shape[0]
+    w, c, z = _intercept_dot(w, X)
+    y_prob = _sigmoid(z)
+
+    out = cost_loss(y, y_prob, cost_mat) / n_samples
+    out += .5 * alpha * np.dot(w, w)
+    return out
+
+
 def _logistic_cost_loss(w, X, y, cost_mat, alpha):
     """Computes the logistic loss.
 
     Parameters
     ----------
-    w : ndarray, shape (n_features,) or (n_features + 1,)
-        Coefficient vector.
+    w : array-like, shape (n_w, n_features,) or (n_w, n_features + 1,)
+        Coefficient vector or matrix of coefficient.
 
     X : array-like, shape (n_samples, n_features)
         Training data.
@@ -72,17 +80,21 @@ def _logistic_cost_loss(w, X, y, cost_mat, alpha):
     out : float
         Logistic loss.
     """
-    n_samples = X.shape[0]
-    w, c, z = _intercept_dot(w, X)
-    y_prob = _sigmoid(z)
 
-    out = y * (y_prob * cost_mat[:, 2] + (1 - y_prob) * cost_mat[:, 1])
-    out += (1 - y) * (y_prob * cost_mat[:, 0] + (1 - y_prob) * cost_mat[:, 3])
+    if w.shape[0] == w.size:
+        # Only evaluating one w
+        return _logistic_cost_loss_i(w, X, y, cost_mat, alpha)
 
-    out = out.sum() / n_samples
-    out += .5 * alpha * np.dot(w, w)
+    else:
+        # Evaluating a set of w
+        n_w = w.shape[0]
+        out = np.zeros(n_w)
 
-    return out
+        for i in range(n_w):
+            out[i] = _logistic_cost_loss_i(w[i], X, y, cost_mat, alpha)
+
+        return out
+
 
 class CostSensitiveLogisticRegression(BaseEstimator):
     """A example-dependent cost-sensitive Logistic Regression classifier.
@@ -100,7 +112,7 @@ class CostSensitiveLogisticRegression(BaseEstimator):
         added the decision function.
 
     max_iter : int
-        Useful only for the newton-cg and lbfgs solvers. Maximum number of
+        Useful only for the ga and bfgs solvers. Maximum number of
         iterations taken for the solvers to converge.
 
     random_state : int seed, RandomState instance, or None (default)
@@ -112,6 +124,9 @@ class CostSensitiveLogisticRegression(BaseEstimator):
 
     tol : float, optional
         Tolerance for stopping criteria.
+
+    verbose : int, optional (default=0)
+        Controls the verbosity of the optimization process.
 
     Attributes
     ----------
@@ -136,21 +151,22 @@ class CostSensitiveLogisticRegression(BaseEstimator):
     --------
     >>> from sklearn.linear_model import LogisticRegression
     >>> from sklearn.cross_validation import train_test_split
-    >>> from costcla.datasets import load_creditscoring1
+    >>> from costcla.datasets import load_creditscoring2
     >>> from costcla.models import CostSensitiveLogisticRegression
     >>> from costcla.metrics import savings_score
-    >>> data = load_creditscoring1()
+    >>> data = load_creditscoring2()
     >>> sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)
     >>> X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets
-    >>> y_pred_test_rf = LogisticRegression(random_state=0).fit(X_train, y_train).predict(X_test)
+    >>> y_pred_test_lr = LogisticRegression(random_state=0).fit(X_train, y_train).predict(X_test)
     >>> f = CostSensitiveLogisticRegression()
-    >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
-    >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
-    0.12454256594
-    >>> # Savings using CSDecisionTree
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
-    0.481916135529
+    >>> f.fit(X_train, y_train, cost_mat_train)
+    >>> y_pred_test_cslr = f.predict(X_test)
+    >>> # Savings using Logistic Regression
+    >>> print savings_score(y_test, y_pred_test_lr, cost_mat_test)
+    0.00283419465107
+    >>> # Savings using Cost Sensitive Logistic Regression
+    >>> print savings_score(y_test, y_pred_test_cslr, cost_mat_test)
+    0.142872237978
     """
     def __init__(self,
                  C=1.0,
@@ -158,7 +174,8 @@ class CostSensitiveLogisticRegression(BaseEstimator):
                  max_iter=100,
                  random_state=None,
                  solver='ga',
-                 tol=1e-4):
+                 tol=1e-4,
+                 verbose=0):
 
         self.C = C
         self.fit_intercept = fit_intercept
@@ -166,18 +183,20 @@ class CostSensitiveLogisticRegression(BaseEstimator):
         self.random_state = random_state
         self.solver = solver
         self.tol = tol
+        self.coef_ = None
+        self.intercept_ = 0.
+        self.verbose = verbose
 
-
-    def fit(self, x, y, cost_mat, reg=0, method='BFGS', range1=None, params_ga=[100, 100, 10, 0.25]):
-        """ Build a example-dependent cost-sensitive decision tree from the training set (X, y, cost_mat)
+    def fit(self, X, y, cost_mat):
+        """ Build a example-dependent cost-sensitive logistic regression from the training set (X, y, cost_mat)
 
         Parameters
         ----------
-        y : array indicator matrix
-            Ground truth (correct) labels.
-
         X : array-like of shape = [n_samples, n_features]
             The input samples.
+
+        y : array indicator matrix
+            Ground truth (correct) labels.
 
         cost_mat : array-like of shape = [n_samples, 4]
             Cost matrix of the classification problem
@@ -192,38 +211,76 @@ class CostSensitiveLogisticRegression(BaseEstimator):
 
         #TODO: Check input
 
-        setattr(self, 'intercept', intercept)
-        if intercept == True:
-            x = np.hstack((np.ones((x.shape[0], 1)), x))
-
-        n = x.shape[1]
-        initial_theta = np.zeros((n, 1))
-        if method == "GA":
-            if range1 == None:
-                range1 = np.vstack((-10 * np.ones((1, n)), 10 * np.ones((1, n))))
-            res = GAcont(n, self.fitnessfunc, params_ga[0], params_ga[1], CS=params_ga[2], MP=params_ga[3],
-                         range=range1,
-                         fargs=[y, x, cost_mat, reg])
-            res.evaluate()
+        n_features = X.shape[1]
+        if self.fit_intercept:
+            w0 = np.zeros(n_features + 1)
         else:
-            res = minimize(self.fitnessfunc, initial_theta, (y, x, cost_mat, reg,), method=method,
-                           options={'maxiter': 100, 'disp': True})
+            w0 = np.zeros(n_features)
 
-        setattr(self, 'theta', res.x)
-        setattr(self, 'opti', res)
-        setattr(self, 'hist', res.hist)
-        setattr(self, 'full_hist', res.full_hist)
+        if self.solver == 'ga':
+            #TODO: add n_jobs
+            res = GeneticAlgorithmOptimizer(_logistic_cost_loss,
+                                            w0.shape[0],
+                                            iters=self.max_iter,
+                                            type_='cont',
+                                            n_chromosomes=100,
+                                            per_mutations=0.25,
+                                            n_elite=10,
+                                            fargs=(X, y, cost_mat, 1. / self.C),
+                                            range_=(-5, 5),
+                                            n_jobs=1,
+                                            verbose=self.verbose)
+            res.fit()
 
-    def predict_proba(self, x_test):
-        #Calculate the prediction of a LogRegression
-        if self.intercept == True:
-            x_test = np.hstack((np.ones((x_test.shape[0], 1)), x_test))
-        p = np.zeros((x_test.shape[0], 2))
-        p[:, 1] = self.sigmoid(np.dot(x_test, self.theta))
-        p[:, 0] = 1 - p[:, 1]
-        return p
+        elif self.solver == 'bfgs':
 
-    def predict(self, x_test, cut_point=0.5):
-        #Calculate the prediction of a LogRegression
-        p = np.floor(self.predict_proba(x_test)[:, 1] + (1 - cut_point))
-        return p.reshape(p.shape[0], )
+            if self.verbose > 0:
+                disp = True
+            else:
+                disp = False
+
+            res = minimize(_logistic_cost_loss,
+                           w0,
+                           method='BFGS',
+                           args=(X, y, cost_mat, 1. / self.C),
+                           tol=self.tol,
+                           options={'maxiter': self.max_iter, 'disp': disp})
+
+        if self.fit_intercept:
+            self.coef_ = res.x[:-1]
+            self.intercept_ = res.x[-1]
+        else:
+            self.coef_ = res.x
+
+    def predict_proba(self, X):
+        """Probability estimates.
+
+        The returned estimates.
+
+        Parameters
+        ----------
+        X : array-like, shape = [n_samples, n_features]
+
+        Returns
+        -------
+        T : array-like, shape = [n_samples, 2]
+            Returns the probability of the sample for each class in the model.
+        """
+        y_prob = np.zeros((X.shape[0], 2))
+        y_prob[:, 1] = _sigmoid(np.dot(X, self.coef_) + self.intercept_)
+        y_prob[:, 0] = 1 - y_prob[:, 1]
+        return y_prob
+
+    def predict(self, X, cut_point=0.5):
+        """Predicted class.
+
+        Parameters
+        ----------
+        X : array-like, shape = [n_samples, n_features]
+
+        Returns
+        -------
+        T : array-like, shape = [n_samples]
+            Returns the prediction of the sample..
+        """
+        return np.floor(self.predict_proba(X)[:, 1] + (1 - cut_point))
