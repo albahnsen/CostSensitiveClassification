@@ -5,33 +5,192 @@ This module include the cost-sensitive logistic regression method.
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-from ..optimization import GAcont
-from ..metrics import cost_measure
+from pyea import GeneticAlgorithmOptimizer
+from ..metrics import cost_loss
 
 import numpy as np
 import math
 from scipy.optimize import minimize
+from sklearn.base import BaseEstimator
+from sklearn.linear_model.logistic import _intercept_dot
 
-# TODO: Fix CSLog function
-class CSLogisticRegression():
-    def __init__(self):
-        def sigmoid2(t):
-            if t < -10:
-                return 0.00000001
-            else:
-                return 1.0 / (1 + math.exp(-t))
 
-        self.sigmoid = np.vectorize(sigmoid2)
-        self.fitnessfunc = cost
-        return None
+# Not in sklearn 0.15, is in 0.16-git
+#TODO: replace once sklearn 0.16 is release
+def _intercept_dot(w, X):
+    """Computes y * np.dot(X, w).
 
-    # TODO: Convert parameters to diccionary
-    def fit(self, x, y, cost_mat, intercept=True, reg=0, method='BFGS', range1=None, params_ga=[100, 100, 10, 0.25]):
-        #Function to fit a Logistic Regression
-        #Input matrix X (not structure) and vector Y.
-        #If jac!=False is because manual gradient is calculated
-        #Otherwise gradient is calculated by the optimization function
-        #On initial tests using the gradient make the algorithm run 2X faster
+    It takes into consideration if the intercept should be fit or not.
+
+    Parameters
+    ----------
+    w : ndarray, shape (n_features,) or (n_features + 1,)
+        Coefficient vector.
+
+    X : {array-like, sparse matrix}, shape (n_samples, n_features)
+        Training data.
+
+    """
+    c = 0.
+    if w.size == X.shape[1] + 1:
+        c = w[-1]
+        w = w[:-1]
+
+    z = np.dot(X, w) + c
+    return w, c, z
+
+
+def _sigmoid(z):
+    """ Private function that calculate the sigmoid function """
+    return 1 / (1 + np.exp(-z))
+
+
+def _logistic_cost_loss(w, X, y, cost_mat, alpha):
+    """Computes the logistic loss.
+
+    Parameters
+    ----------
+    w : ndarray, shape (n_features,) or (n_features + 1,)
+        Coefficient vector.
+
+    X : array-like, shape (n_samples, n_features)
+        Training data.
+
+    y : ndarray, shape (n_samples,)
+        Array of labels.
+
+    cost_mat : array-like of shape = [n_samples, 4]
+        Cost matrix of the classification problem
+        Where the columns represents the costs of: false positives, false negatives,
+        true positives and true negatives, for each example.
+
+    alpha : float
+        Regularization parameter. alpha is equal to 1 / C.
+
+    Returns
+    -------
+    out : float
+        Logistic loss.
+    """
+    n_samples = X.shape[0]
+    w, c, z = _intercept_dot(w, X)
+    y_prob = _sigmoid(z)
+
+    out = y * (y_prob * cost_mat[:, 2] + (1 - y_prob) * cost_mat[:, 1])
+    out += (1 - y) * (y_prob * cost_mat[:, 0] + (1 - y_prob) * cost_mat[:, 3])
+
+    out = out.sum() / n_samples
+    out += .5 * alpha * np.dot(w, w)
+
+    return out
+
+class CostSensitiveLogisticRegression(BaseEstimator):
+    """A example-dependent cost-sensitive Logistic Regression classifier.
+
+    Parameters
+    ----------
+
+    C : float, optional (default=1.0)
+        Inverse of regularization strength; must be a positive float.
+        Like in support vector machines, smaller values specify stronger
+        regularization.
+
+    fit_intercept : bool, default: True
+        Specifies if a constant (a.k.a. bias or intercept) should be
+        added the decision function.
+
+    max_iter : int
+        Useful only for the newton-cg and lbfgs solvers. Maximum number of
+        iterations taken for the solvers to converge.
+
+    random_state : int seed, RandomState instance, or None (default)
+        The seed of the pseudo random number generator to use when
+        shuffling the data.
+
+    solver : {'ga', 'bfgs'}
+        Algorithm to use in the optimization problem.
+
+    tol : float, optional
+        Tolerance for stopping criteria.
+
+    Attributes
+    ----------
+    `coef_` : array, shape (n_classes, n_features)
+        Coefficient of the features in the decision function.
+
+    `intercept_` : array, shape (n_classes,)
+        Intercept (a.k.a. bias) added to the decision function.
+        If `fit_intercept` is set to False, the intercept is set to zero.
+
+    See also
+    --------
+    sklearn.tree.DecisionTreeClassifier
+
+    References
+    ----------
+
+    .. [1] A.Correa, "Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring",
+           submitted.
+
+    Examples
+    --------
+    >>> from sklearn.linear_model import LogisticRegression
+    >>> from sklearn.cross_validation import train_test_split
+    >>> from costcla.datasets import load_creditscoring1
+    >>> from costcla.models import CostSensitiveLogisticRegression
+    >>> from costcla.metrics import savings_score
+    >>> data = load_creditscoring1()
+    >>> sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)
+    >>> X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets
+    >>> y_pred_test_rf = LogisticRegression(random_state=0).fit(X_train, y_train).predict(X_test)
+    >>> f = CostSensitiveLogisticRegression()
+    >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
+    >>> # Savings using only RandomForest
+    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    0.12454256594
+    >>> # Savings using CSDecisionTree
+    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    0.481916135529
+    """
+    def __init__(self,
+                 C=1.0,
+                 fit_intercept=True,
+                 max_iter=100,
+                 random_state=None,
+                 solver='ga',
+                 tol=1e-4):
+
+        self.C = C
+        self.fit_intercept = fit_intercept
+        self.max_iter = max_iter
+        self.random_state = random_state
+        self.solver = solver
+        self.tol = tol
+
+
+    def fit(self, x, y, cost_mat, reg=0, method='BFGS', range1=None, params_ga=[100, 100, 10, 0.25]):
+        """ Build a example-dependent cost-sensitive decision tree from the training set (X, y, cost_mat)
+
+        Parameters
+        ----------
+        y : array indicator matrix
+            Ground truth (correct) labels.
+
+        X : array-like of shape = [n_samples, n_features]
+            The input samples.
+
+        cost_mat : array-like of shape = [n_samples, 4]
+            Cost matrix of the classification problem
+            Where the columns represents the costs of: false positives, false negatives,
+            true positives and true negatives, for each example.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+
+        #TODO: Check input
 
         setattr(self, 'intercept', intercept)
         if intercept == True:
@@ -68,59 +227,3 @@ class CSLogisticRegression():
         #Calculate the prediction of a LogRegression
         p = np.floor(self.predict_proba(x_test)[:, 1] + (1 - cut_point))
         return p.reshape(p.shape[0], )
-
-
-import numpy as np, math, pp, thread
-
-#global init Job_server_prof
-def sigmoid(t):
-    #missing to compare if this is faster than without vectorization, since it have to be calculated each time
-    def sigmoid2(t):
-        if t < -10:
-            return 0.00000001
-        else:
-            return 1.0 / ( 1 + math.exp(-t))
-
-    return np.vectorize(sigmoid2)(t)
-
-
-Job_server_prof = pp.Server(restart=True)
-
-
-def cost(theta, y, x, cost_mat, reg, parallel=12):
-    #theta_i is a vector 1xCols where x.shape[1]=Cols
-    #theta is a matrix NxCols
-    #check if theta=array
-    def cost_i(j, j1, theta1, y, x, cost_mat, reg=0.0):
-        res = np.empty(((min(j * j1 + j1, theta1.shape[0]) - j * j1), 2))
-        m = y.shape[0]
-        for i in range(j * j1, min(j * j1 + j1, theta1.shape[0])):
-            # res[i-j*j1,1]=cost_p((sigmoid(np.dot(x,theta1[i].transpose()))).reshape(y.shape),y,amt,ca)/m
-            p = (sigmoid(np.dot(x, theta1[i].transpose()))).reshape(y.shape)
-            res[i - j * j1, 1] = cost_measure(y, p, cost_mat)
-            res[i - j * j1, 1] + reg / m * ((theta1[i] ** 2).sum())
-            res[i - j * j1, 0] = i
-        return res
-
-    class Res:
-        def __init__(self, N):
-            self.res = np.zeros(N, dtype='<f8')
-            self.lock = thread.allocate_lock()
-
-        def save_res(self, value):
-            self.lock.acquire()
-            for i in range(value.shape[0]):
-                self.res[int(value[i, 0])] = value[i, 1]
-            self.lock.release()
-
-    if theta.shape[0] == theta.size:
-        theta = theta.reshape(1, theta.shape[0])
-    N = theta.shape[0]
-    res = Res(N)
-    n_jobs = min(parallel, N)
-    j1 = int(math.ceil(float(N) / n_jobs))
-    for j in range(n_jobs):
-        Job_server_prof.submit(cost_i, (j, j1, theta, y, x, cost_mat, 0.0), (sigmoid, cost_measure,),
-                               ('numpy as np', 'math'), callback=res.save_res)
-    Job_server_prof.wait()
-    return res.res

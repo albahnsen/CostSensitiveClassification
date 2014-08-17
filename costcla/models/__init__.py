@@ -1,1 +1,2 @@
 from directcost import BayesMinimumRiskClassifier
+from regression import CostSensitiveLogisticRegression
