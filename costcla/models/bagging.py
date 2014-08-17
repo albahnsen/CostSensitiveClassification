@@ -193,96 +193,6 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.random_state = random_state
         self.verbose = verbose
 
-    def fit(self, X, y, cost_mat, sample_weight=None):
-        """Build a Bagging ensemble of estimators from the training
-           set (X, y).
-
-        Parameters
-        ----------
-        X : {array-like, sparse matrix} of shape = [n_samples, n_features]
-            The training input samples. Sparse matrices are accepted only if
-            they are supported by the base estimator.
-
-        y : array-like, shape = [n_samples]
-            The target values (class labels in classification, real numbers in
-            regression).
-
-        cost_mat : array-like of shape = [n_samples, 4]
-            Cost matrix of the classification problem
-            Where the columns represents the costs of: false positives, false negatives,
-            true positives and true negatives, for each example.
-
-        sample_weight : array-like, shape = [n_samples] or None
-            Sample weights. If None, then samples are equally weighted.
-            Note that this is supported only if the base estimator supports
-            sample weighting.
-
-        Returns
-        -------
-        self : object
-            Returns self.
-        """
-        random_state = check_random_state(self.random_state)
-
-        # Convert data
-        # X, y = check_X_y(X, y, ['csr', 'csc', 'coo'])  # Not in sklearn verion 0.15
-
-        # Remap output
-        n_samples, self.n_features_ = X.shape
-        y = self._validate_y(y)
-
-        # Check parameters
-        self._validate_estimator()
-
-        if isinstance(self.max_samples, (numbers.Integral, np.integer)):
-            max_samples = self.max_samples
-        else:  # float
-            max_samples = int(self.max_samples * X.shape[0])
-
-        if not (0 < max_samples <= X.shape[0]):
-            raise ValueError("max_samples must be in (0, n_samples]")
-
-        if isinstance(self.max_features, (numbers.Integral, np.integer)):
-            max_features = self.max_features
-        else:  # float
-            max_features = int(self.max_features * self.n_features_)
-
-        if not (0 < max_features <= self.n_features_):
-            raise ValueError("max_features must be in (0, n_features]")
-
-        # Free allocated memory, if any
-        self.estimators_ = None
-
-        # Parallel loop
-        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
-                                                             self.n_jobs)
-        seeds = random_state.randint(MAX_INT, size=self.n_estimators)
-
-        all_results = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
-            delayed(_parallel_build_estimators)(
-                n_estimators[i],
-                self,
-                X,
-                y,
-                cost_mat,
-                seeds[starts[i]:starts[i + 1]],
-                verbose=self.verbose)
-            for i in range(n_jobs))
-
-        # Reduce
-        self.estimators_ = list(itertools.chain.from_iterable(
-            t[0] for t in all_results))
-        self.estimators_samples_ = list(itertools.chain.from_iterable(
-            t[1] for t in all_results))
-        self.estimators_features_ = list(itertools.chain.from_iterable(
-            t[2] for t in all_results))
-        estimators_weight = list(itertools.chain.from_iterable(
-            t[3] for t in all_results))
-
-        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
-
-        return self
-
     def _validate_y(self, y):
         # Default implementation
         return column_or_1d(y, warn=True)
@@ -396,7 +306,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                  max_features=1.0,
                  bootstrap=True,
                  bootstrap_features=False,
-                 combination='voting',
+                 combination='majority_voting',
                  n_jobs=1,
                  random_state=None,
                  verbose=0):
@@ -424,6 +334,96 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
         self.n_classes_ = len(self.classes_)
 
         return y
+
+    def fit(self, X, y, cost_mat, sample_weight=None):
+        """Build a Bagging ensemble of estimators from the training
+           set (X, y).
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape = [n_samples, n_features]
+            The training input samples. Sparse matrices are accepted only if
+            they are supported by the base estimator.
+
+        y : array-like, shape = [n_samples]
+            The target values (class labels in classification, real numbers in
+            regression).
+
+        cost_mat : array-like of shape = [n_samples, 4]
+            Cost matrix of the classification problem
+            Where the columns represents the costs of: false positives, false negatives,
+            true positives and true negatives, for each example.
+
+        sample_weight : array-like, shape = [n_samples] or None
+            Sample weights. If None, then samples are equally weighted.
+            Note that this is supported only if the base estimator supports
+            sample weighting.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+        random_state = check_random_state(self.random_state)
+
+        # Convert data
+        # X, y = check_X_y(X, y, ['csr', 'csc', 'coo'])  # Not in sklearn verion 0.15
+
+        # Remap output
+        n_samples, self.n_features_ = X.shape
+        y = self._validate_y(y)
+
+        # Check parameters
+        self._validate_estimator()
+
+        if isinstance(self.max_samples, (numbers.Integral, np.integer)):
+            max_samples = self.max_samples
+        else:  # float
+            max_samples = int(self.max_samples * X.shape[0])
+
+        if not (0 < max_samples <= X.shape[0]):
+            raise ValueError("max_samples must be in (0, n_samples]")
+
+        if isinstance(self.max_features, (numbers.Integral, np.integer)):
+            max_features = self.max_features
+        else:  # float
+            max_features = int(self.max_features * self.n_features_)
+
+        if not (0 < max_features <= self.n_features_):
+            raise ValueError("max_features must be in (0, n_features]")
+
+        # Free allocated memory, if any
+        self.estimators_ = None
+
+        # Parallel loop
+        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
+                                                             self.n_jobs)
+        seeds = random_state.randint(MAX_INT, size=self.n_estimators)
+
+        all_results = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
+            delayed(_parallel_build_estimators)(
+                n_estimators[i],
+                self,
+                X,
+                y,
+                cost_mat,
+                seeds[starts[i]:starts[i + 1]],
+                verbose=self.verbose)
+            for i in range(n_jobs))
+
+        # Reduce
+        self.estimators_ = list(itertools.chain.from_iterable(
+            t[0] for t in all_results))
+        self.estimators_samples_ = list(itertools.chain.from_iterable(
+            t[1] for t in all_results))
+        self.estimators_features_ = list(itertools.chain.from_iterable(
+            t[2] for t in all_results))
+        estimators_weight = list(itertools.chain.from_iterable(
+            t[3] for t in all_results))
+
+        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
+
+        return self
 
     def predict(self, X):
         """Predict class for X.
