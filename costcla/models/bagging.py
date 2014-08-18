@@ -73,7 +73,6 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
     estimators = []
     estimators_samples = []
     estimators_features = []
-    estimators_weight = []
 
     for i in range(n_estimators):
         if verbose > 1:
@@ -109,23 +108,11 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
         estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
         samples = sample_counts > 0.
 
-        # OOB savings
-        # Test if all examples where used for training
-        if not np.any(~samples):
-            # Then use training
-            oob_pred = estimator.predict(X)
-            oob_savings = max(0, savings_score(y, oob_pred, cost_mat))
-        else:
-            # Then use OOB
-            oob_pred = estimator.predict(X[~samples])
-            oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
-
         estimators.append(estimator)
         estimators_samples.append(samples)
         estimators_features.append(features)
-        estimators_weight.append(oob_savings)
 
-    return estimators, estimators_samples, estimators_features, estimators_weight
+    return estimators, estimators_samples, estimators_features
 
 
 def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combination, estimators_weight):
@@ -291,10 +278,8 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
             t[1] for t in all_results))
         self.estimators_features_ = list(itertools.chain.from_iterable(
             t[2] for t in all_results))
-        estimators_weight = list(itertools.chain.from_iterable(
-            t[3] for t in all_results))
 
-        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
+        self._evaluate_oob_savings(X, y, cost_mat)
 
         if self.combination == 'stacking':
             self._fit_stacking_model(X, y, cost_mat)
@@ -307,6 +292,28 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
                                           self.estimators_weight_, X)
         self.f_staking.fit(X_stacking, y, cost_mat)
+        return self
+
+    #TODO: _evaluate_oob_savings in parallel
+    def _evaluate_oob_savings(self, X, y, cost_mat):
+        """Private function used to calculate the OOB Savings of each estimator."""
+        estimators_weight = []
+        for estimator, samples, features in zip(self.estimators_, self.estimators_samples_,
+                                                self.estimators_features_):
+            # Test if all examples where used for training
+            if not np.any(~samples):
+                # Then use training
+                oob_pred = estimator.predict(X[:, features])
+                oob_savings = max(0, savings_score(y, oob_pred, cost_mat))
+            else:
+                # Then use OOB
+                oob_pred = estimator.predict((X[~samples])[:, features])
+                oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
+
+            estimators_weight.append(oob_savings)
+
+        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
+
         return self
 
     def _validate_y(self, y):
