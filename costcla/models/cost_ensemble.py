@@ -14,6 +14,7 @@ class CostSensitiveRandomForestClassifier(BaggingClassifier):
     def __init__(self,
                  n_estimators=10,
                  combination='majority_voting',
+                 max_features='auto',
                  n_jobs=1,
                  verbose=False,
                  pruned=False):
