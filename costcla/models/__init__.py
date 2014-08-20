@@ -1,6 +1,5 @@
 from directcost import BayesMinimumRiskClassifier, ThresholdingOptimization
 from cost_tree import CostSensitiveDecisionTreeClassifier
-from regression import CostSensitiveLogisticRegression
 
 from cost_ensemble import PastingCostSensitiveDecisionTreeClassifier
 from cost_ensemble import RandomPatchesCostSensitiveDecisionTreeClassifier
