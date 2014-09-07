@@ -287,6 +287,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
         if self.combination in ['stacking', 'stacking_proba']:
             self._fit_stacking_model(X, y, cost_mat)
+            #TODO: add stacking BMR
         elif self.combination in ['majority_bmr', 'weighted_bmr']:
             self.f_bmr = BayesMinimumRiskClassifier()
             X_bmr = self.predict_proba(X)
@@ -584,9 +585,11 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
         # Reduce
         if self.combination in ['majority_voting', 'majority_bmr']:
             proba = sum(all_proba) / self.n_estimators
-        else:
+        elif self.combination in ['weighted_voting', 'weighted_bmr']:
             proba = sum(all_proba)
+        elif self.combination in ['stacking', 'stacking_proba']:
+            X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
+                                              self.estimators_weight_, X, self.combination)
+            proba = self.f_staking.predict_proba(X_stacking)
 
-        #TODO: add predict proba of stacking
-        
         return proba
