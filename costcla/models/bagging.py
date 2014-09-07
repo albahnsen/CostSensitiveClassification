@@ -25,6 +25,7 @@ from sklearn.externals.joblib import cpu_count
 
 from ..metrics import savings_score
 from costcla.models import CostSensitiveLogisticRegression
+from costcla.models import BayesMinimumRiskClassifier
 
 __all__ = ["BaggingClassifier", ]
 
@@ -122,7 +123,7 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes, combi
 
     for estimator, features, weight in zip(estimators, estimators_features, estimators_weight):
         proba_estimator = estimator.predict_proba(X[:, features])
-        if combination == 'weighted_voting':
+        if combination in ['weighted_voting', 'weighted_bmr']:
             proba += proba_estimator * weight
         else:
             proba += proba_estimator
@@ -286,6 +287,10 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
         if self.combination in ['stacking', 'stacking_proba']:
             self._fit_stacking_model(X, y, cost_mat)
+        elif self.combination in ['majority_bmr', 'weighted_bmr']:
+            self.f_bmr = BayesMinimumRiskClassifier()
+            X_bmr = self.predict_proba(X)
+            self.f_bmr.fit(y, X_bmr)
 
         return self
 
@@ -378,6 +383,10 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             to learn the combination.
           - If "stacking_proba" then a Cost Sensitive Logistic Regression trained
             with the estimated probabilities is used to learn the combination,.
+          - If "majority_bmr" then the BayesMinimumRisk algorithm is used to make the
+            prediction using the predicted probabilities of majority_voting
+          - If "weighted_bmr" then the BayesMinimumRisk algorithm is used to make the
+            prediction using the predicted probabilities of weighted_voting
 
     n_jobs : int, optional (default=1)
         The number of jobs to run in parallel for both `fit` and `predict`.
@@ -465,7 +474,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
 
         return y
 
-    def predict(self, X):
+    def predict(self, X, cost_mat=None):
         """Predict class for X.
 
         The predicted class of an input sample is computed as the class with
@@ -477,6 +486,11 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
         X : {array-like, sparse matrix} of shape = [n_samples, n_features]
             The training input samples. Sparse matrices are accepted only if
             they are supported by the base estimator.
+
+        cost_mat : optional array-like of shape = [n_samples, 4], (default=None)
+            Cost matrix of the classification problem
+            Where the columns represents the costs of: false positives, false negatives,
+            true positives and true negatives, for each example.
 
         Returns
         -------
@@ -498,7 +512,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                                               self.estimators_weight_, X, self.combination)
             return self.f_staking.predict(X_stacking)
 
-        else:
+        elif self.combination in ['majority_voting', 'weighted_voting']:
             # Parallel loop
             n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
                                                                  self.n_jobs)
@@ -517,6 +531,11 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             pred = sum(all_pred) / self.n_estimators
 
             return self.classes_.take(np.argmax(pred, axis=1), axis=0)
+
+        elif self.combination in ['majority_bmr', 'weighted_bmr']:
+            #TODO: Add check if cost_mat == None
+            X_bmr = self.predict_proba(X)
+            return self.f_bmr.predict(X_bmr, cost_mat)
 
     def predict_proba(self, X):
         """Predict class probabilities for X.
@@ -550,8 +569,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "".format(self.n_features_, X.shape[1]))
 
         # Parallel loop
-        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,
-                                                             self.n_jobs)
+        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators, self.n_jobs)
 
         all_proba = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
             delayed(_parallel_predict_proba)(
@@ -564,7 +582,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             for i in range(n_jobs))
 
         # Reduce
-        if self.combination == 'majority_voting':
+        if self.combination in ['majority_voting', 'majority_bmr']:
             proba = sum(all_proba) / self.n_estimators
         else:
             proba = sum(all_proba)
