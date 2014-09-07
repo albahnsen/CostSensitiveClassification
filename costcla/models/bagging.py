@@ -149,7 +149,7 @@ def _parallel_predict(estimators, estimators_features, X, n_classes, combination
     return pred
 
 #TODO: Create stacking set in parallel
-def _create_stacking_set(estimators, estimators_features, estimators_weight, X):
+def _create_stacking_set(estimators, estimators_features, estimators_weight, X, combination):
     """Private function used to create the stacking training set."""
     n_samples = X.shape[0]
 
@@ -158,7 +158,10 @@ def _create_stacking_set(estimators, estimators_features, estimators_weight, X):
     X_stacking = np.zeros((n_samples, n_valid_estimators))
 
     for e in range(n_valid_estimators):
-        X_stacking[:, e] = estimators[valid_estimators[e]].predict(X[:, estimators_features[valid_estimators[e]]])
+        if combination == 'stacking':
+            X_stacking[:, e] = estimators[valid_estimators[e]].predict(X[:, estimators_features[valid_estimators[e]]])
+        elif combination == 'stacking_proba':
+            X_stacking[:, e] = estimators[valid_estimators[e]].predict_proba(X[:, estimators_features[valid_estimators[e]]])[:, 1]
 
     return X_stacking
 
@@ -281,7 +284,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
         self._evaluate_oob_savings(X, y, cost_mat)
 
-        if self.combination == 'stacking':
+        if self.combination in ['stacking', 'stacking_proba']:
             self._fit_stacking_model(X, y, cost_mat)
 
         return self
@@ -290,7 +293,7 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         """Private function used to fit the stacking model."""
         self.f_staking = CostSensitiveLogisticRegression(verbose=self.verbose)
         X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
-                                          self.estimators_weight_, X)
+                                          self.estimators_weight_, X, self.combination)
         self.f_staking.fit(X_stacking, y, cost_mat)
         return self
 
@@ -373,6 +376,8 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             out of bag savings as the weight for each estimator.
           - If "stacking" then a Cost Sensitive Logistic Regression is used
             to learn the combination.
+          - If "stacking_proba" then a Cost Sensitive Logistic Regression trained
+            with the estimated probabilities is used to learn the combination,.
 
     n_jobs : int, optional (default=1)
         The number of jobs to run in parallel for both `fit` and `predict`.
@@ -487,10 +492,10 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "input n_features is {1}."
                              "".format(self.n_features_, X.shape[1]))
 
-        if self.combination == 'stacking':
+        if self.combination in ['stacking', 'stacking_proba']:
 
             X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
-                                              self.estimators_weight_, X)
+                                              self.estimators_weight_, X, self.combination)
             return self.f_staking.predict(X_stacking)
 
         else:
@@ -564,4 +569,6 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
         else:
             proba = sum(all_proba)
 
+        #TODO: add predict proba of stacking
+        
         return proba
