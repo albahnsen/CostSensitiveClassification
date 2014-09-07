@@ -159,9 +159,9 @@ def _create_stacking_set(estimators, estimators_features, estimators_weight, X, 
     X_stacking = np.zeros((n_samples, n_valid_estimators))
 
     for e in range(n_valid_estimators):
-        if combination == 'stacking':
+        if combination in ['stacking', 'stacking_bmr']:
             X_stacking[:, e] = estimators[valid_estimators[e]].predict(X[:, estimators_features[valid_estimators[e]]])
-        elif combination == 'stacking_proba':
+        elif combination in ['stacking_proba', 'stacking_proba_bmr']:
             X_stacking[:, e] = estimators[valid_estimators[e]].predict_proba(X[:, estimators_features[valid_estimators[e]]])[:, 1]
 
     return X_stacking
@@ -285,10 +285,10 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
         self._evaluate_oob_savings(X, y, cost_mat)
 
-        if self.combination in ['stacking', 'stacking_proba']:
+        if self.combination in ['stacking', 'stacking_proba', 'stacking_bmr', 'stacking_proba_bmr']:
             self._fit_stacking_model(X, y, cost_mat)
-            #TODO: add stacking BMR
-        elif self.combination in ['majority_bmr', 'weighted_bmr']:
+
+        if self.combination in ['majority_bmr', 'weighted_bmr', 'stacking_bmr', 'stacking_proba_bmr']:
             self.f_bmr = BayesMinimumRiskClassifier()
             X_bmr = self.predict_proba(X)
             self.f_bmr.fit(y, X_bmr)
@@ -384,6 +384,11 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             to learn the combination.
           - If "stacking_proba" then a Cost Sensitive Logistic Regression trained
             with the estimated probabilities is used to learn the combination,.
+          - If "stacking_bmr" then a Cost Sensitive Logistic Regression is used
+            to learn the probabilities and a BayesMinimumRisk for the prediction.
+          - If "stacking_proba_bmr" then a Cost Sensitive Logistic Regression trained
+            with the estimated probabilities is used to learn the probabilities,
+            and a BayesMinimumRisk for the prediction.
           - If "majority_bmr" then the BayesMinimumRisk algorithm is used to make the
             prediction using the predicted probabilities of majority_voting
           - If "weighted_bmr" then the BayesMinimumRisk algorithm is used to make the
@@ -533,7 +538,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
 
             return self.classes_.take(np.argmax(pred, axis=1), axis=0)
 
-        elif self.combination in ['majority_bmr', 'weighted_bmr']:
+        elif self.combination in ['majority_bmr', 'weighted_bmr', 'stacking_bmr', 'stacking_proba_bmr']:
             #TODO: Add check if cost_mat == None
             X_bmr = self.predict_proba(X)
             return self.f_bmr.predict(X_bmr, cost_mat)
@@ -587,7 +592,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             proba = sum(all_proba) / self.n_estimators
         elif self.combination in ['weighted_voting', 'weighted_bmr']:
             proba = sum(all_proba)
-        elif self.combination in ['stacking', 'stacking_proba']:
+        elif self.combination in ['stacking', 'stacking_proba', 'stacking_bmr', 'stacking_proba_bmr']:
             X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
                                               self.estimators_weight_, X, self.combination)
             proba = self.f_staking.predict_proba(X_stacking)
