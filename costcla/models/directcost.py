@@ -7,11 +7,12 @@ This module include the cost sensitive Bayes minimum risk method.
 
 
 import numpy as np
+from sklearn.base import BaseEstimator
 from ..probcal import ROCConvexHull
 from ..metrics import cost_loss
 
 
-class BayesMinimumRiskClassifier():
+class BayesMinimumRiskClassifier(BaseEstimator):
     """A example-dependent cost-sensitive binary Bayes minimum risk classifier.
 
     Parameters
@@ -40,7 +41,9 @@ class BayesMinimumRiskClassifier():
     >>> f = RandomForestClassifier(random_state=0).fit(X_train, y_train)
     >>> y_prob_test = f.predict_proba(X_test)
     >>> y_pred_test_rf = f.predict(X_test)
-    >>> y_pred_test_bmr = BayesMinimumRiskClassifier().fit_predict(y_prob_test, cost_mat_test, y_test)
+    >>> f_bmr = BayesMinimumRiskClassifier()
+    >>> f_bmr.fit(y_test, y_prob_test)
+    >>> y_pred_test_bmr = f_bmr.predict(y_prob_test, cost_mat_test)
     >>> # Savings using only RandomForest
     >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
     0.12454256594
@@ -50,6 +53,57 @@ class BayesMinimumRiskClassifier():
     """
     def __init__(self, calibration=True):
         self.calibration = calibration
+
+    def fit(self,y_true_cal=None, y_prob_cal=None):
+        """ If calibration, then train the calibration of probabilities
+
+        Parameters
+        ----------
+        y_true_cal : array-like of shape = [n_samples], optional default = None
+            True class to be used for calibrating the probabilities
+
+        y_prob_cal : array-like of shape = [n_samples, 2], optional default = None
+            Predicted probabilities to be used for calibrating the probabilities
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+        if self.calibration:
+            self.cal = ROCConvexHull()
+            self.cal.fit(y_true_cal, y_prob_cal[:, 1])
+
+    def predict(self, y_prob, cost_mat):
+        """ Calculate the prediction using the Bayes minimum risk classifier.
+
+        Parameters
+        ----------
+        y_prob : array-like of shape = [n_samples, 2]
+            Predicted probabilities.
+
+        cost_mat : array-like of shape = [n_samples, 4]
+            Cost matrix of the classification problem
+            Where the columns represents the costs of: false positives, false negatives,
+            true positives and true negatives, for each example.
+
+        Returns
+        -------
+        y_pred : array-like of shape = [n_samples]
+            Predicted class
+        """
+        if self.calibration:
+
+            y_prob[:, 1] = self.cal.predict_proba(y_prob[:, 1])
+            y_prob[:, 0] = 1 - y_prob[:, 1]
+
+        # t_BMR = (cost_fp - cost_tn) / (cost_fn - cost_tn - cost_tp + cost_fp)
+        # cost_mat[FP,FN,TP,TN]
+        t_bmr = (cost_mat[:, 0] - cost_mat[:, 3]) / (cost_mat[:, 1] - cost_mat[:, 3] - cost_mat[:, 2] + cost_mat[:, 0])
+
+        y_pred = np.greater(y_prob[:, 1], t_bmr).astype(np.float)
+
+        return y_pred
 
     def fit_predict(self, y_prob, cost_mat, y_true_cal=None, y_prob_cal=None):
         """ Calculate the prediction using the Bayes minimum risk classifier.
@@ -79,13 +133,13 @@ class BayesMinimumRiskClassifier():
         #TODO: Check input
 
         if self.calibration:
-            cal = ROCConvexHull()
+            self.cal = ROCConvexHull()
 
             if y_prob_cal is None:
                 y_prob_cal = y_prob
 
-            cal.fit(y_true_cal, y_prob_cal[:, 1])
-            y_prob[:, 1] = cal.predict_proba(y_prob[:, 1])
+            self.cal.fit(y_true_cal, y_prob_cal[:, 1])
+            y_prob[:, 1] = self.cal.predict_proba(y_prob[:, 1])
             y_prob[:, 0] = 1 - y_prob[:, 1]
 
         # t_BMR = (cost_fp - cost_tn) / (cost_fn - cost_tn - cost_tp + cost_fp)
