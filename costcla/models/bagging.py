@@ -289,10 +289,15 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
             self._fit_stacking_model(X, y, cost_mat)
 
         if self.combination in ['majority_bmr', 'weighted_bmr', 'stacking_bmr', 'stacking_proba_bmr']:
-            self.f_bmr = BayesMinimumRiskClassifier()
-            X_bmr = self.predict_proba(X)
-            self.f_bmr.fit(y, X_bmr)
+            self._fit_bmr_model(X, y)
 
+        return self
+
+    def _fit_bmr_model(self, X, y):
+        """Private function used to fit the BayesMinimumRisk model."""
+        self.f_bmr = BayesMinimumRiskClassifier()
+        X_bmr = self.predict_proba(X)
+        self.f_bmr.fit(y, X_bmr)
         return self
 
     def _fit_stacking_model(self,X, y, cost_mat):
