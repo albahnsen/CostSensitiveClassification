@@ -517,6 +517,8 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "input n_features is {1}."
                              "".format(self.n_features_, X.shape[1]))
 
+        #TODO: check if combination in possible combinations
+
         if self.combination in ['stacking', 'stacking_proba']:
 
             X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
