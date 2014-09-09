@@ -300,9 +300,9 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.f_bmr.fit(y, X_bmr)
         return self
 
-    def _fit_stacking_model(self,X, y, cost_mat):
+    def _fit_stacking_model(self,X, y, cost_mat, max_iter=100):
         """Private function used to fit the stacking model."""
-        self.f_staking = CostSensitiveLogisticRegression(verbose=self.verbose)
+        self.f_staking = CostSensitiveLogisticRegression(verbose=self.verbose, max_iter=max_iter)
         X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
                                           self.estimators_weight_, X, self.combination)
         self.f_staking.fit(X_stacking, y, cost_mat)
@@ -326,7 +326,11 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
 
             estimators_weight.append(oob_savings)
 
-        self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
+        # Control in case were all weights are 0
+        if sum(estimators_weight) == 0:
+            self.estimators_weight_ = np.ones(len(estimators_weight)) / len(estimators_weight)
+        else:
+            self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
 
         return self
 
