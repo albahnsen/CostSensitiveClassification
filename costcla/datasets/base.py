@@ -45,8 +45,7 @@ def load_bankmarketing(cost_mat_parameters=None):
     References
     ----------
     .. [1] A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
-           "Improving Credit Card Fraud Detection with Calibrated Probabilities",
-           in Proceedings of the fourteenth SIAM International Conference on Data Mining,
+           `"Improving Credit Card Fraud Detection with Calibrated Probabilities" <http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf>`__, in Proceedings of the fourteenth SIAM International Conference on Data Mining,
            677-685, 2014.
 
     Examples
