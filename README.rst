@@ -18,3 +18,9 @@ Installation
 You can install ``costcla`` with ``pip``::
 
     # pip install costcla
+    
+Documentation
+=============
+
+Documentation is available at 
+https://pythonhosted.org/costcla/
