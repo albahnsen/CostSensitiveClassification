@@ -10,7 +10,7 @@ See #Fill# for complete documentation.
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-__version__ = '0.02-git'
+__version__ = '0.03'
 
 from metrics import *
 from datasets import *

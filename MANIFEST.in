@@ -1,0 +1,7 @@
+recursive-include costcla/datasets *
+recursive-include costcla/models *
+recursive-include costcla/sampling *
+recursive-include costcla/probcal *
+recursive-include costcla/utils *
+include README.rst
+include LICENCE
