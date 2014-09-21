@@ -1,8 +1,23 @@
-from .costs import *
+"""
+The :mod:`costcla.metrics` module includes metrics to assess performance on cost-sensitive classification tasks given class prediction and cost-matrix
+
+Functions named as ``*_score`` return a scalar value to maximize: the higher the better
+
+Function named as ``*_error`` or ``*_loss`` return a scalar value to minimize: the lower the better
+"""
+
+from costs import cost_loss
+from costs import savings_score
+from costs import brier_score_loss
 
 import numpy as np
 from sklearn.utils import column_or_1d
 from sklearn.metrics import roc_auc_score
+
+__all__ = ['cost_loss',
+           'savings_score',
+           'brier_score_loss',
+           'binary_classification_metrics']
 
 def binary_classification_metrics(y_true, y_pred, y_prob):
     #TODO: update description

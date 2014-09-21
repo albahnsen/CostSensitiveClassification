@@ -6,18 +6,17 @@
 Welcome to costcla's documentation!
 ===================================
 
+.. include:: ../README.rst
+
+
 Contents:
+=========
 
 .. toctree::
    :maxdepth: 5
 
-   costcla
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   costcla.datasets
+   costcla.metrics
+   costcla.models
+   costcla.probcal
+   costcla.sampling

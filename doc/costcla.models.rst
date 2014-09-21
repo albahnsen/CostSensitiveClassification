@@ -1,30 +1,11 @@
-costcla.models package
-======================
-
-Submodules
-----------
-
-costcla.models.directcost module
---------------------------------
-
-.. automodule:: costcla.models.directcost
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-costcla.models.regression module
---------------------------------
-
-.. automodule:: costcla.models.regression
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
+costcla.models
+==============
 
 .. automodule:: costcla.models
-    :members:
-    :undoc-members:
-    :show-inheritance:
+
+.. toctree::
+   costcla.models.BayesMinimumRiskClassifier
+   costcla.models.ThresholdingOptimization
+   costcla.models.CostSensitiveLogisticRegression
+
+

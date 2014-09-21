@@ -24,3 +24,8 @@ Documentation
 
 Documentation is available at 
 https://pythonhosted.org/costcla/
+
+Development
+=============
+
+Source code is available at https://github.com/albahnsen/CostSensitiveClassification
