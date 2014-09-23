@@ -24,7 +24,7 @@ You can install ``costcla`` with ``pip``::
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-__version__ = '0.03-git'
+__version__ = '0.04-git'
 
 from metrics import *
 from datasets import *
