@@ -13,10 +13,11 @@ Contents:
 =========
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
 
    costcla.datasets
    costcla.metrics
    costcla.models
    costcla.probcal
    costcla.sampling
+   changelog
