@@ -33,13 +33,51 @@ class ROCConvexHull:
 
     Examples
     --------
+    >>> from costcla.probcal import ROCConvexHull
+    >>> from sklearn.ensemble import RandomForestClassifier
+    >>> from sklearn.cross_validation import train_test_split
+    >>> from costcla.datasets import load_creditscoring1
+    >>> from costcla.metrics import brier_score_loss
+    >>> data = load_creditscoring1()
+    >>> sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)
+    >>> X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets
+    >>> f = RandomForestClassifier()
+    >>> f.fit(X_train, y_train)
+    >>> y_prob_test = f.predict_proba(X_test)
+    >>> f_cal = ROCConvexHull()
+    >>> f_cal.fit(y_test, y_prob_test)
+    >>> y_prob_test_cal = f_cal.predict_proba(y_prob_test)
+    >>> # Brier score using only RandomForest
+    >>> print brier_score_loss(y_test, y_prob_test[:, 1])
+    0.0577615264881
+    >>> # Brier score using calibrated RandomForest
+    >>> print brier_score_loss(y_test, y_prob_test_cal)
+    0.0553677407894
     """
-    #TODO: Add example to DOC
-    #TODO: Description of methods
+
     def __init__(self):
         self.calibration_map = []
 
     def fit(self, y, p):
+        """ Fit the calibration map
+
+        Parameters
+        ----------
+        y_true : array-like of shape = [n_samples]
+            True class to be used for calibrating the probabilities
+
+        y_prob : array-like of shape = [n_samples, 2]
+            Predicted probabilities to be used for calibrating the probabilities
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+
+        # TODO: Check input
+        if p.size != p.shape[0]:
+            p = p[:, 1]
 
         fpr, tpr, thresholds = roc_curve(y, p)
         #works with sklearn 0.11
@@ -96,11 +134,29 @@ class ROCConvexHull:
         self.calibration_map = calibrated_map
 
     def predict_proba(self, p):
+        """ Calculate the calibrated probabilities
+
+        Parameters
+        ----------
+        y_prob : array-like of shape = [n_samples, 2]
+            Predicted probabilities to be calibrated using calibration map
+
+        Returns
+        -------
+        y_prob_cal : array-like of shape = [n_samples, 1]
+            Predicted calibrated probabilities
+        """
+
+        # TODO: Check input
+        if p.size != p.shape[0]:
+            p = p[:, 1]
 
         calibrated_proba = np.zeros(p.shape[0])
         for i in range(self.calibration_map.shape[0]):
             calibrated_proba[np.logical_and(self.calibration_map[i, 1] <= p, self.calibration_map[i, 0] > p)] = \
                 self.calibration_map[i, 2]
+
+        # TODO: return 2D and refactor
         return calibrated_proba
 
 
