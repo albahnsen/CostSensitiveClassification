@@ -1,3 +1,5 @@
+.. image:: https://raw.githubusercontent.com/albahnsen/CostSensitiveClassification/master/logo.png
+
 CostSensitiveClassification
 ===========================
 
