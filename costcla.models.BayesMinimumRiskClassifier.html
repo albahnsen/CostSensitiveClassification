@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>costcla.models.BayesMinimumRiskClassifier &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="index.html"/>
+        <link rel="up" title="costcla.models" href="costcla.models.html"/>
+        <link rel="prev" title="costcla.models" href="costcla.models.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> costcla</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">costcla.models.BayesMinimumRiskClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="costcla.models.html">costcla.models</a> &raquo;</li>
+      
+    <li>costcla.models.BayesMinimumRiskClassifier</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/costcla.models.BayesMinimumRiskClassifier.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="costcla-models-bayesminimumriskclassifier">
+<h1>costcla.models.BayesMinimumRiskClassifier<a class="headerlink" href="#costcla-models-bayesminimumriskclassifier" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="costcla.models.BayesMinimumRiskClassifier">
+<em class="property">class </em><tt class="descclassname">costcla.models.</tt><tt class="descname">BayesMinimumRiskClassifier</tt><big>(</big><em>calibration=True</em><big>)</big><a class="headerlink" href="#costcla.models.BayesMinimumRiskClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>A example-dependent cost-sensitive binary Bayes minimum risk classifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>calibration</strong> : bool, optional (default=True)</p>
+<blockquote class="last">
+<div><p>Whenever or not to calibrate the probabilities.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R7]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
+<a class="reference external" href="http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf">&#8220;Improving Credit Card Fraud Detection with Calibrated Probabilities&#8221;</a>, in Proceedings of the fourteenth SIAM International Conference on Data Mining,
+677-685, 2014.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">BayesMinimumRiskClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.metrics</span> <span class="kn">import</span> <span class="n">savings_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">load_creditscoring1</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sets</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">cost_mat</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">,</span> <span class="n">cost_mat_test</span> <span class="o">=</span> <span class="n">sets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_prob_test</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred_test_rf</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f_bmr</span> <span class="o">=</span> <span class="n">BayesMinimumRiskClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f_bmr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred_test_bmr</span> <span class="o">=</span> <span class="n">f_bmr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">y_prob_test</span><span class="p">,</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Savings using only RandomForest</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test_rf</span><span class="p">,</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="go">0.12454256594</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Savings using RandomForest and Bayes Minimum Risk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test_bmr</span><span class="p">,</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="go">0.413425845555</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">predict</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="costcla.models.BayesMinimumRiskClassifier.fit">
+<tt class="descname">fit</tt><big>(</big><em>y_true_cal=None</em>, <em>y_prob_cal=None</em><big>)</big><a class="headerlink" href="#costcla.models.BayesMinimumRiskClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>If calibration, then train the calibration of probabilities</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y_true_cal</strong> : array-like of shape = [n_samples], optional default = None</p>
+<blockquote>
+<div><p>True class to be used for calibrating the probabilities</p>
+</div></blockquote>
+<p><strong>y_prob_cal</strong> : array-like of shape = [n_samples, 2], optional default = None</p>
+<blockquote>
+<div><p>Predicted probabilities to be used for calibrating the probabilities</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> : object</p>
+<blockquote class="last">
+<div><p>Returns self.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.BayesMinimumRiskClassifier.fit_predict">
+<tt class="descname">fit_predict</tt><big>(</big><em>y_prob</em>, <em>cost_mat</em>, <em>y_true_cal=None</em>, <em>y_prob_cal=None</em><big>)</big><a class="headerlink" href="#costcla.models.BayesMinimumRiskClassifier.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the prediction using the Bayes minimum risk classifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y_prob</strong> : array-like of shape = [n_samples, 2]</p>
+<blockquote>
+<div><p>Predicted probabilities.</p>
+</div></blockquote>
+<p><strong>cost_mat</strong> : array-like of shape = [n_samples, 4]</p>
+<blockquote>
+<div><p>Cost matrix of the classification problem
+Where the columns represents the costs of: false positives, false negatives,
+true positives and true negatives, for each example.</p>
+</div></blockquote>
+<p><strong>y_true_cal</strong> : array-like of shape = [n_samples], optional default = None</p>
+<blockquote>
+<div><p>True class to be used for calibrating the probabilities</p>
+</div></blockquote>
+<p><strong>y_prob_cal</strong> : array-like of shape = [n_samples, 2], optional default = None</p>
+<blockquote>
+<div><p>Predicted probabilities to be used for calibrating the probabilities</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>y_pred</strong> : array-like of shape = [n_samples]</p>
+<blockquote class="last">
+<div><p>Predicted class</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.BayesMinimumRiskClassifier.predict">
+<tt class="descname">predict</tt><big>(</big><em>y_prob</em>, <em>cost_mat</em><big>)</big><a class="headerlink" href="#costcla.models.BayesMinimumRiskClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the prediction using the Bayes minimum risk classifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y_prob</strong> : array-like of shape = [n_samples, 2]</p>
+<blockquote>
+<div><p>Predicted probabilities.</p>
+</div></blockquote>
+<p><strong>cost_mat</strong> : array-like of shape = [n_samples, 4]</p>
+<blockquote>
+<div><p>Cost matrix of the classification problem
+Where the columns represents the costs of: false positives, false negatives,
+true positives and true negatives, for each example.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>y_pred</strong> : array-like of shape = [n_samples]</p>
+<blockquote class="last">
+<div><p>Predicted class</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="costcla.models.html" class="btn btn-neutral" title="costcla.models"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

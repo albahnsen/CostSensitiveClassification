@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>costcla.models.directcost &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="costcla.models" href="../models.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> costcla</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../models.html">costcla.models</a> &raquo;</li>
+      
+    <li>costcla.models.directcost</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for costcla.models.directcost</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module include the cost sensitive Bayes minimum risk method.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c"># License: BSD 3 clause</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">..probcal</span> <span class="kn">import</span> <span class="n">ROCConvexHull</span>
+<span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">cost_loss</span>
+
+
+<div class="viewcode-block" id="BayesMinimumRiskClassifier"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier">[docs]</a><span class="k">class</span> <span class="nc">BayesMinimumRiskClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive binary Bayes minimum risk classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    calibration : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to calibrate the probabilities.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,</span>
+<span class="sd">           `&quot;Improving Credit Card Fraud Detection with Calibrated Probabilities&quot; &lt;http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf&gt;`__, in Proceedings of the fourteenth SIAM International Conference on Data Mining,</span>
+<span class="sd">           677-685, 2014.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import BayesMinimumRiskClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; f = RandomForestClassifier(random_state=0).fit(X_train, y_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob_test = f.predict_proba(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = f.predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f_bmr = BayesMinimumRiskClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; f_bmr.fit(y_test, y_prob_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_bmr = f_bmr.predict(y_prob_test, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using RandomForest and Bayes Minimum Risk</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_bmr, cost_mat_test)</span>
+<span class="sd">    0.413425845555</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
+
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; If calibration, then train the calibration of probabilities</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true_cal : array-like of shape = [n_samples], optional default = None</span>
+<span class="sd">            True class to be used for calibrating the probabilities</span>
+
+<span class="sd">        y_prob_cal : array-like of shape = [n_samples, 2], optional default = None</span>
+<span class="sd">            Predicted probabilities to be used for calibrating the probabilities</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cal</span> <span class="o">=</span> <span class="n">ROCConvexHull</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_true_cal</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</div>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_pred : array-like of shape = [n_samples]</span>
+<span class="sd">            Predicted class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span><span class="p">:</span>
+
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c"># t_BMR = (cost_fp - cost_tn) / (cost_fn - cost_tn - cost_tp + cost_fp)</span>
+        <span class="c"># cost_mat[FP,FN,TP,TN]</span>
+        <span class="n">t_bmr</span> <span class="o">=</span> <span class="p">(</span><span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">t_bmr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span>
+</div>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit_predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.fit_predict">[docs]</a>    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        y_true_cal : array-like of shape = [n_samples], optional default = None</span>
+<span class="sd">            True class to be used for calibrating the probabilities</span>
+
+<span class="sd">        y_prob_cal : array-like of shape = [n_samples, 2], optional default = None</span>
+<span class="sd">            Predicted probabilities to be used for calibrating the probabilities</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_pred : array-like of shape = [n_samples]</span>
+<span class="sd">            Predicted class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c">#TODO: Check input</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cal</span> <span class="o">=</span> <span class="n">ROCConvexHull</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">y_prob_cal</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">y_prob_cal</span> <span class="o">=</span> <span class="n">y_prob</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_true_cal</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="c"># t_BMR = (cost_fp - cost_tn) / (cost_fn - cost_tn - cost_tp + cost_fp)</span>
+        <span class="c"># cost_mat[FP,FN,TP,TN]</span>
+        <span class="n">t_bmr</span> <span class="o">=</span> <span class="p">(</span><span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">t_bmr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span>
+
+</div></div>
+<div class="viewcode-block" id="ThresholdingOptimization"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization">[docs]</a><span class="k">class</span> <span class="nc">ThresholdingOptimization</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Classifier based on finding the threshold that minimizes the total cost on a given set.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    calibration : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to calibrate the probabilities.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `threshold_` : float</span>
+<span class="sd">        Selected threshold.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] V. Sheng, C. Ling, &quot;Thresholding for making classifiers cost-sensitive&quot;,</span>
+<span class="sd">           in Proceedings of the National Conference on Artificial Intelligence, 2006.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import ThresholdingOptimization</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; f = RandomForestClassifier(random_state=0).fit(X_train, y_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob_train = f.predict_proba(X_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob_test = f.predict_proba(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = f.predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f_t = ThresholdingOptimization().fit(y_prob_train, cost_mat_train, y_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf_t = f_t.predict(y_prob_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using RandomForest and Bayes Minimum Risk</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf_t, cost_mat_test)</span>
+<span class="sd">    0.401816361581</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
+
+<div class="viewcode-block" id="ThresholdingOptimization.fit"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculate the optimal threshold using the ThresholdingOptimization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        y_true : array-like of shape = [n_samples]</span>
+<span class="sd">            True class</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c">#TODO: Check input</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span><span class="p">:</span>
+            <span class="n">cal</span> <span class="o">=</span> <span class="n">ROCConvexHull</span><span class="p">()</span>
+
+            <span class="n">cal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cal</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_prob</span><span class="p">)</span>
+
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">thresholds</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">thresholds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">cost</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_</span> <span class="o">=</span> <span class="n">thresholds</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">cost</span><span class="p">)]</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+<div class="viewcode-block" id="ThresholdingOptimization.predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculate the prediction using the ThresholdingOptimization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_pred : array-like of shape = [n_samples]</span>
+<span class="sd">            Predicted class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold_</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

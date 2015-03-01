@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>costcla.sampling.cost_sampling &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="costcla.sampling" href="../sampling.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> costcla</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../sampling.html">costcla.sampling</a> &raquo;</li>
+      
+    <li>costcla.sampling.cost_sampling</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for costcla.sampling.cost_sampling</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module include the cost proportionate sampling methods</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="cost_sampling"><a class="viewcode-back" href="../../../costcla.sampling.html#costcla.sampling.cost_sampling.cost_sampling">[docs]</a><span class="k">def</span> <span class="nf">cost_sampling</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;RejectionSampling&#39;</span><span class="p">,</span> <span class="n">oversampling_norm</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">max_wc</span><span class="o">=</span><span class="mf">97.5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cost-proportionate sampling.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        y : array-like of shape = [n_samples]</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        method : str, optional (default = RejectionSampling)</span>
+<span class="sd">            Method to perform the cost-proportionate sampling,</span>
+<span class="sd">            either &#39;RejectionSampling&#39; or &#39;OverSampling&#39;.</span>
+
+<span class="sd">        oversampling_norm: float, optional (default = 0.1)</span>
+<span class="sd">            normalize value of wc, the smaller the biggest the data.</span>
+
+<span class="sd">        max_wc: float, optional (default = 97.5)</span>
+<span class="sd">            outlier adjustment for the cost.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] B. Zadrozny, J. Langford, N. Naoki, &quot;Cost-sensitive learning by</span>
+<span class="sd">           cost-proportionate example weighting&quot;, in Proceedings of the</span>
+<span class="sd">           Third IEEE International Conference on Data Mining, 435-442, 2003.</span>
+
+<span class="sd">    .. [2] C. Elkan, &quot;The foundations of Cost-Sensitive Learning&quot;,</span>
+<span class="sd">           in Seventeenth International Joint Conference on Artificial Intelligence,</span>
+<span class="sd">           973-978, 2001.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.sampling import cost_sampling, undersampling</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; X_cps_o, y_cps_o, cost_mat_cps_o =  cost_sampling(X_train, y_train, cost_mat_train, method=&#39;OverSampling&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; X_cps_r, y_cps_r, cost_mat_cps_r =  cost_sampling(X_train, y_train, cost_mat_train, method=&#39;RejectionSampling&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; X_u, y_u, cost_mat_u = undersampling(X_train, y_train, cost_mat_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf_cps_o = RandomForestClassifier(random_state=0).fit(X_cps_o, y_cps_o).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf_cps_r = RandomForestClassifier(random_state=0).fit(X_cps_r, y_cps_r).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf_u = RandomForestClassifier(random_state=0).fit(X_u, y_u).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using RandomForest with cost-proportionate over-sampling</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf_cps_o, cost_mat_test)</span>
+<span class="sd">    0.192480226286</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using RandomForest with cost-proportionate rejection-sampling</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf_cps_r, cost_mat_test)</span>
+<span class="sd">    0.465830173459</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using RandomForest with under-sampling</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf_u, cost_mat_test)</span>
+<span class="sd">    0.466630646543</span>
+<span class="sd">    &gt;&gt;&gt; # Size of each training set</span>
+<span class="sd">    &gt;&gt;&gt; print X_train.shape[0], X_cps_o.shape[0], X_cps_r.shape[0], X_u.shape[0]</span>
+<span class="sd">    75653 109975 8690 10191</span>
+<span class="sd">    &gt;&gt;&gt; # Percentage of positives in each training set</span>
+<span class="sd">    &gt;&gt;&gt; print y_train.mean(), y_cps_o.mean(), y_cps_r.mean(), y_u.mean()</span>
+<span class="sd">    0.0668182358928 0.358054103205 0.436939010357 0.49602590521</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c">#TODO: Check consistency of input</span>
+
+    <span class="c"># The methods are construct only for the misclassification costs, not the full cost matrix.</span>
+    <span class="n">cost_mis</span> <span class="o">=</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">cost_mis</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c"># wc = cost_mis / cost_mis.max()</span>
+    <span class="n">wc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">cost_mis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">cost_mis</span><span class="p">,</span> <span class="n">max_wc</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">filter_</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;RejectionSampling&#39;</span><span class="p">:</span>
+        <span class="c"># under-sampling by rejection [1]</span>
+        <span class="c">#TODO: Add random state</span>
+        <span class="n">rej_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+        <span class="n">filter_</span> <span class="o">=</span> <span class="n">rej_rand</span> <span class="o">&lt;=</span> <span class="n">wc</span>
+
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;OverSampling&#39;</span><span class="p">:</span>
+        <span class="c"># over-sampling with normalized wn [2]</span>
+        <span class="n">wc_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">wc</span> <span class="o">/</span> <span class="n">oversampling_norm</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+
+        <span class="n">new_n</span> <span class="o">=</span> <span class="n">wc_n</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="n">filter_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">new_n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+
+        <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c">#TODO replace for</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+            <span class="n">filter_</span><span class="p">[</span><span class="n">e</span><span class="p">:</span> <span class="n">e</span> <span class="o">+</span> <span class="n">wc_n</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">e</span> <span class="o">+=</span> <span class="n">wc_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">x_cps</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span>
+    <span class="n">y_cps</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span>
+    <span class="n">cost_mat_cps</span> <span class="o">=</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">x_cps</span><span class="p">,</span> <span class="n">y_cps</span><span class="p">,</span> <span class="n">cost_mat_cps</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

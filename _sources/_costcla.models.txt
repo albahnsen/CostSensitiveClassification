@@ -1,0 +1,8 @@
+costcla.models package
+======================
+
+.. toctree::
+   
+   costcla.models.CostSensitiveLogisticRegression
+   costcla.models.BayesMinimumRiskClassifier
+   costcla.models.ThresholdingOptimization
