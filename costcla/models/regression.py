@@ -15,6 +15,8 @@ from ..metrics import cost_loss
 
 # Not in sklearn 0.15, is in 0.16-git
 #TODO: replace once sklearn 0.16 is release
+# The one in sklearn 0.16 return yz instead of z, therefore,
+# the impact on the code should be addressed before making the change.
 def _intercept_dot(w, X):
     """Computes y * np.dot(X, w).
 
