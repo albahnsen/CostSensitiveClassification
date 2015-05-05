@@ -80,8 +80,10 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
     References
     ----------
 
-    .. [1] A.Correa, "Example-Dependent Cost-Sensitive Decision Trees",
-           submitted.
+    .. [1] Correa Bahnsen, A., Aouada, D., & Ottersten, B.
+           "Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications",
+           Expert Systems with Applications, in press, 2015,
+           http://doi.org/10.1016/j.eswa.2015.04.042
 
     Examples
     --------
