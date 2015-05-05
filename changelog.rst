@@ -5,6 +5,7 @@ Version 0.04 *TBD*
 ----------------------------
 
  * Documentation
+ * Cost-sensitive Decision Trees algorithm
 
 
 Version 0.03 *(2014-09-19)*
