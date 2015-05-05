@@ -7,5 +7,6 @@ costcla.models
    costcla.models.BayesMinimumRiskClassifier
    costcla.models.ThresholdingOptimization
    costcla.models.CostSensitiveLogisticRegression
+   costcla.models.CostSensitiveDecisionTreeClassifier
 
 
