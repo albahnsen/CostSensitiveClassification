@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.sampling &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,11 +28,14 @@
   
 
   
-    <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="next" title="Change Log" href="changelog.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <link rel="top" title="costcla  documentation" href="index.html"/>
+        <link rel="next" title="Change Log" href="changelog.html"/>
+        <link rel="prev" title="costcla.probcal" href="costcla.probcal.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -43,26 +46,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -76,6 +100,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -100,26 +125,28 @@
     <li>costcla.sampling</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/costcla.sampling.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/costcla.sampling.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-costcla.sampling">
 <span id="costcla-sampling"></span><h1>costcla.sampling<a class="headerlink" href="#module-costcla.sampling" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#module-costcla.sampling" title="costcla.sampling"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.sampling</span></tt></a> module includes methods for cost-sensitive sampling</p>
+<p>The <a class="reference internal" href="#module-costcla.sampling" title="costcla.sampling"><code class="xref py py-mod docutils literal"><span class="pre">costcla.sampling</span></code></a> module includes methods for cost-sensitive sampling</p>
 <p>In particular:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#costcla.sampling.cost_sampling" title="costcla.sampling.cost_sampling"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.cost_sampling</span></tt></a> methods for cost-proportionate sampling</li>
-<li><a class="reference internal" href="#costcla.sampling.undersampling" title="costcla.sampling.undersampling"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.undersampling</span></tt></a> traditional undersampling</li>
-<li><a class="reference internal" href="#costcla.sampling.smote" title="costcla.sampling.smote"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.smote</span></tt></a> SMOTE method for synthetic over-sampling</li>
+<li><a class="reference internal" href="#costcla.sampling.cost_sampling" title="costcla.sampling.cost_sampling"><code class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.cost_sampling</span></code></a> methods for cost-proportionate sampling</li>
+<li><a class="reference internal" href="#costcla.sampling.undersampling" title="costcla.sampling.undersampling"><code class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.undersampling</span></code></a> traditional undersampling</li>
+<li><a class="reference internal" href="#costcla.sampling.smote" title="costcla.sampling.smote"><code class="xref py py-mod docutils literal"><span class="pre">costcla.sampling.smote</span></code></a> SMOTE method for synthetic over-sampling</li>
 </ul>
 <dl class="function">
 <dt id="costcla.sampling.cost_sampling">
-<tt class="descclassname">costcla.sampling.</tt><tt class="descname">cost_sampling</tt><big>(</big><em>X</em>, <em>y</em>, <em>cost_mat</em>, <em>method='RejectionSampling'</em>, <em>oversampling_norm=0.1</em>, <em>max_wc=97.5</em><big>)</big><a class="headerlink" href="#costcla.sampling.cost_sampling" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.sampling.</code><code class="descname">cost_sampling</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>cost_mat</em>, <em>method='RejectionSampling'</em>, <em>oversampling_norm=0.1</em>, <em>max_wc=97.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/sampling/cost_sampling.html#cost_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.sampling.cost_sampling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cost-proportionate sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -156,18 +183,18 @@ either &#8216;RejectionSampling&#8217; or &#8216;OverSampling&#8217;.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r11" rules="none">
+<table class="docutils citation" frame="void" id="r12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R11]</a></td><td>B. Zadrozny, J. Langford, N. Naoki, &#8220;Cost-sensitive learning by
+<tr><td class="label"><a class="fn-backref" href="#id1">[R12]</a></td><td>B. Zadrozny, J. Langford, N. Naoki, &#8220;Cost-sensitive learning by
 cost-proportionate example weighting&#8221;, in Proceedings of the
 Third IEEE International Conference on Data Mining, 435-442, 2003.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r12" rules="none">
+<table class="docutils citation" frame="void" id="r13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R12]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id2">[R13]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
 in Seventeenth International Joint Conference on Artificial Intelligence,
 973-978, 2001.</td></tr>
 </tbody>
@@ -212,7 +239,7 @@ in Seventeenth International Joint Conference on Artificial Intelligence,
 
 <dl class="function">
 <dt id="costcla.sampling.undersampling">
-<tt class="descclassname">costcla.sampling.</tt><tt class="descname">undersampling</tt><big>(</big><em>X</em>, <em>y</em>, <em>cost_mat=None</em>, <em>per=0.5</em><big>)</big><a class="headerlink" href="#costcla.sampling.undersampling" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.sampling.</code><code class="descname">undersampling</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>cost_mat=None</em>, <em>per=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/sampling/sampling.html#undersampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.sampling.undersampling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Under-sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -245,7 +272,7 @@ true positives and true negatives, for each example.</p>
 
 <dl class="function">
 <dt id="costcla.sampling.smote">
-<tt class="descclassname">costcla.sampling.</tt><tt class="descname">smote</tt><big>(</big><em>X</em>, <em>y</em>, <em>cost_mat=None</em>, <em>per=0.5</em><big>)</big><a class="headerlink" href="#costcla.sampling.smote" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.sampling.</code><code class="descname">smote</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>cost_mat=None</em>, <em>per=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/sampling/sampling.html#smote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.sampling.smote" title="Permalink to this definition">¶</a></dt>
 <dd><p>SMOTE: synthetic minority over-sampling technique</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -275,10 +302,10 @@ true positives and true negatives, for each example.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r13" rules="none">
+<table class="docutils citation" frame="void" id="r14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R13]</a></td><td>N. Chawla, K. Bowyer, L. Hall, W. Kegelmeyer, &#8220;SMOTE: Synthetic Minority Over-sampling Technique&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id3">[R14]</a></td><td>N. Chawla, K. Bowyer, L. Hall, W. Kegelmeyer, &#8220;SMOTE: Synthetic Minority Over-sampling Technique&#8221;,
 Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
 </tbody>
 </table>
@@ -305,8 +332,10 @@ Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="changelog.html" class="btn btn-neutral float-right" title="Change Log"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Change Log" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="costcla.probcal.html" class="btn btn-neutral" title="costcla.probcal" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -318,9 +347,10 @@ Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

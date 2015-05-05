@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.probcal &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,10 +28,13 @@
   
 
   
-    <link rel="top" title="costcla  documentation" href="index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <link rel="top" title="costcla  documentation" href="index.html"/>
+        <link rel="next" title="costcla.sampling" href="costcla.sampling.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -42,26 +45,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">costcla.probcal</a><ul class="simple">
@@ -75,6 +99,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -99,32 +124,34 @@
     <li>costcla.probcal</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/costcla.probcal.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/costcla.probcal.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-costcla.probcal">
 <span id="costcla-probcal"></span><h1>costcla.probcal<a class="headerlink" href="#module-costcla.probcal" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#module-costcla.probcal" title="costcla.probcal"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.probcal</span></tt></a> module includes methods for probability calibration</p>
+<p>The <a class="reference internal" href="#module-costcla.probcal" title="costcla.probcal"><code class="xref py py-mod docutils literal"><span class="pre">costcla.probcal</span></code></a> module includes methods for probability calibration</p>
 <dl class="class">
 <dt id="costcla.probcal.ROCConvexHull">
-<em class="property">class </em><tt class="descclassname">costcla.probcal.</tt><tt class="descname">ROCConvexHull</tt><a class="headerlink" href="#costcla.probcal.ROCConvexHull" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">costcla.probcal.</code><code class="descname">ROCConvexHull</code><a class="reference internal" href="_modules/costcla/probcal/probcal.html#ROCConvexHull"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.probcal.ROCConvexHull" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation the the calibration method ROCConvexHull</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">sklearn.IsotonicRegression</span></tt></p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">sklearn.IsotonicRegression</span></code></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r10" rules="none">
+<table class="docutils citation" frame="void" id="r11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R10]</a></td><td>J. Hernandez-Orallo, P. Flach, C. Ferri, &#8216;A Unified View of Performance Metrics :
+<tr><td class="label"><a class="fn-backref" href="#id1">[R11]</a></td><td>J. Hernandez-Orallo, P. Flach, C. Ferri, &#8216;A Unified View of Performance Metrics :
 Translating Threshold Choice into Expected Classification Loss&#8217;, Journal of
-Machine Learning Research, 13, 2813â2869, 2012.</td></tr>
+Machine Learning Research, 13, 2813–2869, 2012.</td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -169,17 +196,11 @@ Machine Learning Research, 13, 2813â2869, 2012.</td></tr>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#costcla.probcal.ROCConvexHull.fit" title="costcla.probcal.ROCConvexHull.fit"><tt class="xref py py-obj docutils literal"><span class="pre">fit</span></tt></a>(y,&nbsp;p)</td>
-<td>Fit the calibration map</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#costcla.probcal.ROCConvexHull.predict_proba" title="costcla.probcal.ROCConvexHull.predict_proba"><tt class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></tt></a>(p)</td>
-<td>Calculate the calibrated probabilities</td>
-</tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="costcla.probcal.ROCConvexHull.fit">
-<tt class="descname">fit</tt><big>(</big><em>y</em>, <em>p</em><big>)</big><a class="headerlink" href="#costcla.probcal.ROCConvexHull.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>y</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/probcal/probcal.html#ROCConvexHull.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.probcal.ROCConvexHull.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the calibration map</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -207,7 +228,7 @@ Machine Learning Research, 13, 2813â2869, 2012.</td></tr>
 
 <dl class="method">
 <dt id="costcla.probcal.ROCConvexHull.predict_proba">
-<tt class="descname">predict_proba</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#costcla.probcal.ROCConvexHull.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/probcal/probcal.html#ROCConvexHull.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.probcal.ROCConvexHull.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the calibrated probabilities</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -237,6 +258,13 @@ Machine Learning Research, 13, 2813â2869, 2012.</td></tr>
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="costcla.sampling.html" class="btn btn-neutral float-right" title="costcla.sampling" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
 
   <hr/>
 
@@ -245,9 +273,10 @@ Machine Learning Research, 13, 2813â2869, 2012.</td></tr>
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

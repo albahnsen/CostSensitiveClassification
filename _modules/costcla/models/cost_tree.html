@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>costcla.models.cost_tree &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>costcla.models.cost_tree</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for costcla.models.cost_tree</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module include the cost sensitive decision tree method.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">cost_loss</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="kn">import</span> <span class="n">six</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive binary decision tree classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    criterion : string, optional (default=&quot;direct_cost&quot;)</span>
+<span class="sd">        The function to measure the quality of a split. Supported criteria are</span>
+<span class="sd">        &quot;direct_cost&quot; for the Direct Cost impurity measure, &quot;pi_cost&quot;, &quot;gini_cost&quot;,</span>
+<span class="sd">        and &quot;entropy_cost&quot;.</span>
+
+<span class="sd">    criterion_weight : bool, optional (default=False)</span>
+<span class="sd">        Whenever or not to weight the gain according to the population distribution.</span>
+
+<span class="sd">    num_pct : int, optional (default=100)</span>
+<span class="sd">        Number of percentiles to evaluate the splits for each feature.</span>
+
+
+
+<span class="sd">    splitter : string, optional (default=&quot;best&quot;)</span>
+<span class="sd">        The strategy used to choose the split at each node. Supported</span>
+<span class="sd">        strategies are &quot;best&quot; to choose the best split and &quot;random&quot; to choose</span>
+<span class="sd">        the best random split.</span>
+
+<span class="sd">    max_features : int, float, string or None, optional (default=None)</span>
+<span class="sd">        The number of features to consider when looking for the best split:</span>
+<span class="sd">          - If int, then consider `max_features` features at each split.</span>
+<span class="sd">          - If float, then `max_features` is a percentage and</span>
+<span class="sd">            `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">            split.</span>
+<span class="sd">          - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
+<span class="sd">          - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.</span>
+<span class="sd">          - If &quot;log2&quot;, then `max_features=log2(n_features)`.</span>
+<span class="sd">          - If None, then `max_features=n_features`.</span>
+
+<span class="sd">        Note: the search for a split does not stop until at least one</span>
+<span class="sd">        valid partition of the node samples is found, even if it requires to</span>
+<span class="sd">        effectively inspect more than ``max_features`` features.</span>
+
+<span class="sd">    max_depth : int or None, optional (default=None)</span>
+<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
+<span class="sd">        all leaves are pure or until all leaves contain less than</span>
+<span class="sd">        min_samples_split samples.</span>
+<span class="sd">        Ignored if ``max_samples_leaf`` is not None.</span>
+
+<span class="sd">    min_samples_split : int, optional (default=2)</span>
+<span class="sd">        The minimum number of samples required to split an internal node.</span>
+
+<span class="sd">    min_samples_leaf : int, optional (default=1)</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+
+<span class="sd">    min_gain : float, optional (default=0.001)</span>
+<span class="sd">        The minimum gain that a split must produce in order to be taken into account.</span>
+
+<span class="sd">    pruned : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to prune the decision tree using cost-based pruning</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `tree_` : Tree object</span>
+<span class="sd">        The underlying Tree object.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    sklearn.tree.DecisionTreeClassifier</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
+<span class="sd">           &quot;Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications&quot;,</span>
+<span class="sd">           Expert Systems with Applications, in press, 2015,</span>
+<span class="sd">           http://doi.org/10.1016/j.eswa.2015.04.042</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import CostSensitiveDecisionTreeClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f = CostSensitiveDecisionTreeClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using CSDecisionTree</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    0.481916135529</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">criterion</span><span class="o">=</span><span class="s">&#39;direct_cost&#39;</span><span class="p">,</span>
+                 <span class="n">criterion_weight</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">num_pct</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">max_depth</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                 <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">min_gain</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+                 <span class="n">pruned</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                 <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="n">criterion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion_weight</span> <span class="o">=</span> <span class="n">criterion_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_pct</span> <span class="o">=</span> <span class="n">num_pct</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">=</span> <span class="n">max_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_samples_split</span> <span class="o">=</span> <span class="n">min_samples_split</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="n">min_samples_leaf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_gain</span> <span class="o">=</span> <span class="n">min_gain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.set_param"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.set_param">[docs]</a>    <span class="k">def</span> <span class="nf">set_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_node_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function to calculate the cost of a node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple(cost_loss : float, node prediction : int, node predicted probability : float)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+
+        <span class="c"># Evaluates the cost by predicting the node as positive and negative</span>
+        <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">costs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">cost_mat</span><span class="p">)</span>
+        <span class="n">costs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_true</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">==</span> <span class="s">&#39;direct_cost&#39;</span><span class="p">:</span>
+            <span class="n">costs</span> <span class="o">=</span> <span class="n">costs</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">==</span> <span class="s">&#39;pi_cost&#39;</span><span class="p">:</span>
+            <span class="n">costs</span> <span class="o">*=</span> <span class="n">pi</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">==</span> <span class="s">&#39;gini_cost&#39;</span><span class="p">:</span>
+            <span class="n">costs</span> <span class="o">*=</span> <span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="ow">in</span> <span class="s">&#39;entropy_cost&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">costs</span> <span class="o">*=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">costs</span> <span class="o">*=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
+
+        <span class="c"># Calculate the predicted probability of a node using laplace correction.</span>
+        <span class="n">n_positives</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">y_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_positives</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">costs</span><span class="p">[</span><span class="n">y_pred</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span>
+
+    <span class="k">def</span> <span class="nf">_calculate_gain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cost_base</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">split</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function to calculate the gain in cost of using split in the</span>
+<span class="sd">         current node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cost_base : float</span>
+<span class="sd">            Cost of the naive prediction</span>
+
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        split : tuple of len = 2</span>
+<span class="sd">            split[0] = feature to split = j</span>
+<span class="sd">            split[1] = where to split = l</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple(gain : float, left node prediction : int)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># Check if cost_base == 0, then no gain is possible</span>
+        <span class="c">#TODO: This must be check in _best_split</span>
+        <span class="k">if</span> <span class="n">cost_base</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="c"># In case cost_b==0 and pi_1!=(0,1)</span>
+
+        <span class="n">j</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">split</span>
+        <span class="n">filter_Xl</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">)</span>
+        <span class="n">filter_Xr</span> <span class="o">=</span> <span class="o">~</span><span class="n">filter_Xl</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c"># Check if one of the leafs is empty</span>
+        <span class="c">#TODO: This must be check in _best_split</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xl</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">]:</span>  <span class="c"># One leaft is empty</span>
+            <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
+
+        <span class="c"># Split X in Xl and Xr according to rule split</span>
+        <span class="n">Xl_cost</span><span class="p">,</span> <span class="n">Xl_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_cost</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">],</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="n">Xr_cost</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_cost</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">],</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">,</span> <span class="p">:])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion_weight</span><span class="p">:</span>
+            <span class="n">n_samples_Xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xl</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">Xl_w</span> <span class="o">=</span> <span class="n">n_samples_Xl</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_samples</span>
+            <span class="n">Xr_w</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Xl_w</span>
+            <span class="n">gain</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">cost_base</span> <span class="o">-</span> <span class="p">(</span><span class="n">Xl_w</span> <span class="o">*</span> <span class="n">Xl_cost</span> <span class="o">+</span> <span class="n">Xr_w</span> <span class="o">*</span> <span class="n">Xr_cost</span><span class="p">))</span> <span class="o">/</span> <span class="n">cost_base</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gain</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">cost_base</span> <span class="o">-</span> <span class="p">(</span><span class="n">Xl_cost</span> <span class="o">+</span> <span class="n">Xr_cost</span><span class="p">))</span> <span class="o">/</span> <span class="n">cost_base</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">gain</span><span class="p">,</span> <span class="n">Xl_pred</span>
+
+    <span class="k">def</span> <span class="nf">_best_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function to calculate the split that gives the best gain.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple(split : tuple(j, l), gain : float, left node prediction : int,</span>
+<span class="sd">              y_pred : int, y_prob : float)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">num_pct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_pct</span>
+
+        <span class="n">cost_base</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_cost</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="c"># Calculate the gain of all features each split in num_pct</span>
+        <span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">num_pct</span><span class="p">))</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">num_pct</span><span class="p">))</span>
+        <span class="n">splits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">num_pct</span><span class="p">))</span>
+
+        <span class="c"># Selected features</span>
+        <span class="n">selected_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)</span>
+        <span class="c"># Add random state</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">selected_features</span><span class="p">)</span>
+        <span class="n">selected_features</span> <span class="o">=</span> <span class="n">selected_features</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span><span class="p">]</span>
+        <span class="n">selected_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="c">#TODO:  # Skip the CPU intensive evaluation of the impurity criterion for</span>
+                <span class="c"># features that were already detected as constant (hence not suitable</span>
+                <span class="c"># for good splitting) by ancestor nodes and save the information on</span>
+                <span class="c"># newly discovered constant features to spare computation on descendant</span>
+                <span class="c"># nodes.</span>
+
+        <span class="c"># For each feature test all possible splits</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">selected_features</span><span class="p">:</span>
+            <span class="n">splits</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">100.0</span> <span class="o">/</span> <span class="n">num_pct</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pct</span><span class="p">):</span>
+                <span class="c"># Avoid repeated values, since np.percentile may return repeated values</span>
+                <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">splits</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">l</span><span class="p">]</span> <span class="o">!=</span> <span class="n">splits</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">split</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">splits</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
+                    <span class="n">gains</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">l</span><span class="p">],</span> <span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_gain</span><span class="p">(</span><span class="n">cost_base</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">split</span><span class="p">)</span>
+
+        <span class="n">best_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">gains</span><span class="o">.</span><span class="n">argmax</span><span class="p">(),</span> <span class="n">gains</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">best_split</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">splits</span><span class="p">[</span><span class="n">best_split</span><span class="p">]),</span> <span class="n">gains</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">pred</span><span class="p">[</span><span class="n">best_split</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span>
+
+    <span class="k">def</span> <span class="nf">_tree_grow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private recursive function to grow the decision tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tree : Object</span>
+<span class="sd">            Container of the decision tree</span>
+<span class="sd">            NOTE: it is not the same structure as the sklearn.tree.tree object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c">#TODO: Find error, add min_samples_split</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">tree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">split</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">tree</span>
+
+        <span class="c"># Calculate the best split of the current node</span>
+        <span class="n">split</span><span class="p">,</span> <span class="n">gain</span><span class="p">,</span> <span class="n">Xl_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_split</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c"># Construct the tree object as a dictionary</span>
+
+        <span class="c">#TODO: Convert tree to be equal to sklearn.tree.tree object</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="o">=</span><span class="n">y_prob</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">split</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="n">gain</span><span class="p">)</span>
+
+        <span class="c"># Check the stopping criteria</span>
+        <span class="k">if</span> <span class="n">gain</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_gain</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tree</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">tree</span>
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_samples_split</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tree</span>
+        
+        <span class="n">j</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">split</span>
+        <span class="n">filter_Xl</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">)</span>
+        <span class="n">filter_Xr</span> <span class="o">=</span> <span class="o">~</span><span class="n">filter_Xl</span>
+        <span class="n">n_samples_Xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xl</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">n_samples_Xr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples_Xl</span><span class="p">,</span> <span class="n">n_samples_Xr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_samples_leaf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tree</span>
+
+        <span class="c"># No stooping criteria is met</span>
+        <span class="n">tree</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">split</span>
+        <span class="n">tree</span><span class="p">[</span><span class="s">&#39;node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_grow</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">],</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">],</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_grow</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">],</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">],</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tree</span>
+
+    <span class="k">class</span> <span class="nc">_tree_class</span><span class="p">():</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree_pruned</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes_pruned</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Build a example-dependent cost-sensitive decision tree from the training set (X, y, cost_mat)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        check_input : boolean, (default=True)</span>
+<span class="sd">            Allow to bypass several input checking.</span>
+<span class="sd">            Don&#39;t use this parameter unless you know what you do.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c">#TODO: Check input</span>
+        <span class="c">#TODO: Add random state</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_class</span><span class="p">()</span>
+
+        <span class="c"># Maximum number of features to be taken into account per split</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">==</span> <span class="s">&quot;auto&quot;</span><span class="p">:</span>
+                <span class="n">max_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">==</span> <span class="s">&quot;sqrt&quot;</span><span class="p">:</span>
+                <span class="n">max_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">==</span> <span class="s">&quot;log2&quot;</span><span class="p">:</span>
+                <span class="n">max_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s">&#39;Invalid value for max_features. Allowed string &#39;</span>
+                    <span class="s">&#39;values are &quot;auto&quot;, &quot;sqrt&quot; or &quot;log2&quot;.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">max_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c"># float</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">max_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">max_features</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># On sklearn is 0.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span> <span class="o">=</span> <span class="n">max_features</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_grow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pruning</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
+    <span class="k">def</span> <span class="nf">_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function that find the number of nodes in a tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tree : object</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        nodes : array like of shape [n_nodes]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">recourse</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">,</span> <span class="n">nodes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;node&#39;</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">,</span> <span class="s">&#39;sr&#39;</span><span class="p">]:</span>
+                            <span class="n">recourse</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">nodes</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">nodes_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">recourse</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">nodes_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nodes_</span>
+
+    <span class="k">def</span> <span class="nf">_classify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">proba</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function that classify a dataset using tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        tree : object</span>
+
+<span class="sd">        proba : bool, optional (default=False)</span>
+<span class="sd">            If True then return probabilities else return class</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        prediction : array of shape = [n_samples]</span>
+<span class="sd">            If proba then return the predicted positive probabilities, else return</span>
+<span class="sd">            the predicted class for each example in X</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+        <span class="c"># Check if final node</span>
+        <span class="k">if</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">proba</span><span class="p">:</span>
+                <span class="n">predicted</span> <span class="o">=</span> <span class="n">predicted</span> <span class="o">*</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;y_pred&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">predicted</span> <span class="o">=</span> <span class="n">predicted</span> <span class="o">*</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;y_prob&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">j</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span>
+            <span class="n">filter_Xl</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">)</span>
+            <span class="n">filter_Xr</span> <span class="o">=</span> <span class="o">~</span><span class="n">filter_Xl</span>
+            <span class="n">n_samples_Xl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xl</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">n_samples_Xr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">filter_Xr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">n_samples_Xl</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># If left node is empty only continue with right</span>
+                <span class="n">predicted</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">,</span> <span class="p">:],</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sr&#39;</span><span class="p">],</span> <span class="n">proba</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">n_samples_Xr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># If right node is empty only continue with left</span>
+                <span class="n">predicted</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">,</span> <span class="p">:],</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">],</span> <span class="n">proba</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">predicted</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">filter_Xl</span><span class="p">,</span> <span class="p">:],</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">],</span> <span class="n">proba</span><span class="p">)</span>
+                <span class="n">predicted</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">filter_Xr</span><span class="p">,</span> <span class="p">:],</span> <span class="n">tree</span><span class="p">[</span><span class="s">&#39;sr&#39;</span><span class="p">],</span> <span class="n">proba</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">predicted</span>
+
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Predict class of X.</span>
+
+<span class="sd">        The predicted class for each sample in X is returned.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y : array of shape = [n_samples]</span>
+<span class="sd">            The predicted classes,</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">#TODO: Check consistency of X</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span><span class="p">:</span>
+            <span class="n">tree_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tree_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">tree_</span><span class="p">,</span> <span class="n">proba</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict_proba"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Predict class probabilities of the input samples X.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        prob : array of shape = [n_samples, 2]</span>
+<span class="sd">            The class probabilities of the input samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">#TODO: Check consistency of X</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span><span class="p">:</span>
+            <span class="n">tree_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tree_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree</span>
+
+        <span class="n">prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">tree_</span><span class="p">,</span> <span class="n">proba</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">prob</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">prob</span>
+</div>
+    <span class="k">def</span> <span class="nf">_delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function that eliminate node from tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        tree : object</span>
+
+<span class="sd">        node : int</span>
+<span class="sd">            node to be eliminated from tree</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        pruned_tree : object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Calculate gains</span>
+        <span class="n">temp_tree</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">recourse</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">,</span> <span class="n">del_node</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;node&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">del_node</span><span class="p">:</span>
+                        <span class="k">del</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;sr&#39;</span><span class="p">]</span>
+                        <span class="k">del</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">]</span>
+                        <span class="k">del</span> <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;node&#39;</span><span class="p">]</span>
+                        <span class="n">temp_tree_</span><span class="p">[</span><span class="s">&#39;split&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;sl&#39;</span><span class="p">,</span> <span class="s">&#39;sr&#39;</span><span class="p">]:</span>
+                            <span class="n">recourse</span><span class="p">(</span><span class="n">temp_tree_</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">del_node</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="n">recourse</span><span class="p">(</span><span class="n">temp_tree</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">temp_tree</span>
+
+    <span class="k">def</span> <span class="nf">_pruning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Private function that prune the decision tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Calculate gains</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span><span class="p">)</span>
+        <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">)</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span><span class="p">)</span>
+        <span class="n">cost_base</span> <span class="o">=</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+
+            <span class="c"># Create temporal tree by eliminating node from tree_pruned</span>
+            <span class="n">temp_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">temp_tree</span><span class="p">)</span>
+
+            <span class="n">nodes_pruned</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">(</span><span class="n">temp_tree</span><span class="p">)</span>
+
+            <span class="c"># Calculate %gain</span>
+            <span class="n">gain</span> <span class="o">=</span> <span class="p">(</span><span class="n">cost_base</span> <span class="o">-</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">))</span> <span class="o">/</span> <span class="n">cost_base</span>
+
+            <span class="c"># Calculate %gain_size</span>
+            <span class="n">gain_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_pruned</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+            <span class="c"># Calculate weighted gain</span>
+            <span class="n">gains</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">gain</span> <span class="o">*</span> <span class="n">gain_size</span>
+
+        <span class="n">best_gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">gains</span><span class="p">)</span>
+        <span class="n">best_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gains</span><span class="p">))]</span>
+
+        <span class="k">if</span> <span class="n">best_gain</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_gain</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span><span class="p">,</span> <span class="n">best_node</span><span class="p">)</span>
+
+            <span class="c"># If best tree is not root node, then recursively pruning the tree</span>
+            <span class="k">if</span> <span class="n">best_node</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_pruning</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.pruning"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.pruning">[docs]</a>    <span class="k">def</span> <span class="nf">pruning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Function that prune the decision tree.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        X : array-like of shape = [n_samples, n_features]</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        y_true : array indicator matrix</span>
+<span class="sd">            Ground truth (correct) labels.</span>
+
+<span class="sd">        cost_mat : array-like of shape = [n_samples, 4]</span>
+<span class="sd">            Cost matrix of the classification problem</span>
+<span class="sd">            Where the columns represents the costs of: false positives, false negatives,</span>
+<span class="sd">            true positives and true negatives, for each example.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pruning</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
+            <span class="n">nodes_pruned</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">tree_pruned</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">n_nodes_pruned</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_pruned</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

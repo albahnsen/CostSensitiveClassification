@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.models.directcost &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,11 +28,13 @@
   
 
   
-    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
-        <link rel="up" title="costcla.models" href="../models.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -43,26 +45,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -76,6 +99,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -99,16 +123,16 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-          <li><a href="../models.html">costcla.models</a> &raquo;</li>
-      
     <li>costcla.models.directcost</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <h1>Source code for costcla.models.directcost</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -125,7 +149,7 @@
 <span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">cost_loss</span>
 
 
-<div class="viewcode-block" id="BayesMinimumRiskClassifier"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier">[docs]</a><span class="k">class</span> <span class="nc">BayesMinimumRiskClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier">[docs]</a><span class="k">class</span> <span class="nc">BayesMinimumRiskClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive binary Bayes minimum risk classifier.</span>
 
 <span class="sd">    Parameters</span>
@@ -166,7 +190,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
 
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; If calibration, then train the calibration of probabilities</span>
 
 <span class="sd">        Parameters</span>
@@ -186,7 +210,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">cal</span> <span class="o">=</span> <span class="n">ROCConvexHull</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_true_cal</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </div>
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -217,7 +241,7 @@
 
         <span class="k">return</span> <span class="n">y_pred</span>
 </div>
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit_predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.BayesMinimumRiskClassifier.fit_predict">[docs]</a>    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit_predict"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit_predict">[docs]</a>    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -263,7 +287,7 @@
         <span class="k">return</span> <span class="n">y_pred</span>
 
 </div></div>
-<div class="viewcode-block" id="ThresholdingOptimization"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization">[docs]</a><span class="k">class</span> <span class="nc">ThresholdingOptimization</span><span class="p">():</span>
+<div class="viewcode-block" id="ThresholdingOptimization"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization">[docs]</a><span class="k">class</span> <span class="nc">ThresholdingOptimization</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Classifier based on finding the threshold that minimizes the total cost on a given set.</span>
 
 <span class="sd">    Parameters</span>
@@ -309,7 +333,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
 
-<div class="viewcode-block" id="ThresholdingOptimization.fit"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdingOptimization.fit"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the optimal threshold using the ThresholdingOptimization.</span>
 
 <span class="sd">        Parameters</span>
@@ -350,7 +374,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 </div>
-<div class="viewcode-block" id="ThresholdingOptimization.predict"><a class="viewcode-back" href="../../../costcla.models.regression.html#costcla.models.directcost.ThresholdingOptimization.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdingOptimization.predict"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the ThresholdingOptimization.</span>
 
 <span class="sd">        Parameters</span>
@@ -379,9 +403,10 @@
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

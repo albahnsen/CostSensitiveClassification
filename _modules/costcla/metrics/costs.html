@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.metrics.costs &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,11 +28,13 @@
   
 
   
+
+  
     <link rel="top" title="costcla  documentation" href="../../../index.html"/>
         <link rel="up" title="costcla.metrics" href="../metrics.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -43,26 +45,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -76,6 +99,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -104,11 +128,13 @@
     <li>costcla.metrics.costs</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+        
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <h1>Source code for costcla.metrics.costs</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;Metrics to assess performance on cost-sensitive classification tasks</span>
@@ -129,7 +155,7 @@
 <span class="c"># from sklearn.utils import check_consistent_length  # Not in 0.15.1</span>
 
 
-<div class="viewcode-block" id="cost_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.costs.cost_loss">[docs]</a><span class="k">def</span> <span class="nf">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="cost_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.cost_loss">[docs]</a><span class="k">def</span> <span class="nf">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
     <span class="c">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Cost classification loss.</span>
 
@@ -186,13 +212,15 @@
     <span class="c">#TODO: Check consistency of cost_mat</span>
 
     <span class="n">y_true</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
     <span class="n">cost</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_pred</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
     <span class="n">cost</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="savings_score"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.costs.savings_score">[docs]</a><span class="k">def</span> <span class="nf">savings_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="savings_score"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.savings_score">[docs]</a><span class="k">def</span> <span class="nf">savings_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
     <span class="c">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Savings score.</span>
 
@@ -257,7 +285,7 @@
 <span class="c"># from https://github.com/agramfort/scikit-learn/blob/isotonic_calibration/sklearn/metrics/classification.py</span>
 <span class="c"># Waiting for https://github.com/scikit-learn/scikit-learn/pull/1176</span>
 <span class="c">#TODO: Remove when #1176 is merged</span></div>
-<div class="viewcode-block" id="brier_score_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.costs.brier_score_loss">[docs]</a><span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
+<div class="viewcode-block" id="brier_score_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.brier_score_loss">[docs]</a><span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the Brier score</span>
 
 <span class="sd">    The smaller the Brier score, the better, hence the naming with &quot;loss&quot;.</span>
@@ -322,9 +350,10 @@
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

@@ -1,4 +1,0 @@
-costcla.models.regression package
-======================
-
-.. autoclass:: costcla.models.CostSensitiveLogisticRegression

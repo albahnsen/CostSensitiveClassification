@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.metrics &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,12 +28,14 @@
   
 
   
+
+  
     <link rel="top" title="costcla  documentation" href="index.html"/>
         <link rel="next" title="costcla.models" href="costcla.models.html"/>
         <link rel="prev" title="costcla.datasets" href="costcla.datasets.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,26 +46,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -77,6 +100,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -101,22 +125,24 @@
     <li>costcla.metrics</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/costcla.metrics.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/costcla.metrics.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-costcla.metrics">
 <span id="costcla-metrics"></span><h1>costcla.metrics<a class="headerlink" href="#module-costcla.metrics" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#module-costcla.metrics" title="costcla.metrics"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.metrics</span></tt></a> module includes metrics to assess performance on cost-sensitive classification tasks given class prediction and cost-matrix</p>
-<p>Functions named as <tt class="docutils literal"><span class="pre">*_score</span></tt> return a scalar value to maximize: the higher the better</p>
-<p>Function named as <tt class="docutils literal"><span class="pre">*_error</span></tt> or <tt class="docutils literal"><span class="pre">*_loss</span></tt> return a scalar value to minimize: the lower the better</p>
+<p>The <a class="reference internal" href="#module-costcla.metrics" title="costcla.metrics"><code class="xref py py-mod docutils literal"><span class="pre">costcla.metrics</span></code></a> module includes metrics to assess performance on cost-sensitive classification tasks given class prediction and cost-matrix</p>
+<p>Functions named as <code class="docutils literal"><span class="pre">*_score</span></code> return a scalar value to maximize: the higher the better</p>
+<p>Function named as <code class="docutils literal"><span class="pre">*_error</span></code> or <code class="docutils literal"><span class="pre">*_loss</span></code> return a scalar value to minimize: the lower the better</p>
 <dl class="function">
 <dt id="costcla.metrics.cost_loss">
-<tt class="descclassname">costcla.metrics.</tt><tt class="descname">cost_loss</tt><big>(</big><em>y_true</em>, <em>y_pred</em>, <em>cost_mat</em><big>)</big><a class="headerlink" href="#costcla.metrics.cost_loss" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.metrics.</code><code class="descname">cost_loss</code><span class="sig-paren">(</span><em>y_true</em>, <em>y_pred</em>, <em>cost_mat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/metrics/costs.html#cost_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.metrics.cost_loss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cost classification loss.</p>
 <p>This function calculates the cost of using y_pred on y_true with
 cost-matrix cost-mat. It differ from traditional classification evaluation
@@ -154,7 +180,7 @@ true positives and true negatives, for each example.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#costcla.metrics.savings_score" title="costcla.metrics.savings_score"><tt class="xref py py-obj docutils literal"><span class="pre">savings_score</span></tt></a></p>
+<p class="last"><a class="reference internal" href="#costcla.metrics.savings_score" title="costcla.metrics.savings_score"><code class="xref py py-obj docutils literal"><span class="pre">savings_score</span></code></a></p>
 </div>
 <p class="rubric">References</p>
 <table class="docutils citation" frame="void" id="r4" rules="none">
@@ -187,7 +213,7 @@ in Seventeenth International Joint Conference on Artificial Intelligence,
 
 <dl class="function">
 <dt id="costcla.metrics.savings_score">
-<tt class="descclassname">costcla.metrics.</tt><tt class="descname">savings_score</tt><big>(</big><em>y_true</em>, <em>y_pred</em>, <em>cost_mat</em><big>)</big><a class="headerlink" href="#costcla.metrics.savings_score" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.metrics.</code><code class="descname">savings_score</code><span class="sig-paren">(</span><em>y_true</em>, <em>y_pred</em>, <em>cost_mat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/metrics/costs.html#savings_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.metrics.savings_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Savings score.</p>
 <p>This function calculates the savings cost of using y_pred on y_true with
 cost-matrix cost-mat, as the difference of y_pred and the cost_loss of a naive
@@ -223,7 +249,7 @@ true positives and true negatives, for each example.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#costcla.metrics.cost_loss" title="costcla.metrics.cost_loss"><tt class="xref py py-obj docutils literal"><span class="pre">cost_loss</span></tt></a></p>
+<p class="last"><a class="reference internal" href="#costcla.metrics.cost_loss" title="costcla.metrics.cost_loss"><code class="xref py py-obj docutils literal"><span class="pre">cost_loss</span></code></a></p>
 </div>
 <p class="rubric">References</p>
 <table class="docutils citation" frame="void" id="r6" rules="none">
@@ -248,7 +274,7 @@ true positives and true negatives, for each example.</p>
 
 <dl class="function">
 <dt id="costcla.metrics.brier_score_loss">
-<tt class="descclassname">costcla.metrics.</tt><tt class="descname">brier_score_loss</tt><big>(</big><em>y_true</em>, <em>y_prob</em><big>)</big><a class="headerlink" href="#costcla.metrics.brier_score_loss" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.metrics.</code><code class="descname">brier_score_loss</code><span class="sig-paren">(</span><em>y_true</em>, <em>y_prob</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/metrics/costs.html#brier_score_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.metrics.brier_score_loss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the Brier score</p>
 <p>The smaller the Brier score, the better, hence the naming with &#8220;loss&#8221;.</p>
 <p>Across all items in a set N predictions, the Brier score measures the
@@ -298,7 +324,7 @@ Brier score assumes that all possible outcomes are equivalently
 
 <dl class="function">
 <dt id="costcla.metrics.binary_classification_metrics">
-<tt class="descclassname">costcla.metrics.</tt><tt class="descname">binary_classification_metrics</tt><big>(</big><em>y_true</em>, <em>y_pred</em>, <em>y_prob</em><big>)</big><a class="reference internal" href="_modules/costcla/metrics.html#binary_classification_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.metrics.binary_classification_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.metrics.</code><code class="descname">binary_classification_metrics</code><span class="sig-paren">(</span><em>y_true</em>, <em>y_pred</em>, <em>y_prob</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/metrics.html#binary_classification_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.metrics.binary_classification_metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>classification_metrics.</p>
 <p>This function cal...</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -352,10 +378,10 @@ Brier score assumes that all possible outcomes are equivalently
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="costcla.models.html" class="btn btn-neutral float-right" title="costcla.models"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="costcla.models.html" class="btn btn-neutral float-right" title="costcla.models" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="costcla.datasets.html" class="btn btn-neutral" title="costcla.datasets"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="costcla.datasets.html" class="btn btn-neutral" title="costcla.datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -367,9 +393,10 @@ Brier score assumes that all possible outcomes are equivalently
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

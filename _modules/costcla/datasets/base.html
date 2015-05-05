@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.datasets.base &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,11 +28,13 @@
   
 
   
-    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
-        <link rel="up" title="costcla.datasets" href="../datasets.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -43,26 +45,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -76,6 +99,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -99,16 +123,16 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-          <li><a href="../datasets.html">costcla.datasets</a> &raquo;</li>
-      
     <li>costcla.datasets.base</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <h1>Source code for costcla.datasets.base</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -128,15 +152,15 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
 
-<div class="viewcode-block" id="Bunch"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.base.Bunch">[docs]</a><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Container object for datasets: dictionary-like object that</span>
 <span class="sd">       exposes its keys as attributes.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">dict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
 
-</div>
-<div class="viewcode-block" id="load_bankmarketing"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.base.load_bankmarketing">[docs]</a><span class="k">def</span> <span class="nf">load_bankmarketing</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="load_bankmarketing"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_bankmarketing">[docs]</a><span class="k">def</span> <span class="nf">load_bankmarketing</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the bank marketing dataset (classification).</span>
 
 <span class="sd">    The bank marketing is a easily transformable example-dependent cost-sensitive classification dataset.</span>
@@ -238,7 +262,7 @@
                  <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;DirectMarketing&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="load_creditscoring1"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.base.load_creditscoring1">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring1</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_creditscoring1"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_creditscoring1">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring1</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring Kaggle Credit competition dataset (classification).</span>
 
 <span class="sd">    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</span>
@@ -307,7 +331,7 @@
                  <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;CreditScoring_Kaggle2011&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="load_creditscoring2"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.base.load_creditscoring2">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring2</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_creditscoring2"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_creditscoring2">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring2</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring PAKDD 2009 competition dataset (classification).</span>
 
 <span class="sd">    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</span>
@@ -484,9 +508,10 @@
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

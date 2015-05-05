@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.probcal.probcal &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,11 +28,13 @@
   
 
   
-    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
-        <link rel="up" title="costcla.probcal" href="../probcal.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -43,26 +45,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -76,6 +99,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -99,16 +123,16 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-          <li><a href="../probcal.html">costcla.probcal</a> &raquo;</li>
-      
     <li>costcla.probcal.probcal</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <h1>Source code for costcla.probcal.probcal</h1><div class="highlight"><pre>
 <span class="c"># coding=utf-8</span>
@@ -125,7 +149,7 @@
 <span class="c">#TODO: Add Platt calibration</span>
 <span class="c"># http://ift.tt/XuMk3s</span>
 
-<div class="viewcode-block" id="ROCConvexHull"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.probcal.ROCConvexHull">[docs]</a><span class="k">class</span> <span class="nc">ROCConvexHull</span><span class="p">:</span>
+<div class="viewcode-block" id="ROCConvexHull"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull">[docs]</a><span class="k">class</span> <span class="nc">ROCConvexHull</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Implementation the the calibration method ROCConvexHull</span>
 
 <span class="sd">    Attributes</span>
@@ -146,13 +170,51 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.probcal import ROCConvexHull</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import brier_score_loss</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; f = RandomForestClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; f.fit(X_train, y_train)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob_test = f.predict_proba(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f_cal = ROCConvexHull()</span>
+<span class="sd">    &gt;&gt;&gt; f_cal.fit(y_test, y_prob_test)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob_test_cal = f_cal.predict_proba(y_prob_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Brier score using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print brier_score_loss(y_test, y_prob_test[:, 1])</span>
+<span class="sd">    0.0577615264881</span>
+<span class="sd">    &gt;&gt;&gt; # Brier score using calibrated RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print brier_score_loss(y_test, y_prob_test_cal)</span>
+<span class="sd">    0.0553677407894</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c">#TODO: Add example to DOC</span>
-    <span class="c">#TODO: Description of methods</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="ROCConvexHull.fit"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.probcal.ROCConvexHull.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class="viewcode-block" id="ROCConvexHull.fit"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Fit the calibration map</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array-like of shape = [n_samples]</span>
+<span class="sd">            True class to be used for calibrating the probabilities</span>
+
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities to be used for calibrating the probabilities</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># TODO: Check input</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
         <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
         <span class="c">#works with sklearn 0.11</span>
@@ -208,12 +270,30 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="n">calibrated_map</span>
 </div>
-<div class="viewcode-block" id="ROCConvexHull.predict_proba"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.probcal.ROCConvexHull.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class="viewcode-block" id="ROCConvexHull.predict_proba"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculate the calibrated probabilities</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_prob : array-like of shape = [n_samples, 2]</span>
+<span class="sd">            Predicted probabilities to be calibrated using calibration map</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_prob_cal : array-like of shape = [n_samples, 1]</span>
+<span class="sd">            Predicted calibrated probabilities</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># TODO: Check input</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
         <span class="n">calibrated_proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">calibrated_proba</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">p</span><span class="p">)]</span> <span class="o">=</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="c"># TODO: return 2D and refactor</span>
         <span class="k">return</span> <span class="n">calibrated_proba</span>
 
 </div></div>
@@ -292,9 +372,10 @@
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 

@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>costcla.datasets &mdash; costcla  documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,12 +28,14 @@
   
 
   
+
+  
     <link rel="top" title="costcla  documentation" href="index.html"/>
         <link rel="next" title="costcla.metrics" href="costcla.metrics.html"/>
         <link rel="prev" title="Welcome to costcla’s documentation!" href="index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,26 +46,47 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> costcla</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">costcla.datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
@@ -77,6 +100,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -101,22 +125,24 @@
     <li>costcla.datasets</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/costcla.datasets.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/costcla.datasets.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-costcla.datasets">
 <span id="costcla-datasets"></span><h1>costcla.datasets<a class="headerlink" href="#module-costcla.datasets" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#module-costcla.datasets" title="costcla.datasets"><tt class="xref py py-mod docutils literal"><span class="pre">costcla.datasets</span></tt></a> module includes utilities to load datasets,
+<p>The <a class="reference internal" href="#module-costcla.datasets" title="costcla.datasets"><code class="xref py py-mod docutils literal"><span class="pre">costcla.datasets</span></code></a> module includes utilities to load datasets,
 including methods to load and fetch popular reference datasets. It also
 features some artificial data generators.</p>
 <dl class="function">
 <dt id="costcla.datasets.load_bankmarketing">
-<tt class="descclassname">costcla.datasets.</tt><tt class="descname">load_bankmarketing</tt><big>(</big><em>cost_mat_parameters=None</em><big>)</big><a class="headerlink" href="#costcla.datasets.load_bankmarketing" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.datasets.</code><code class="descname">load_bankmarketing</code><span class="sig-paren">(</span><em>cost_mat_parameters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/datasets/base.html#load_bankmarketing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.datasets.load_bankmarketing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and return the bank marketing dataset (classification).</p>
 <p>The bank marketing is a easily transformable example-dependent cost-sensitive classification dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -166,7 +192,7 @@ meaning of the features, and &#8216;DESCR&#8217;, the full description of the da
 
 <dl class="function">
 <dt id="costcla.datasets.load_creditscoring1">
-<tt class="descclassname">costcla.datasets.</tt><tt class="descname">load_creditscoring1</tt><big>(</big><em>cost_mat_parameters=None</em><big>)</big><a class="headerlink" href="#costcla.datasets.load_creditscoring1" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.datasets.</code><code class="descname">load_creditscoring1</code><span class="sig-paren">(</span><em>cost_mat_parameters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/datasets/base.html#load_creditscoring1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.datasets.load_creditscoring1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and return the credit scoring Kaggle Credit competition dataset (classification).</p>
 <p>The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -217,7 +243,7 @@ in Proceedings of the International Conference on Machine Learning and Applicati
 
 <dl class="function">
 <dt id="costcla.datasets.load_creditscoring2">
-<tt class="descclassname">costcla.datasets.</tt><tt class="descname">load_creditscoring2</tt><big>(</big><em>cost_mat_parameters=None</em><big>)</big><a class="headerlink" href="#costcla.datasets.load_creditscoring2" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">costcla.datasets.</code><code class="descname">load_creditscoring2</code><span class="sig-paren">(</span><em>cost_mat_parameters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/datasets/base.html#load_creditscoring2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.datasets.load_creditscoring2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and return the credit scoring PAKDD 2009 competition dataset (classification).</p>
 <p>The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -274,10 +300,10 @@ in Proceedings of the International Conference on Machine Learning and Applicati
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="costcla.metrics.html" class="btn btn-neutral float-right" title="costcla.metrics"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="costcla.metrics.html" class="btn btn-neutral float-right" title="costcla.metrics" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to costcla’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Welcome to costcla’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -289,9 +315,10 @@ in Proceedings of the International Conference on Machine Learning and Applicati
         &copy; Copyright 2014, Alejandro Correa Bahnsen.
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
+
         </div>
       </div>
 
