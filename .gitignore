@@ -2,4 +2,4 @@
 *~
 .idea
 doc/_build
-
+*.ipynb_checkpoints
