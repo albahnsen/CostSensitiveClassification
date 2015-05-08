@@ -27,6 +27,9 @@ Documentation
 Documentation is available at 
 http://albahnsen.github.com/CostSensitiveClassification
 
+Tutorials are available at
+http://nbviewer.ipython.org/github/albahnsen/CostSensitiveClassification/tree/master/doc/tutorial/
+
 Development
 =============
 
