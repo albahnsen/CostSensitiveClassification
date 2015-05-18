@@ -6,8 +6,8 @@ This module include the cost sensitive ensemble methods.
 # License: BSD 3 clause
 
 from sklearn.cross_validation import train_test_split
-from costcla.models import CostSensitiveDecisionTreeClassifier
-from costcla.models.bagging import BaggingClassifier
+from ..models import CostSensitiveDecisionTreeClassifier
+from ..models.bagging import BaggingClassifier
 
 #TODO add documentation for all methods
 class CostSensitiveRandomForestClassifier(BaggingClassifier):
@@ -32,7 +32,7 @@ class CostSensitiveRandomForestClassifier(BaggingClassifier):
         self.pruned = pruned
 
 
-class BaggingCostSensitiveDecisionTreeClassifier(BaggingClassifier):
+class CostSensitiveBaggingClassifier(BaggingClassifier):
     def __init__(self,
                  n_estimators=10,
                  max_samples=0.5,
@@ -54,7 +54,7 @@ class BaggingCostSensitiveDecisionTreeClassifier(BaggingClassifier):
         self.pruned = pruned
 
 
-class PastingCostSensitiveDecisionTreeClassifier(BaggingClassifier):
+class CostSensitivePastingClassifier(BaggingClassifier):
     def __init__(self,
                  n_estimators=10,
                  max_samples=0.5,
@@ -76,7 +76,7 @@ class PastingCostSensitiveDecisionTreeClassifier(BaggingClassifier):
         self.pruned = pruned
 
 
-class RandomPatchesCostSensitiveDecisionTreeClassifier(BaggingClassifier):
+class CostSensitiveRandomPatchesClassifier(BaggingClassifier):
     def __init__(self,
                  n_estimators=10,
                  max_samples=0.5,
