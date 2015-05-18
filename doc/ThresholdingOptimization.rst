@@ -1,4 +1,4 @@
-costcla.models.ThresholdingOptimization
+ThresholdingOptimization
 =======================================
 
 .. autoclass:: costcla.models.ThresholdingOptimization
