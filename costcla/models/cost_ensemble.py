@@ -86,9 +86,8 @@ class CostSensitiveRandomForestClassifier(BaggingClassifier):
     ----------
 
     .. [1] Correa Bahnsen, A., Aouada, D., & Ottersten, B.
-           "Ensemble of Example-Dependent Cost-Sensitive Decision Trees",
-           http://archiv...
-
+           `"Ensemble of Example-Dependent Cost-Sensitive Decision Trees" <http://arxiv.org/abs/1505.04637>`__,
+           2015, http://arxiv.org/abs/1505.04637.
     Examples
     --------
     >>> from sklearn.ensemble import RandomForestClassifier
@@ -196,8 +195,8 @@ class CostSensitiveBaggingClassifier(BaggingClassifier):
     ----------
 
     .. [1] Correa Bahnsen, A., Aouada, D., & Ottersten, B.
-           "Ensemble of Example-Dependent Cost-Sensitive Decision Trees",
-           http://archiv...
+           `"Ensemble of Example-Dependent Cost-Sensitive Decision Trees" <http://arxiv.org/abs/1505.04637>`__,
+           2015, http://arxiv.org/abs/1505.04637.
 
     Examples
     --------
@@ -306,8 +305,8 @@ class CostSensitivePastingClassifier(BaggingClassifier):
     ----------
 
     .. [1] Correa Bahnsen, A., Aouada, D., & Ottersten, B.
-           "Ensemble of Example-Dependent Cost-Sensitive Decision Trees",
-           http://archiv...
+           `"Ensemble of Example-Dependent Cost-Sensitive Decision Trees" <http://arxiv.org/abs/1505.04637>`__,
+           2015, http://arxiv.org/abs/1505.04637.
 
     Examples
     --------
@@ -421,8 +420,8 @@ class CostSensitiveRandomPatchesClassifier(BaggingClassifier):
     ----------
 
     .. [1] Correa Bahnsen, A., Aouada, D., & Ottersten, B.
-           "Ensemble of Example-Dependent Cost-Sensitive Decision Trees",
-           http://archiv...
+           `"Ensemble of Example-Dependent Cost-Sensitive Decision Trees" <http://arxiv.org/abs/1505.04637>`__,
+           2015, http://arxiv.org/abs/1505.04637.
 
     Examples
     --------

@@ -147,7 +147,7 @@ class CostSensitiveLogisticRegression(BaseEstimator):
     ----------
 
     .. [1] A. Correa Bahnsen, D.Aouada, B, Ottersten,
-           "Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring",
+           `"Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring" <http://albahnsen.com/files/Example-Dependent%20Cost-Sensitive%20Logistic%20Regression%20for%20Credit%20Scoring_publish.pdf>`__,
            in Proceedings of the International Conference on Machine Learning and Applications,
            , 2014.
 
