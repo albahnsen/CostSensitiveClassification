@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CostSensitiveRandomForestClassifier &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="index.html"/>
+        <link rel="up" title="Models" href="Models.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="Models.html">Models</a> &raquo;</li>
+      
+    <li>CostSensitiveRandomForestClassifier</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/CostSensitiveRandomForestClassifier.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="costsensitiverandomforestclassifier">
+<h1>CostSensitiveRandomForestClassifier<a class="headerlink" href="#costsensitiverandomforestclassifier" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier">
+<em class="property">class </em><code class="descclassname">costcla.models.</code><code class="descname">CostSensitiveRandomForestClassifier</code><span class="sig-paren">(</span><em>n_estimators=10</em>, <em>combination='majority_voting'</em>, <em>max_features='auto'</em>, <em>n_jobs=1</em>, <em>verbose=False</em>, <em>pruned=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/models/cost_ensemble.html#CostSensitiveRandomForestClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>A example-dependent cost-sensitive random forest  classifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n_estimators</strong> : int, optional (default=10)</p>
+<blockquote>
+<div><p>The number of base estimators in the ensemble.</p>
+</div></blockquote>
+<p><strong>combination</strong> : string, optional (default=&#8221;majority_voting&#8221;)</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Which combination method to use:</dt>
+<dd><ul class="first last simple">
+<li>If &#8220;majority_voting&#8221; then combine by majority voting</li>
+<li>If &#8220;weighted_voting&#8221; then combine by weighted voting using the
+out of bag savings as the weight for each estimator.</li>
+<li>If &#8220;stacking&#8221; then a Cost Sensitive Logistic Regression is used
+to learn the combination.</li>
+<li>If &#8220;stacking_proba&#8221; then a Cost Sensitive Logistic Regression trained
+with the estimated probabilities is used to learn the combination,.</li>
+<li>If &#8220;stacking_bmr&#8221; then a Cost Sensitive Logistic Regression is used
+to learn the probabilities and a BayesMinimumRisk for the prediction.</li>
+<li>If &#8220;stacking_proba_bmr&#8221; then a Cost Sensitive Logistic Regression trained
+with the estimated probabilities is used to learn the probabilities,
+and a BayesMinimumRisk for the prediction.</li>
+<li>If &#8220;majority_bmr&#8221; then the BayesMinimumRisk algorithm is used to make the
+prediction using the predicted probabilities of majority_voting</li>
+<li>If &#8220;weighted_bmr&#8221; then the BayesMinimumRisk algorithm is used to make the
+prediction using the predicted probabilities of weighted_voting</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>max_features</strong> : int, float, string or None, optional (default=None)</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The number of features to consider when looking for the best split in each tree:</dt>
+<dd><ul class="first last simple">
+<li>If int, then consider <cite>max_features</cite> features at each split.</li>
+<li>If float, then <cite>max_features</cite> is a percentage and
+<cite>int(max_features * n_features)</cite> features are considered at each
+split.</li>
+<li>If &#8220;auto&#8221;, then <cite>max_features=sqrt(n_features)</cite>.</li>
+<li>If &#8220;sqrt&#8221;, then <cite>max_features=sqrt(n_features)</cite>.</li>
+<li>If &#8220;log2&#8221;, then <cite>max_features=log2(n_features)</cite>.</li>
+<li>If None, then <cite>max_features=n_features</cite>.</li>
+</ul>
+</dd>
+</dl>
+<p>Note: the search for a split does not stop until at least one
+valid partition of the node samples is found, even if it requires to
+effectively inspect more than <code class="docutils literal"><span class="pre">max_features</span></code> features.</p>
+</div></blockquote>
+<p><strong>pruned</strong> : bool, optional (default=True)</p>
+<blockquote>
+<div><p>Whenever or not to prune the decision tree using cost-based pruning</p>
+</div></blockquote>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
+<blockquote>
+<div><p>The number of jobs to run in parallel for both <cite>fit</cite> and <cite>predict</cite>.
+If -1, then the number of jobs is set to the number of cores.</p>
+</div></blockquote>
+<p><strong>verbose</strong> : int, optional (default=0)</p>
+<blockquote class="last">
+<div><p>Controls the verbosity of the building process.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier" title="costcla.models.CostSensitiveDecisionTreeClassifier"><code class="xref py py-obj docutils literal"><span class="pre">costcla.models.CostSensitiveDecisionTreeClassifier</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R6]</a></td><td>Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.
+<a class="reference external" href="http://arxiv.org/abs/1505.04637">&#8220;Ensemble of Example-Dependent Cost-Sensitive Decision Trees&#8221;</a>,
+2015, <a class="reference external" href="http://arxiv.org/abs/1505.04637">http://arxiv.org/abs/1505.04637</a>.</td></tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveRandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.metrics</span> <span class="kn">import</span> <span class="n">savings_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">load_creditscoring1</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sets</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">cost_mat</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">,</span> <span class="n">cost_mat_test</span> <span class="o">=</span> <span class="n">sets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred_test_rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">CostSensitiveRandomForestClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred_test_csdt</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Savings using only RandomForest</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test_rf</span><span class="p">,</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="go">0.12454256594</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Savings using CostSensitiveRandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test_csdt</span><span class="p">,</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="go">0.499390945808</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><cite>base_estimator_</cite>: list of estimators</td>
+<td>The base estimator from which the ensemble is grown.</td>
+</tr>
+<tr class="row-even"><td><cite>estimators_</cite>: list of estimators</td>
+<td>The collection of fitted base estimators.</td>
+</tr>
+<tr class="row-odd"><td><cite>estimators_samples_</cite>: list of arrays</td>
+<td>The subset of drawn samples (i.e., the in-bag samples) for each base estimator.</td>
+</tr>
+<tr class="row-even"><td><cite>estimators_features_</cite>: list of arrays</td>
+<td>The subset of drawn features for each base estimator.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>cost_mat</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a Bagging ensemble of estimators from the training set (X, y).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : {array-like, sparse matrix} of shape = [n_samples, n_features]</p>
+<blockquote>
+<div><p>The training input samples. Sparse matrices are accepted only if
+they are supported by the base estimator.</p>
+</div></blockquote>
+<p><strong>y</strong> : array-like, shape = [n_samples]</p>
+<blockquote>
+<div><p>The target values (class labels in classification, real numbers in
+regression).</p>
+</div></blockquote>
+<p><strong>cost_mat</strong> : array-like of shape = [n_samples, 4]</p>
+<blockquote>
+<div><p>Cost matrix of the classification problem
+Where the columns represents the costs of: false positives, false negatives,
+true positives and true negatives, for each example.</p>
+</div></blockquote>
+<p><strong>sample_weight</strong> : array-like, shape = [n_samples] or None</p>
+<blockquote>
+<div><p>Sample weights. If None, then samples are equally weighted.
+Note that this is supported only if the base estimator supports
+sample weighting.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> : object</p>
+<blockquote class="last">
+<div><p>Returns self.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<blockquote>
+<div><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
+<blockquote class="last">
+<div><p>Parameter names mapped to their values.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>cost_mat=None</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict class for X.</p>
+<p>The predicted class of an input sample is computed as the class with
+the highest mean predicted probability. If base estimators do not
+implement a <code class="docutils literal"><span class="pre">predict_proba</span></code> method, then it resorts to voting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : {array-like, sparse matrix} of shape = [n_samples, n_features]</p>
+<blockquote>
+<div><p>The training input samples. Sparse matrices are accepted only if
+they are supported by the base estimator.</p>
+</div></blockquote>
+<p><strong>cost_mat</strong> : optional array-like of shape = [n_samples, 4], (default=None)</p>
+<blockquote>
+<div><p>Cost matrix of the classification problem
+Where the columns represents the costs of: false positives, false negatives,
+true positives and true negatives, for each example.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>pred</strong> : array of shape = [n_samples]</p>
+<blockquote class="last">
+<div><p>The predicted classes.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.predict_proba">
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict class probabilities for X.</p>
+<p>The predicted class probabilities of an input sample is computed as
+the mean predicted class probabilities of the base estimators in the
+ensemble. If base estimators do not implement a <code class="docutils literal"><span class="pre">predict_proba</span></code>
+method, then it resorts to voting and the predicted class probabilities
+of a an input sample represents the proportion of estimators predicting
+each class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : {array-like, sparse matrix} of shape = [n_samples, n_features]</p>
+<blockquote>
+<div><p>The training input samples. Sparse matrices are accepted only if
+they are supported by the base estimator.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>p</strong> : array of shape = [n_samples, n_classes]</p>
+<blockquote class="last">
+<div><p>The class probabilities of the input samples. The order of the
+classes corresponds to that in the attribute <cite>classes_</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.score">
+<code class="descname">score</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mean accuracy on the given test data and labels.</p>
+<p>In multi-label classification, this is the subset accuracy
+which is a harsh metric since you require for each sample that
+each label set be correctly predicted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : array-like, shape = (n_samples, n_features)</p>
+<blockquote>
+<div><p>Test samples.</p>
+</div></blockquote>
+<p><strong>y</strong> : array-like, shape = (n_samples) or (n_samples, n_outputs)</p>
+<blockquote>
+<div><p>True labels for X.</p>
+</div></blockquote>
+<p><strong>sample_weight</strong> : array-like, shape = [n_samples], optional</p>
+<blockquote>
+<div><p>Sample weights.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>score</strong> : float</p>
+<blockquote class="last">
+<div><p>Mean accuracy of self.predict(X) wrt. y.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveRandomForestClassifier.set_params">
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveRandomForestClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as pipelines). The former have parameters of the form
+<code class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it&#8217;s possible to update each
+component of a nested object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

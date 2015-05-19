@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.probcal &mdash; costcla  documentation</title>
+  <title>Probcal &mdash; costcla  documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="next" title="costcla.sampling" href="costcla.sampling.html"/> 
+        <link rel="next" title="Sampling" href="Sampling.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,27 +71,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -121,11 +133,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>costcla.probcal</li>
+    <li>Probcal</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.probcal.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Probcal.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -135,7 +147,7 @@
           <div role="main" class="document">
             
   <div class="section" id="module-costcla.probcal">
-<span id="costcla-probcal"></span><h1>costcla.probcal<a class="headerlink" href="#module-costcla.probcal" title="Permalink to this headline">¶</a></h1>
+<span id="probcal"></span><h1>Probcal<a class="headerlink" href="#module-costcla.probcal" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="#module-costcla.probcal" title="costcla.probcal"><code class="xref py py-mod docutils literal"><span class="pre">costcla.probcal</span></code></a> module includes methods for probability calibration</p>
 <dl class="class">
 <dt id="costcla.probcal.ROCConvexHull">
@@ -146,10 +158,10 @@
 <p class="last"><code class="xref py py-obj docutils literal"><span class="pre">sklearn.IsotonicRegression</span></code></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r11" rules="none">
+<table class="docutils citation" frame="void" id="r14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R11]</a></td><td>J. Hernandez-Orallo, P. Flach, C. Ferri, &#8216;A Unified View of Performance Metrics :
+<tr><td class="label"><a class="fn-backref" href="#id1">[R14]</a></td><td>J. Hernandez-Orallo, P. Flach, C. Ferri, &#8216;A Unified View of Performance Metrics :
 Translating Threshold Choice into Expected Classification Loss&#8217;, Journal of
 Machine Learning Research, 13, 2813–2869, 2012.</td></tr>
 </tbody>
@@ -260,7 +272,7 @@ Machine Learning Research, 13, 2813–2869, 2012.</td></tr>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="costcla.sampling.html" class="btn btn-neutral float-right" title="costcla.sampling" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Sampling.html" class="btn btn-neutral float-right" title="Sampling" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

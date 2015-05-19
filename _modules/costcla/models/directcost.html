@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -149,7 +161,7 @@
 <span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">cost_loss</span>
 
 
-<div class="viewcode-block" id="BayesMinimumRiskClassifier"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier">[docs]</a><span class="k">class</span> <span class="nc">BayesMinimumRiskClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier"><a class="viewcode-back" href="../../../BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier">[docs]</a><span class="k">class</span> <span class="nc">BayesMinimumRiskClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive binary Bayes minimum risk classifier.</span>
 
 <span class="sd">    Parameters</span>
@@ -190,7 +202,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
 
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit"><a class="viewcode-back" href="../../../BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; If calibration, then train the calibration of probabilities</span>
 
 <span class="sd">        Parameters</span>
@@ -210,7 +222,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">cal</span> <span class="o">=</span> <span class="n">ROCConvexHull</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_true_cal</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </div>
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.predict"><a class="viewcode-back" href="../../../BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -241,7 +253,7 @@
 
         <span class="k">return</span> <span class="n">y_pred</span>
 </div>
-<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit_predict"><a class="viewcode-back" href="../../../costcla.models.BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit_predict">[docs]</a>    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesMinimumRiskClassifier.fit_predict"><a class="viewcode-back" href="../../../BayesMinimumRiskClassifier.html#costcla.models.BayesMinimumRiskClassifier.fit_predict">[docs]</a>    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y_prob_cal</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the Bayes minimum risk classifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -287,7 +299,7 @@
         <span class="k">return</span> <span class="n">y_pred</span>
 
 </div></div>
-<div class="viewcode-block" id="ThresholdingOptimization"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization">[docs]</a><span class="k">class</span> <span class="nc">ThresholdingOptimization</span><span class="p">():</span>
+<div class="viewcode-block" id="ThresholdingOptimization"><a class="viewcode-back" href="../../../ThresholdingOptimization.html#costcla.models.ThresholdingOptimization">[docs]</a><span class="k">class</span> <span class="nc">ThresholdingOptimization</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Classifier based on finding the threshold that minimizes the total cost on a given set.</span>
 
 <span class="sd">    Parameters</span>
@@ -333,7 +345,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration</span> <span class="o">=</span> <span class="n">calibration</span>
 
-<div class="viewcode-block" id="ThresholdingOptimization.fit"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdingOptimization.fit"><a class="viewcode-back" href="../../../ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the optimal threshold using the ThresholdingOptimization.</span>
 
 <span class="sd">        Parameters</span>
@@ -374,7 +386,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 </div>
-<div class="viewcode-block" id="ThresholdingOptimization.predict"><a class="viewcode-back" href="../../../costcla.models.ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdingOptimization.predict"><a class="viewcode-back" href="../../../ThresholdingOptimization.html#costcla.models.ThresholdingOptimization.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the prediction using the ThresholdingOptimization.</span>
 
 <span class="sd">        Parameters</span>

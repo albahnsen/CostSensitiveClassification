@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -149,7 +161,7 @@
 <span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="kn">import</span> <span class="n">six</span>
 <span class="kn">import</span> <span class="nn">numbers</span>
 
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive binary decision tree classifier.</span>
 
 <span class="sd">    Parameters</span>
@@ -218,7 +230,7 @@
 <span class="sd">    ----------</span>
 
 <span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
-<span class="sd">           &quot;Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications&quot;,</span>
+<span class="sd">           `&quot;Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications&quot; &lt;http://albahnsen.com/files/Example-Dependent%20Cost-Sensitive%20Decision%20Trees_preprint_accepted.pdf&gt;`__,</span>
 <span class="sd">           Expert Systems with Applications, in press, 2015,</span>
 <span class="sd">           http://doi.org/10.1016/j.eswa.2015.04.042</span>
 
@@ -269,7 +281,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.set_param"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.set_param">[docs]</a>    <span class="k">def</span> <span class="nf">set_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.set_param"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.set_param">[docs]</a>    <span class="k">def</span> <span class="nf">set_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </div>
     <span class="k">def</span> <span class="nf">_node_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
@@ -513,7 +525,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes_pruned</span> <span class="o">=</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.fit"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.fit"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Build a example-dependent cost-sensitive decision tree from the training set (X, y, cost_mat)</span>
 
 <span class="sd">        Parameters</span>
@@ -649,7 +661,7 @@
 
         <span class="k">return</span> <span class="n">predicted</span>
 
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Predict class of X.</span>
 
 <span class="sd">        The predicted class for each sample in X is returned.</span>
@@ -673,7 +685,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">tree_</span><span class="p">,</span> <span class="n">proba</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict_proba"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.predict_proba"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Predict class probabilities of the input samples X.</span>
 
 <span class="sd">        Parameters</span>
@@ -788,7 +800,7 @@
             <span class="k">if</span> <span class="n">best_node</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_pruning</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.pruning"><a class="viewcode-back" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.pruning">[docs]</a>    <span class="k">def</span> <span class="nf">pruning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="CostSensitiveDecisionTreeClassifier.pruning"><a class="viewcode-back" href="../../../CostSensitiveDecisionTreeClassifier.html#costcla.models.CostSensitiveDecisionTreeClassifier.pruning">[docs]</a>    <span class="k">def</span> <span class="nf">pruning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function that prune the decision tree.</span>
 
 <span class="sd">        Parameters</span>

@@ -1,4 +1,4 @@
-costcla.sampling
+Sampling
 ================
 
 .. automodule:: costcla.sampling

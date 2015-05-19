@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.datasets &mdash; costcla  documentation</title>
+  <title>Datasets &mdash; costcla  documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="next" title="costcla.metrics" href="costcla.metrics.html"/>
+        <link rel="next" title="Metrics" href="Metrics.html"/>
         <link rel="prev" title="Welcome to costcla’s documentation!" href="index.html"/> 
 
   
@@ -72,27 +72,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -122,11 +134,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>costcla.datasets</li>
+    <li>Datasets</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.datasets.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Datasets.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -136,7 +148,7 @@
           <div role="main" class="document">
             
   <div class="section" id="module-costcla.datasets">
-<span id="costcla-datasets"></span><h1>costcla.datasets<a class="headerlink" href="#module-costcla.datasets" title="Permalink to this headline">¶</a></h1>
+<span id="datasets"></span><h1>Datasets<a class="headerlink" href="#module-costcla.datasets" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="#module-costcla.datasets" title="costcla.datasets"><code class="xref py py-mod docutils literal"><span class="pre">costcla.datasets</span></code></a> module includes utilities to load datasets,
 including methods to load and fetch popular reference datasets. It also
 features some artificial data generators.</p>
@@ -168,10 +180,10 @@ meaning of the features, and &#8216;DESCR&#8217;, the full description of the da
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r1" rules="none">
+<table class="docutils citation" frame="void" id="r8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
+<tr><td class="label"><a class="fn-backref" href="#id1">[R8]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
 <a class="reference external" href="http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf">&#8220;Improving Credit Card Fraud Detection with Calibrated Probabilities&#8221;</a>, in Proceedings of the fourteenth SIAM International Conference on Data Mining,
 677-685, 2014.</td></tr>
 </tbody>
@@ -218,10 +230,10 @@ meaning of the features, and &#8216;DESCR&#8217;, the full description of the da
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r2" rules="none">
+<table class="docutils citation" frame="void" id="r9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R2]</a></td><td>A. Correa Bahnsen, D.Aouada, B, Ottersten,
+<tr><td class="label"><a class="fn-backref" href="#id2">[R9]</a></td><td>A. Correa Bahnsen, D.Aouada, B, Ottersten,
 &#8220;Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring&#8221;,
 in Proceedings of the International Conference on Machine Learning and Applications,
 , 2014.</td></tr>
@@ -269,10 +281,10 @@ meaning of the features, and &#8216;DESCR&#8217;, the full description of the da
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r3" rules="none">
+<table class="docutils citation" frame="void" id="r10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R3]</a></td><td>A. Correa Bahnsen, D.Aouada, B, Ottersten,
+<tr><td class="label"><a class="fn-backref" href="#id3">[R10]</a></td><td>A. Correa Bahnsen, D.Aouada, B, Ottersten,
 &#8220;Example-Dependent Cost-Sensitive Logistic Regression for Credit Scoring&#8221;,
 in Proceedings of the International Conference on Machine Learning and Applications,
 , 2014.</td></tr>
@@ -300,7 +312,7 @@ in Proceedings of the International Conference on Machine Learning and Applicati
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="costcla.metrics.html" class="btn btn-neutral float-right" title="costcla.metrics" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Metrics.html" class="btn btn-neutral float-right" title="Metrics" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to costcla’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

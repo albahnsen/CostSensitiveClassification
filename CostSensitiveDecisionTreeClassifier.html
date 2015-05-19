@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.models.CostSensitiveDecisionTreeClassifier &mdash; costcla  documentation</title>
+  <title>CostSensitiveDecisionTreeClassifier &mdash; costcla  documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="up" title="costcla.models" href="costcla.models.html"/> 
+        <link rel="up" title="Models" href="Models.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,27 +71,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2 current"><a class="current reference internal" href="">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -121,13 +133,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="costcla.models.html">costcla.models</a> &raquo;</li>
+          <li><a href="Models.html">Models</a> &raquo;</li>
       
-    <li>costcla.models.CostSensitiveDecisionTreeClassifier</li>
+    <li>CostSensitiveDecisionTreeClassifier</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.models.CostSensitiveDecisionTreeClassifier.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/CostSensitiveDecisionTreeClassifier.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -136,8 +148,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="costcla-models-costsensitivedecisiontreeclassifier">
-<h1>costcla.models.CostSensitiveDecisionTreeClassifier<a class="headerlink" href="#costcla-models-costsensitivedecisiontreeclassifier" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="costsensitivedecisiontreeclassifier">
+<h1>CostSensitiveDecisionTreeClassifier<a class="headerlink" href="#costsensitivedecisiontreeclassifier" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="costcla.models.CostSensitiveDecisionTreeClassifier">
 <em class="property">class </em><code class="descclassname">costcla.models.</code><code class="descname">CostSensitiveDecisionTreeClassifier</code><span class="sig-paren">(</span><em>criterion='direct_cost'</em>, <em>criterion_weight=False</em>, <em>num_pct=100</em>, <em>max_features=None</em>, <em>max_depth=None</em>, <em>min_samples_split=2</em>, <em>min_samples_leaf=1</em>, <em>min_gain=0.001</em>, <em>pruned=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/models/cost_tree.html#CostSensitiveDecisionTreeClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.models.CostSensitiveDecisionTreeClassifier" title="Permalink to this definition">¶</a></dt>
@@ -218,11 +230,11 @@ Ignored if <code class="docutils literal"><span class="pre">max_samples_leaf</sp
 <p class="last"><code class="xref py py-obj docutils literal"><span class="pre">sklearn.tree.DecisionTreeClassifier</span></code></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r8" rules="none">
+<table class="docutils citation" frame="void" id="r3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R8]</a></td><td>Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.
-&#8220;Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id1">[R3]</a></td><td>Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.
+<a class="reference external" href="http://albahnsen.com/files/Example-Dependent%20Cost-Sensitive%20Decision%20Trees_preprint_accepted.pdf">&#8220;Example-Dependent Cost-Sensitive Decision Trees. Expert Systems with Applications&#8221;</a>,
 Expert Systems with Applications, in press, 2015,
 <a class="reference external" href="http://doi.org/10.1016/j.eswa.2015.04.042">http://doi.org/10.1016/j.eswa.2015.04.042</a></td></tr>
 </tbody>
@@ -329,6 +341,31 @@ Don&#8217;t use this parameter unless you know what you do.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="costcla.models.CostSensitiveDecisionTreeClassifier.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveDecisionTreeClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<blockquote>
+<div><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
+<blockquote class="last">
+<div><p>Parameter names mapped to their values.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="costcla.models.CostSensitiveDecisionTreeClassifier.predict">
 <code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/models/cost_tree.html#CostSensitiveDecisionTreeClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.models.CostSensitiveDecisionTreeClassifier.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class of X.</p>
@@ -409,6 +446,24 @@ true positives and true negatives, for each example.</p>
 <dt id="costcla.models.CostSensitiveDecisionTreeClassifier.set_param">
 <code class="descname">set_param</code><span class="sig-paren">(</span><em>attribute</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/models/cost_tree.html#CostSensitiveDecisionTreeClassifier.set_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.models.CostSensitiveDecisionTreeClassifier.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="costcla.models.CostSensitiveDecisionTreeClassifier.set_params">
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#costcla.models.CostSensitiveDecisionTreeClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as pipelines). The former have parameters of the form
+<code class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it&#8217;s possible to update each
+component of a nested object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 

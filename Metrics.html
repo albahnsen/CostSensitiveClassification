@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.metrics &mdash; costcla  documentation</title>
+  <title>Metrics &mdash; costcla  documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="next" title="costcla.models" href="costcla.models.html"/>
-        <link rel="prev" title="costcla.datasets" href="costcla.datasets.html"/> 
+        <link rel="next" title="Models" href="Models.html"/>
+        <link rel="prev" title="Datasets" href="Datasets.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,27 +72,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -122,11 +134,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>costcla.metrics</li>
+    <li>Metrics</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.metrics.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Metrics.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -136,7 +148,7 @@
           <div role="main" class="document">
             
   <div class="section" id="module-costcla.metrics">
-<span id="costcla-metrics"></span><h1>costcla.metrics<a class="headerlink" href="#module-costcla.metrics" title="Permalink to this headline">¶</a></h1>
+<span id="metrics"></span><h1>Metrics<a class="headerlink" href="#module-costcla.metrics" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="#module-costcla.metrics" title="costcla.metrics"><code class="xref py py-mod docutils literal"><span class="pre">costcla.metrics</span></code></a> module includes metrics to assess performance on cost-sensitive classification tasks given class prediction and cost-matrix</p>
 <p>Functions named as <code class="docutils literal"><span class="pre">*_score</span></code> return a scalar value to maximize: the higher the better</p>
 <p>Function named as <code class="docutils literal"><span class="pre">*_error</span></code> or <code class="docutils literal"><span class="pre">*_loss</span></code> return a scalar value to minimize: the lower the better</p>
@@ -183,18 +195,18 @@ true positives and true negatives, for each example.</p>
 <p class="last"><a class="reference internal" href="#costcla.metrics.savings_score" title="costcla.metrics.savings_score"><code class="xref py py-obj docutils literal"><span class="pre">savings_score</span></code></a></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r4" rules="none">
+<table class="docutils citation" frame="void" id="r11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R4]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id1">[R11]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
 in Seventeenth International Joint Conference on Artificial Intelligence,
 973-978, 2001.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r5" rules="none">
+<table class="docutils citation" frame="void" id="r12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R5]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
+<tr><td class="label"><a class="fn-backref" href="#id2">[R12]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
 <a class="reference external" href="http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf">&#8220;Improving Credit Card Fraud Detection with Calibrated Probabilities&#8221;</a>, in Proceedings of the fourteenth SIAM International Conference on Data Mining,
 677-685, 2014.</td></tr>
 </tbody>
@@ -252,10 +264,10 @@ true positives and true negatives, for each example.</p>
 <p class="last"><a class="reference internal" href="#costcla.metrics.cost_loss" title="costcla.metrics.cost_loss"><code class="xref py py-obj docutils literal"><span class="pre">cost_loss</span></code></a></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r6" rules="none">
+<table class="docutils citation" frame="void" id="r13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R6]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
+<tr><td class="label"><a class="fn-backref" href="#id3">[R13]</a></td><td>A. Correa Bahnsen, A. Stojanovic, D.Aouada, B, Ottersten,
 <a class="reference external" href="http://albahnsen.com/files/%20Improving%20Credit%20Card%20Fraud%20Detection%20by%20using%20Calibrated%20Probabilities%20-%20Publish.pdf">&#8220;Improving Credit Card Fraud Detection with Calibrated Probabilities&#8221;</a>, in Proceedings of the fourteenth SIAM International Conference on Data Mining,
 677-685, 2014.</td></tr>
 </tbody>
@@ -378,10 +390,10 @@ Brier score assumes that all possible outcomes are equivalently
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="costcla.models.html" class="btn btn-neutral float-right" title="costcla.models" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Models.html" class="btn btn-neutral float-right" title="Models" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="costcla.datasets.html" class="btn btn-neutral" title="costcla.datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Datasets.html" class="btn btn-neutral" title="Datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

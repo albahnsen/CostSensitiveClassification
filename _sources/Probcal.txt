@@ -1,6 +1,7 @@
-costcla.metrics
+Probcal
 ===============
 
-.. automodule:: costcla.metrics
+.. automodule:: costcla.probcal
     :members:
     :undoc-members:
+

@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>costcla.models.cost_ensemble &mdash; costcla  documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="costcla  documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> costcla
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">costcla</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>costcla.models.cost_ensemble</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for costcla.models.cost_ensemble</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module include the cost sensitive ensemble methods.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c"># License: BSD 3 clause</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">CostSensitiveDecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">..models.bagging</span> <span class="kn">import</span> <span class="n">BaggingClassifier</span>
+
+
+<div class="viewcode-block" id="CostSensitiveRandomForestClassifier"><a class="viewcode-back" href="../../../CostSensitiveRandomForestClassifier.html#costcla.models.CostSensitiveRandomForestClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveRandomForestClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive random forest  classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    n_estimators : int, optional (default=10)</span>
+<span class="sd">        The number of base estimators in the ensemble.</span>
+
+<span class="sd">    combination : string, optional (default=&quot;majority_voting&quot;)</span>
+<span class="sd">        Which combination method to use:</span>
+<span class="sd">          - If &quot;majority_voting&quot; then combine by majority voting</span>
+<span class="sd">          - If &quot;weighted_voting&quot; then combine by weighted voting using the</span>
+<span class="sd">            out of bag savings as the weight for each estimator.</span>
+<span class="sd">          - If &quot;stacking&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the combination.</span>
+<span class="sd">          - If &quot;stacking_proba&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the combination,.</span>
+<span class="sd">          - If &quot;stacking_bmr&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the probabilities and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;stacking_proba_bmr&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the probabilities,</span>
+<span class="sd">            and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;majority_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of majority_voting</span>
+<span class="sd">          - If &quot;weighted_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of weighted_voting</span>
+
+<span class="sd">    max_features : int, float, string or None, optional (default=None)</span>
+<span class="sd">        The number of features to consider when looking for the best split in each tree:</span>
+<span class="sd">          - If int, then consider `max_features` features at each split.</span>
+<span class="sd">          - If float, then `max_features` is a percentage and</span>
+<span class="sd">            `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">            split.</span>
+<span class="sd">          - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
+<span class="sd">          - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.</span>
+<span class="sd">          - If &quot;log2&quot;, then `max_features=log2(n_features)`.</span>
+<span class="sd">          - If None, then `max_features=n_features`.</span>
+
+<span class="sd">        Note: the search for a split does not stop until at least one</span>
+<span class="sd">        valid partition of the node samples is found, even if it requires to</span>
+<span class="sd">        effectively inspect more than ``max_features`` features.</span>
+
+<span class="sd">    pruned : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to prune the decision tree using cost-based pruning</span>
+
+<span class="sd">    n_jobs : int, optional (default=1)</span>
+<span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
+<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+
+<span class="sd">    verbose : int, optional (default=0)</span>
+<span class="sd">        Controls the verbosity of the building process.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `base_estimator_`: list of estimators</span>
+<span class="sd">        The base estimator from which the ensemble is grown.</span>
+
+<span class="sd">    `estimators_`: list of estimators</span>
+<span class="sd">        The collection of fitted base estimators.</span>
+
+<span class="sd">    `estimators_samples_`: list of arrays</span>
+<span class="sd">        The subset of drawn samples (i.e., the in-bag samples) for each base</span>
+<span class="sd">        estimator.</span>
+
+<span class="sd">    `estimators_features_`: list of arrays</span>
+<span class="sd">        The subset of drawn features for each base estimator.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    costcla.models.CostSensitiveDecisionTreeClassifier</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
+<span class="sd">           `&quot;Ensemble of Example-Dependent Cost-Sensitive Decision Trees&quot; &lt;http://arxiv.org/abs/1505.04637&gt;`__,</span>
+<span class="sd">           2015, http://arxiv.org/abs/1505.04637.</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import CostSensitiveRandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f = CostSensitiveRandomForestClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    0.499390945808</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">base_estimator</span><span class="o">=</span><span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span> <span class="n">pruned</span><span class="o">=</span><span class="n">pruned</span><span class="p">),</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="n">max_samples</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">bootstrap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">combination</span><span class="o">=</span><span class="n">combination</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+
+</div>
+<div class="viewcode-block" id="CostSensitiveBaggingClassifier"><a class="viewcode-back" href="../../../CostSensitiveBaggingClassifier.html#costcla.models.CostSensitiveBaggingClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveBaggingClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive bagging  classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    n_estimators : int, optional (default=10)</span>
+<span class="sd">        The number of base estimators in the ensemble.</span>
+
+<span class="sd">    max_samples : int or float, optional (default=0.5)</span>
+<span class="sd">        The number of samples to draw from X to train each base estimator.</span>
+<span class="sd">            - If int, then draw `max_samples` samples.</span>
+<span class="sd">            - If float, then draw `max_samples * X.shape[0]` samples.</span>
+
+<span class="sd">    combination : string, optional (default=&quot;majority_voting&quot;)</span>
+<span class="sd">        Which combination method to use:</span>
+<span class="sd">          - If &quot;majority_voting&quot; then combine by majority voting</span>
+<span class="sd">          - If &quot;weighted_voting&quot; then combine by weighted voting using the</span>
+<span class="sd">            out of bag savings as the weight for each estimator.</span>
+<span class="sd">          - If &quot;stacking&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the combination.</span>
+<span class="sd">          - If &quot;stacking_proba&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the combination,.</span>
+<span class="sd">          - If &quot;stacking_bmr&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the probabilities and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;stacking_proba_bmr&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the probabilities,</span>
+<span class="sd">            and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;majority_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of majority_voting</span>
+<span class="sd">          - If &quot;weighted_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of weighted_voting</span>
+
+<span class="sd">    pruned : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to prune the decision tree using cost-based pruning</span>
+
+<span class="sd">    n_jobs : int, optional (default=1)</span>
+<span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
+<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+
+<span class="sd">    verbose : int, optional (default=0)</span>
+<span class="sd">        Controls the verbosity of the building process.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `base_estimator_`: list of estimators</span>
+<span class="sd">        The base estimator from which the ensemble is grown.</span>
+
+<span class="sd">    `estimators_`: list of estimators</span>
+<span class="sd">        The collection of fitted base estimators.</span>
+
+<span class="sd">    `estimators_samples_`: list of arrays</span>
+<span class="sd">        The subset of drawn samples (i.e., the in-bag samples) for each base</span>
+<span class="sd">        estimator.</span>
+
+<span class="sd">    `estimators_features_`: list of arrays</span>
+<span class="sd">        The subset of drawn features for each base estimator.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    costcla.models.CostSensitiveDecisionTreeClassifier</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
+<span class="sd">           `&quot;Ensemble of Example-Dependent Cost-Sensitive Decision Trees&quot; &lt;http://arxiv.org/abs/1505.04637&gt;`__,</span>
+<span class="sd">           2015, http://arxiv.org/abs/1505.04637.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import CostSensitiveBaggingClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f = CostSensitiveBaggingClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    0.478964004931</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">base_estimator</span><span class="o">=</span><span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">pruned</span><span class="o">=</span><span class="n">pruned</span><span class="p">),</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="n">max_samples</span><span class="o">=</span><span class="n">max_samples</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">bootstrap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">combination</span><span class="o">=</span><span class="n">combination</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+
+</div>
+<div class="viewcode-block" id="CostSensitivePastingClassifier"><a class="viewcode-back" href="../../../CostSensitivePastingClassifier.html#costcla.models.CostSensitivePastingClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitivePastingClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive pasting  classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    n_estimators : int, optional (default=10)</span>
+<span class="sd">        The number of base estimators in the ensemble.</span>
+
+<span class="sd">    max_samples : int or float, optional (default=0.5)</span>
+<span class="sd">        The number of samples to draw from X to train each base estimator.</span>
+<span class="sd">            - If int, then draw `max_samples` samples.</span>
+<span class="sd">            - If float, then draw `max_samples * X.shape[0]` samples.</span>
+
+<span class="sd">    combination : string, optional (default=&quot;majority_voting&quot;)</span>
+<span class="sd">        Which combination method to use:</span>
+<span class="sd">          - If &quot;majority_voting&quot; then combine by majority voting</span>
+<span class="sd">          - If &quot;weighted_voting&quot; then combine by weighted voting using the</span>
+<span class="sd">            out of bag savings as the weight for each estimator.</span>
+<span class="sd">          - If &quot;stacking&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the combination.</span>
+<span class="sd">          - If &quot;stacking_proba&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the combination,.</span>
+<span class="sd">          - If &quot;stacking_bmr&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the probabilities and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;stacking_proba_bmr&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the probabilities,</span>
+<span class="sd">            and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;majority_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of majority_voting</span>
+<span class="sd">          - If &quot;weighted_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of weighted_voting</span>
+
+<span class="sd">    pruned : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to prune the decision tree using cost-based pruning</span>
+
+<span class="sd">    n_jobs : int, optional (default=1)</span>
+<span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
+<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+
+<span class="sd">    verbose : int, optional (default=0)</span>
+<span class="sd">        Controls the verbosity of the building process.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `base_estimator_`: list of estimators</span>
+<span class="sd">        The base estimator from which the ensemble is grown.</span>
+
+<span class="sd">    `estimators_`: list of estimators</span>
+<span class="sd">        The collection of fitted base estimators.</span>
+
+<span class="sd">    `estimators_samples_`: list of arrays</span>
+<span class="sd">        The subset of drawn samples (i.e., the in-bag samples) for each base</span>
+<span class="sd">        estimator.</span>
+
+<span class="sd">    `estimators_features_`: list of arrays</span>
+<span class="sd">        The subset of drawn features for each base estimator.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    costcla.models.CostSensitiveDecisionTreeClassifier</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
+<span class="sd">           `&quot;Ensemble of Example-Dependent Cost-Sensitive Decision Trees&quot; &lt;http://arxiv.org/abs/1505.04637&gt;`__,</span>
+<span class="sd">           2015, http://arxiv.org/abs/1505.04637.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import CostSensitivePastingClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f = CostSensitivePastingClassifier()</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    0.479633754848</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">base_estimator</span><span class="o">=</span><span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">pruned</span><span class="o">=</span><span class="n">pruned</span><span class="p">),</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="n">max_samples</span><span class="o">=</span><span class="n">max_samples</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">bootstrap</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">combination</span><span class="o">=</span><span class="n">combination</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+
+</div>
+<div class="viewcode-block" id="CostSensitiveRandomPatchesClassifier"><a class="viewcode-back" href="../../../CostSensitiveRandomPatchesClassifier.html#costcla.models.CostSensitiveRandomPatchesClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveRandomPatchesClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive pasting  classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    n_estimators : int, optional (default=10)</span>
+<span class="sd">        The number of base estimators in the ensemble.</span>
+
+<span class="sd">    max_samples : int or float, optional (default=0.5)</span>
+<span class="sd">        The number of samples to draw from X to train each base estimator.</span>
+<span class="sd">            - If int, then draw `max_samples` samples.</span>
+<span class="sd">            - If float, then draw `max_samples * X.shape[0]` samples.</span>
+
+<span class="sd">    max_features : int or float, optional (default=0.5)</span>
+<span class="sd">        The number of features to draw from X to train each base estimator.</span>
+<span class="sd">            - If int, then draw `max_features` features.</span>
+<span class="sd">            - If float, then draw `max_features * X.shape[1]` features.</span>
+
+<span class="sd">    combination : string, optional (default=&quot;majority_voting&quot;)</span>
+<span class="sd">        Which combination method to use:</span>
+<span class="sd">          - If &quot;majority_voting&quot; then combine by majority voting</span>
+<span class="sd">          - If &quot;weighted_voting&quot; then combine by weighted voting using the</span>
+<span class="sd">            out of bag savings as the weight for each estimator.</span>
+<span class="sd">          - If &quot;stacking&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the combination.</span>
+<span class="sd">          - If &quot;stacking_proba&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the combination,.</span>
+<span class="sd">          - If &quot;stacking_bmr&quot; then a Cost Sensitive Logistic Regression is used</span>
+<span class="sd">            to learn the probabilities and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;stacking_proba_bmr&quot; then a Cost Sensitive Logistic Regression trained</span>
+<span class="sd">            with the estimated probabilities is used to learn the probabilities,</span>
+<span class="sd">            and a BayesMinimumRisk for the prediction.</span>
+<span class="sd">          - If &quot;majority_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of majority_voting</span>
+<span class="sd">          - If &quot;weighted_bmr&quot; then the BayesMinimumRisk algorithm is used to make the</span>
+<span class="sd">            prediction using the predicted probabilities of weighted_voting</span>
+
+<span class="sd">    pruned : bool, optional (default=True)</span>
+<span class="sd">        Whenever or not to prune the decision tree using cost-based pruning</span>
+
+<span class="sd">    n_jobs : int, optional (default=1)</span>
+<span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
+<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+
+<span class="sd">    verbose : int, optional (default=0)</span>
+<span class="sd">        Controls the verbosity of the building process.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `base_estimator_`: list of estimators</span>
+<span class="sd">        The base estimator from which the ensemble is grown.</span>
+
+<span class="sd">    `estimators_`: list of estimators</span>
+<span class="sd">        The collection of fitted base estimators.</span>
+
+<span class="sd">    `estimators_samples_`: list of arrays</span>
+<span class="sd">        The subset of drawn samples (i.e., the in-bag samples) for each base</span>
+<span class="sd">        estimator.</span>
+
+<span class="sd">    `estimators_features_`: list of arrays</span>
+<span class="sd">        The subset of drawn features for each base estimator.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    costcla.models.CostSensitiveDecisionTreeClassifier</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] Correa Bahnsen, A., Aouada, D., &amp; Ottersten, B.</span>
+<span class="sd">           `&quot;Ensemble of Example-Dependent Cost-Sensitive Decision Trees&quot; &lt;http://arxiv.org/abs/1505.04637&gt;`__,</span>
+<span class="sd">           2015, http://arxiv.org/abs/1505.04637.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cross_validation import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.datasets import load_creditscoring1</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.models import CostSensitiveRandomPatchesClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from costcla.metrics import savings_score</span>
+<span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
+<span class="sd">    &gt;&gt;&gt; sets = train_test_split(data.data, data.target, data.cost_mat, test_size=0.33, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test, cost_mat_train, cost_mat_test = sets</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_rf = RandomForestClassifier(random_state=0).fit(X_train, y_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; f = CostSensitiveRandomPatchesClassifier(combination=&#39;weighted_voting&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    0.12454256594</span>
+<span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    0.499548618518</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">base_estimator</span><span class="o">=</span><span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">(</span><span class="n">pruned</span><span class="o">=</span><span class="n">pruned</span><span class="p">),</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="n">max_samples</span><span class="o">=</span><span class="n">max_samples</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span>
+            <span class="n">bootstrap</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">combination</span><span class="o">=</span><span class="n">combination</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+
+
+<span class="c">#TODO not working in parallel, without error</span>
+
+<span class="c"># from costcla.datasets import load_creditscoring1</span>
+<span class="c"># data = load_creditscoring1()</span>
+<span class="c"># x=data.data</span>
+<span class="c"># y=data.target</span>
+<span class="c"># c=data.cost_mat</span>
+<span class="c">#</span>
+<span class="c"># print &#39;start&#39;</span>
+<span class="c"># f = BaggingClassifier(n_estimators=10, verbose=100, n_jobs=2)</span>
+<span class="c"># f.fit(x[0:1000],y[0:1000],c[0:1000])</span>
+<span class="c"># print &#39;predict proba&#39;</span>
+<span class="c"># f.__setattr__(&#39;n_jobs&#39;, 4)</span>
+<span class="c"># f.predict(x)</span>
+<span class="c"># print &#39;predict END&#39;</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

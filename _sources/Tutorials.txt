@@ -1,0 +1,8 @@
+Tutorials
+================
+
+Tutorial on example-dependent credit scoring
+** 
+
+`tutorial <http://albahnsen.com>`__
+`slides <http://albahnsen.com>`__

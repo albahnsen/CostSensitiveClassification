@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.models.ThresholdingOptimization &mdash; costcla  documentation</title>
+  <title>ThresholdingOptimization &mdash; costcla  documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
-        <link rel="up" title="costcla.models" href="costcla.models.html"/> 
+        <link rel="up" title="Models" href="Models.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,27 +71,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2 current"><a class="current reference internal" href="">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -121,13 +133,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="costcla.models.html">costcla.models</a> &raquo;</li>
+          <li><a href="Models.html">Models</a> &raquo;</li>
       
-    <li>costcla.models.ThresholdingOptimization</li>
+    <li>ThresholdingOptimization</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.models.ThresholdingOptimization.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ThresholdingOptimization.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -136,8 +148,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="costcla-models-thresholdingoptimization">
-<h1>costcla.models.ThresholdingOptimization<a class="headerlink" href="#costcla-models-thresholdingoptimization" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="thresholdingoptimization">
+<h1>ThresholdingOptimization<a class="headerlink" href="#thresholdingoptimization" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="costcla.models.ThresholdingOptimization">
 <em class="property">class </em><code class="descclassname">costcla.models.</code><code class="descname">ThresholdingOptimization</code><span class="sig-paren">(</span><em>calibration=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/costcla/models/directcost.html#ThresholdingOptimization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#costcla.models.ThresholdingOptimization" title="Permalink to this definition">¶</a></dt>
@@ -155,10 +167,10 @@
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r10" rules="none">
+<table class="docutils citation" frame="void" id="r18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R10]</a></td><td>V. Sheng, C. Ling, &#8220;Thresholding for making classifiers cost-sensitive&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id1">[R18]</a></td><td>V. Sheng, C. Ling, &#8220;Thresholding for making classifiers cost-sensitive&#8221;,
 in Proceedings of the National Conference on Artificial Intelligence, 2006.</td></tr>
 </tbody>
 </table>

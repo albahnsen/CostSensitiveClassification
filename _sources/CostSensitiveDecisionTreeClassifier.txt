@@ -1,6 +1,7 @@
-costcla.models.CostSensitiveDecisionTreeClassifier
+CostSensitiveDecisionTreeClassifier
 ==============================================
 
 .. autoclass:: costcla.models.CostSensitiveDecisionTreeClassifier
     :members:
     :undoc-members:
+    :inherited-members:

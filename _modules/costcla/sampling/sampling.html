@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -145,7 +157,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">costcla.sampling._smote</span> <span class="kn">import</span> <span class="n">_SMOTE</span>
 
-<div class="viewcode-block" id="undersampling"><a class="viewcode-back" href="../../../costcla.sampling.html#costcla.sampling.undersampling">[docs]</a><span class="k">def</span> <span class="nf">undersampling</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="viewcode-block" id="undersampling"><a class="viewcode-back" href="../../../Sampling.html#costcla.sampling.undersampling">[docs]</a><span class="k">def</span> <span class="nf">undersampling</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Under-sampling.</span>
 
 <span class="sd">    Parameters</span>
@@ -194,7 +206,7 @@
         <span class="k">return</span> <span class="n">X_u</span><span class="p">,</span> <span class="n">y_u</span>
     
 </div>
-<div class="viewcode-block" id="smote"><a class="viewcode-back" href="../../../costcla.sampling.html#costcla.sampling.smote">[docs]</a><span class="k">def</span> <span class="nf">smote</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="viewcode-block" id="smote"><a class="viewcode-back" href="../../../Sampling.html#costcla.sampling.smote">[docs]</a><span class="k">def</span> <span class="nf">smote</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;SMOTE: synthetic minority over-sampling technique</span>
 
 <span class="sd">    Parameters</span>

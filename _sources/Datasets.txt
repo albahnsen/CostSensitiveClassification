@@ -1,4 +1,4 @@
-costcla.datasets
+Datasets
 ================
 
 .. automodule:: costcla.datasets

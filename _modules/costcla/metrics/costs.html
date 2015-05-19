@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -155,7 +167,7 @@
 <span class="c"># from sklearn.utils import check_consistent_length  # Not in 0.15.1</span>
 
 
-<div class="viewcode-block" id="cost_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.cost_loss">[docs]</a><span class="k">def</span> <span class="nf">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="cost_loss"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.cost_loss">[docs]</a><span class="k">def</span> <span class="nf">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
     <span class="c">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Cost classification loss.</span>
 
@@ -220,7 +232,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="savings_score"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.savings_score">[docs]</a><span class="k">def</span> <span class="nf">savings_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
+<div class="viewcode-block" id="savings_score"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.savings_score">[docs]</a><span class="k">def</span> <span class="nf">savings_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
     <span class="c">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Savings score.</span>
 
@@ -285,7 +297,7 @@
 <span class="c"># from https://github.com/agramfort/scikit-learn/blob/isotonic_calibration/sklearn/metrics/classification.py</span>
 <span class="c"># Waiting for https://github.com/scikit-learn/scikit-learn/pull/1176</span>
 <span class="c">#TODO: Remove when #1176 is merged</span></div>
-<div class="viewcode-block" id="brier_score_loss"><a class="viewcode-back" href="../../../costcla.metrics.html#costcla.metrics.brier_score_loss">[docs]</a><span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
+<div class="viewcode-block" id="brier_score_loss"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.brier_score_loss">[docs]</a><span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the Brier score</span>
 
 <span class="sd">    The smaller the Brier score, the better, hence the naming with &quot;loss&quot;.</span>

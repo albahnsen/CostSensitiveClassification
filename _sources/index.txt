@@ -15,9 +15,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   costcla.datasets
-   costcla.metrics
-   costcla.models
-   costcla.probcal
-   costcla.sampling
+   Datasets
+   Metrics
+   Models
+   Probcal
+   Sampling
    changelog

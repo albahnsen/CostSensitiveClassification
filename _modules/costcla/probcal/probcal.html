@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -149,7 +161,7 @@
 <span class="c">#TODO: Add Platt calibration</span>
 <span class="c"># http://ift.tt/XuMk3s</span>
 
-<div class="viewcode-block" id="ROCConvexHull"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull">[docs]</a><span class="k">class</span> <span class="nc">ROCConvexHull</span><span class="p">:</span>
+<div class="viewcode-block" id="ROCConvexHull"><a class="viewcode-back" href="../../../Probcal.html#costcla.probcal.ROCConvexHull">[docs]</a><span class="k">class</span> <span class="nc">ROCConvexHull</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Implementation the the calibration method ROCConvexHull</span>
 
 <span class="sd">    Attributes</span>
@@ -195,7 +207,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="ROCConvexHull.fit"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class="viewcode-block" id="ROCConvexHull.fit"><a class="viewcode-back" href="../../../Probcal.html#costcla.probcal.ROCConvexHull.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Fit the calibration map</span>
 
 <span class="sd">        Parameters</span>
@@ -270,7 +282,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="n">calibrated_map</span>
 </div>
-<div class="viewcode-block" id="ROCConvexHull.predict_proba"><a class="viewcode-back" href="../../../costcla.probcal.html#costcla.probcal.ROCConvexHull.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class="viewcode-block" id="ROCConvexHull.predict_proba"><a class="viewcode-back" href="../../../Probcal.html#costcla.probcal.ROCConvexHull.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the calibrated probabilities</span>
 
 <span class="sd">        Parameters</span>

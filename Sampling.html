@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>costcla.sampling &mdash; costcla  documentation</title>
+  <title>Sampling &mdash; costcla  documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
     <link rel="top" title="costcla  documentation" href="index.html"/>
         <link rel="next" title="Change Log" href="changelog.html"/>
-        <link rel="prev" title="costcla.probcal" href="costcla.probcal.html"/> 
+        <link rel="prev" title="Probcal" href="Probcal.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,27 +72,39 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">costcla.sampling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -122,11 +134,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>costcla.sampling</li>
+    <li>Sampling</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/costcla.sampling.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Sampling.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -136,7 +148,7 @@
           <div role="main" class="document">
             
   <div class="section" id="module-costcla.sampling">
-<span id="costcla-sampling"></span><h1>costcla.sampling<a class="headerlink" href="#module-costcla.sampling" title="Permalink to this headline">¶</a></h1>
+<span id="sampling"></span><h1>Sampling<a class="headerlink" href="#module-costcla.sampling" title="Permalink to this headline">¶</a></h1>
 <p>The <a class="reference internal" href="#module-costcla.sampling" title="costcla.sampling"><code class="xref py py-mod docutils literal"><span class="pre">costcla.sampling</span></code></a> module includes methods for cost-sensitive sampling</p>
 <p>In particular:</p>
 <ul class="simple">
@@ -183,18 +195,18 @@ either &#8216;RejectionSampling&#8217; or &#8216;OverSampling&#8217;.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r12" rules="none">
+<table class="docutils citation" frame="void" id="r15" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R12]</a></td><td>B. Zadrozny, J. Langford, N. Naoki, &#8220;Cost-sensitive learning by
+<tr><td class="label"><a class="fn-backref" href="#id1">[R15]</a></td><td>B. Zadrozny, J. Langford, N. Naoki, &#8220;Cost-sensitive learning by
 cost-proportionate example weighting&#8221;, in Proceedings of the
 Third IEEE International Conference on Data Mining, 435-442, 2003.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r13" rules="none">
+<table class="docutils citation" frame="void" id="r16" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R13]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id2">[R16]</a></td><td>C. Elkan, &#8220;The foundations of Cost-Sensitive Learning&#8221;,
 in Seventeenth International Joint Conference on Artificial Intelligence,
 973-978, 2001.</td></tr>
 </tbody>
@@ -302,10 +314,10 @@ true positives and true negatives, for each example.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r14" rules="none">
+<table class="docutils citation" frame="void" id="r17" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R14]</a></td><td>N. Chawla, K. Bowyer, L. Hall, W. Kegelmeyer, &#8220;SMOTE: Synthetic Minority Over-sampling Technique&#8221;,
+<tr><td class="label"><a class="fn-backref" href="#id3">[R17]</a></td><td>N. Chawla, K. Bowyer, L. Hall, W. Kegelmeyer, &#8220;SMOTE: Synthetic Minority Over-sampling Technique&#8221;,
 Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
 </tbody>
 </table>
@@ -335,7 +347,7 @@ Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
         <a href="changelog.html" class="btn btn-neutral float-right" title="Change Log" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="costcla.probcal.html" class="btn btn-neutral" title="costcla.probcal" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Probcal.html" class="btn btn-neutral" title="Probcal" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

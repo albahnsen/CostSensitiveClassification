@@ -71,27 +71,39 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.datasets.html">costcla.datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.metrics.html">costcla.metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.models.html">costcla.models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.BayesMinimumRiskClassifier.html">costcla.models.BayesMinimumRiskClassifier</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.ThresholdingOptimization.html">costcla.models.ThresholdingOptimization</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveLogisticRegression.html">costcla.models.CostSensitiveLogisticRegression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../costcla.models.CostSensitiveDecisionTreeClassifier.html">costcla.models.CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.probcal.html">costcla.probcal</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../costcla.sampling.html">costcla.sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-04-tbd">Version 0.04 <em>TBD</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
@@ -160,7 +172,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
 
 
-<div class="viewcode-block" id="load_bankmarketing"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_bankmarketing">[docs]</a><span class="k">def</span> <span class="nf">load_bankmarketing</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_bankmarketing"><a class="viewcode-back" href="../../../Datasets.html#costcla.datasets.load_bankmarketing">[docs]</a><span class="k">def</span> <span class="nf">load_bankmarketing</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the bank marketing dataset (classification).</span>
 
 <span class="sd">    The bank marketing is a easily transformable example-dependent cost-sensitive classification dataset.</span>
@@ -262,7 +274,7 @@
                  <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;DirectMarketing&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="load_creditscoring1"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_creditscoring1">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring1</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_creditscoring1"><a class="viewcode-back" href="../../../Datasets.html#costcla.datasets.load_creditscoring1">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring1</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring Kaggle Credit competition dataset (classification).</span>
 
 <span class="sd">    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</span>
@@ -331,7 +343,7 @@
                  <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;CreditScoring_Kaggle2011&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="load_creditscoring2"><a class="viewcode-back" href="../../../costcla.datasets.html#costcla.datasets.load_creditscoring2">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring2</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_creditscoring2"><a class="viewcode-back" href="../../../Datasets.html#costcla.datasets.load_creditscoring2">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring2</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring PAKDD 2009 competition dataset (classification).</span>
 
 <span class="sd">    The credit scoring is a easily transformable example-dependent cost-sensitive classification dataset.</span>
