@@ -20,4 +20,5 @@ Contents:
    Models
    Probcal
    Sampling
+   Tutorials
    changelog

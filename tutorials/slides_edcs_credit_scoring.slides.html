@@ -260,12 +260,12 @@ div.output_prompt {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You find the presentation and the IPython Notebook here:</p>
 <ul>
-<li><a href="http://albahnsen.com/CostSensitiveClassification/tutorials/slides_edcs_credit_scoring.slides.html#/" target="_blank">http://albahnsen.com/CostSensitiveClassification/tutorials/slides_edcs_credit_scoring.slides.html#/</a></li>
-<li><a href="https://github.com/albahnsen/CostSensitiveClassification/blob/master/doc/tutorials/slides_edcs_credit_scoring.ipynb" target="_blank">https://github.com/albahnsen/CostSensitiveClassification/blob/master/doc/tutorials/slides_edcs_credit_scoring.ipynb</a></li>
+<li><a href="http://albahnsen.com/CostSensitiveClassification/tutorials/slides_edcs_credit_scoring.slides.html#/" target="_blank">http://albahnsen.com/CostSensitiveClassification/ tutorials/slides_edcs_credit_scoring.slides.html</a></li>
+<li><a href="https://github.com/albahnsen/CostSensitiveClassification/blob/master/doc/tutorials/slides_edcs_credit_scoring.ipynb" target="_blank">https://github.com/albahnsen/CostSensitiveClassification/ blob/master/doc/tutorials/slides_edcs_credit_scoring.ipynb</a></li>
 </ul>
 <p>This slides are a short version of this tutorial:</p>
 <ul>
-<li><a href="http://nbviewer.ipython.org/github/albahnsen/CostSensitiveClassification/blob/master/doc/tutorials/tutorial_edcs_credit_scoring.ipynb" target="_blank">http://nbviewer.ipython.org/github/albahnsen/CostSensitiveClassification/blob/master/doc/tutorial/tutorial_edcs_credit_scoring.ipynb</a></li>
+<li><a href="http://nbviewer.ipython.org/github/albahnsen/CostSensitiveClassification/blob/master/doc/tutorials/tutorial_edcs_credit_scoring.ipynb" target="_blank">http://nbviewer.ipython.org/github/albahnsen/CostSensitiveClassification/ blob/master/doc/tutorials/tutorial_edcs_credit_scoring.ipynb</a></li>
 </ul>
 
 </div>
@@ -305,7 +305,7 @@ table,td,tr,th {border:none!important}
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-brief-bio:">A brief bio:<a class="anchor-link" href="#A-brief-bio:">&#182;</a></h3><ul>
 <li>Last year (month) PhD Student at Luxembourg University</li>
-<li>My research is focus on Cost-Sensitive Classification</li>
+<li>My research is focused on Cost-Sensitive Classification</li>
 <li>Work part time a fraud data scientist at CETREL a SIX Company</li>
 <li>Worked for +5 years as a data scientist at GE Money and Scotiabank</li>
 <li>Bachelor in Industrial Engineering and Master in Financial Engineering</li>
@@ -561,7 +561,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -577,14 +577,37 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">load_creditscoring1</span><span class="p">()</span>
+</pre></div>
 
-<span class="c"># Elements of the data file</span>
-<span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</div>
+</div>
+</div>
+
+</div>
+    </div><div class="fragment" data-fragment-index="21">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-file">Data file<a class="anchor-link" href="#Data-file">&#182;</a></h3>
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="21">
+        
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -606,7 +629,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 </div>
 
 </div>
-    </div><div class="fragment" data-fragment-index="21">
+        </div><div class="fragment" data-fragment-index="23">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -617,14 +640,17 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="21">
+    </div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">target</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;Frequency&#39;</span><span class="p">,))</span>
+<span class="n">target</span><span class="p">[</span><span class="s">&#39;Percentage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s">&#39;Frequency&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">target</span><span class="p">[</span><span class="s">&#39;Frequency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">target</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Negative (Good Customers)&#39;</span><span class="p">,</span> <span class="s">&#39;Positive (Bad Customers)&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">target</span>
 </pre></div>
 
 </div>
@@ -635,15 +661,13 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    105299
-1      7616
-dtype: int64</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                           Frequency  Percentage
+Negative (Good Customers)     105299    0.932551
+Positive (Bad Customers)        7616    0.067449
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -660,7 +684,7 @@ dtype: int64</pre>
 <h3 id="Features">Features<a class="anchor-link" href="#Features">&#182;</a></h3>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="21">
+</div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -751,8 +775,8 @@ dtype: int64</pre>
 <h1 id="Credit-scoring-as-a-standard-classification-problem">Credit scoring as a standard classification problem<a class="anchor-link" href="#Credit-scoring-as-a-standard-classification-problem">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="26">
-    
+</div><div class="fragment" data-fragment-index="23">
+        
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -762,7 +786,7 @@ dtype: int64</pre>
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="26">
+        </div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -779,8 +803,18 @@ dtype: int64</pre>
 </div>
 
 </div>
-        </div><div class="fragment" data-fragment-index="28">
+        </div></section><section>
     
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Credit-scoring-as-a-standard-classification-problem">Credit scoring as a standard classification problem<a class="anchor-link" href="#Credit-scoring-as-a-standard-classification-problem">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="23">
+        
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -790,7 +824,7 @@ dtype: int64</pre>
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="28">
+        </div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -828,7 +862,7 @@ dtype: int64</pre>
 <h1 id="Models-performance">Models performance<a class="anchor-link" href="#Models-performance">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="28">
+</div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -858,7 +892,7 @@ dtype: int64</pre>
 </div>
 
 </div>
-    </div><div class="fragment" data-fragment-index="28">
+    </div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -898,7 +932,7 @@ dtype: int64</pre>
 <h1 id="Models-performance">Models performance<a class="anchor-link" href="#Models-performance">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="28">
+</div><div class="fragment" data-fragment-index="23">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1724,7 +1758,7 @@ a loan to an alternative customer.</li>
 
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="43">
+</div><div class="fragment" data-fragment-index="46">
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1767,7 +1801,47 @@ a loan to an alternative customer.</li>
 <h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="43">
+</div><div class="fragment" data-fragment-index="46">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>costcla.metrics.savings_score(y_true, y_pred, cost_mat)</code></pre>
+<ul>
+<li><p>Parameters</p>
+<ul>
+<li><p><strong>y_true</strong> : Ground truth (correct) labels.</p>
+</li>
+<li><p><strong>y_pred</strong> : Predicted labels, as returned by a classifier.</p>
+</li>
+<li><p><strong>cost_mat</strong> : Cost matrix of the classification problem.</p>
+</li>
+</ul>
+</li>
+<li><p>Returns</p>
+<ul>
+<li><strong>score</strong> : Savings</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+        </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="46">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1775,7 +1849,7 @@ a loan to an alternative customer.</li>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Calculation of the cost and savings</span>
-<span class="kn">from</span> <span class="nn">costcla.metrics</span> <span class="kn">import</span> <span class="n">savings_score</span><span class="p">,</span> <span class="n">cost_loss</span> 
+<span class="kn">from</span> <span class="nn">costcla.metrics</span> <span class="kn">import</span> <span class="n">savings_score</span> 
 
 <span class="c"># Evaluate the savings for each model</span>
 <span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1812,7 +1886,7 @@ a loan to an alternative customer.</li>
 <h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="43">
+</div><div class="fragment" data-fragment-index="46">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -2358,7 +2432,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAADgS/n/AQ/z1iv7e7BqAAAAAElFTkSuQmCC
 </div>
 
 </div>
-        </div><div class="fragment" data-fragment-index="48">
+        </div><div class="fragment" data-fragment-index="53">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2411,7 +2485,82 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <h1 id="BMR-Code">BMR Code<a class="anchor-link" href="#BMR-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="57">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>costcla.models.BayesMinimumRiskClassifier(calibration=True)</code></pre>
+<ul>
+<li>Parameters<ul>
+<li><strong>calibration</strong> : bool, optional (default=True). Whenever or not to calibrate the probabilities.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="58">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>fit(y_true_cal=None, y_prob_cal=None)</code></pre>
+<ul>
+<li>Parameters<ul>
+<li><strong>y_true_cal</strong> : True class</li>
+<li><strong>y_prob_cal</strong> : Predicted probabilities</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="59">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>predict(y_prob,cost_mat)</code></pre>
+<ul>
+<li><p>Parameters</p>
+<ul>
+<li><strong>y_prob</strong> : Predicted probabilities</li>
+<li><strong>cost_mat</strong> : Cost matrix of the classification problem. </li>
+</ul>
+</li>
+<li><p>Returns</p>
+<ul>
+<li><strong>y_pred</strong> : Predicted class</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="BMR-Code">BMR Code<a class="anchor-link" href="#BMR-Code">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="59">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -2449,7 +2598,7 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <h1 id="BMR-Results">BMR Results<a class="anchor-link" href="#BMR-Results">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="59">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3147,7 +3296,76 @@ $$    I_c(\mathcal{S}) = \min \bigg\{ Cost(f_0(\mathcal{S})), Cost(f_1(\mathcal{
 <h1 id="CSDT-Code">CSDT Code<a class="anchor-link" href="#CSDT-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="68">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>costcla.models.CostSensitiveDecisionTreeClassifier(criterion='direct_cost', criterion_weight=False, num_pct=100, max_features=None, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_gain=0.001, pruned=True)</code></pre>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="69">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>fit(X, y, cost_mat, check_input=False)</code></pre>
+<ul>
+<li>Parameters<ul>
+<li><strong>X</strong> : The input samples.</li>
+<li><strong>y</strong> : Ground truth (correct) labels.</li>
+<li><strong>cost_mat</strong> : Cost matrix of the classification problem.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="70">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>predict(X)</code></pre>
+<ul>
+<li><p>Parameters</p>
+<ul>
+<li><strong>X</strong> : The input samples. </li>
+</ul>
+</li>
+<li><p>Returns</p>
+<ul>
+<li><strong>y_pred</strong> : Predicted class</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="CSDT-Code">CSDT Code<a class="anchor-link" href="#CSDT-Code">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="70">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3183,7 +3401,7 @@ $$    I_c(\mathcal{S}) = \min \bigg\{ Cost(f_0(\mathcal{S})), Cost(f_1(\mathcal{
 <h1 id="CSDT-Results">CSDT Results<a class="anchor-link" href="#CSDT-Results">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="70">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3809,7 +4027,76 @@ $$  \alpha_j=\frac{Savings(M_j(\mathcal{S}_j^{oob}))}
 <h1 id="CSRP-Code">CSRP Code<a class="anchor-link" href="#CSRP-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="78">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>costcla.models.CostSensitiveRandomPatchesClassifier(n_estimators=10, max_samples=0.5, max_features=0.5, combination='majority_voting', n_jobs=1, verbose=False, pruned=False)</code></pre>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="79">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>fit(X, y, cost_mat)</code></pre>
+<ul>
+<li>Parameters<ul>
+<li><strong>X</strong> : The input samples.</li>
+<li><strong>y</strong> : Ground truth (correct) labels.</li>
+<li><strong>cost_mat</strong> : Cost matrix of the classification problem.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="80">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>predict(X)</code></pre>
+<ul>
+<li><p>Parameters</p>
+<ul>
+<li><strong>X</strong> : The input samples. </li>
+</ul>
+</li>
+<li><p>Returns</p>
+<ul>
+<li><strong>y_pred</strong> : Predicted class</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="CSRP-Code">CSRP Code<a class="anchor-link" href="#CSRP-Code">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="80">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3845,7 +4132,7 @@ $$  \alpha_j=\frac{Savings(M_j(\mathcal{S}_j^{oob}))}
 <h1 id="CSRP-Results">CSRP Results<a class="anchor-link" href="#CSRP-Results">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="48">
+</div><div class="fragment" data-fragment-index="80">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -4587,7 +4874,7 @@ are cross-platform an freely available online:</p>
 
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="76">
+</div><div class="fragment" data-fragment-index="93">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4601,7 +4888,7 @@ are cross-platform an freely available online:</p>
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="77">
+    </div><div class="fragment" data-fragment-index="94">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4615,7 +4902,7 @@ are cross-platform an freely available online:</p>
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="78">
+    </div><div class="fragment" data-fragment-index="95">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
