@@ -514,11 +514,8 @@ analysis, genetic programing, decision trees, random forests among others</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Formally, a credit score is a statistical model that allows the estimation of the probability</p>
+<p>Formally, a credit score is a statistical model that allows the estimation of the probability of a customer $i$ defaulting a contracted debt ($y_i=1$)</p>
 <p>$$\hat p_i=P(y_i=1|\mathbf{x}_i)$$</p>
-<p>of a customer $i$ defaulting a contracted debt ($y_i=1$). Additionally, 
-since the objective of credit scoring is to estimate a classifier $c_i$ to decide whether or not to grant a loan to a customer $i$, a threshold $t$ is defined such that if $\hat p_i < t $, then the loan is 
-  granted, i.e., $c_i(t)=0$, and denied otherwise, i.e., $c_i(t)=1$.</p>
 
 </div>
 </div>
@@ -542,8 +539,12 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<center>
+<img img class="logo" src="https://kaggle2.blob.core.windows.net/competitions/kaggle/2551/logos/front_page.png" style="width: 400px;">
+</center>
+
 <p>Improve on the state of the art in credit scoring by predicting the probability that somebody will experience financial distress in the next two years.</p>
-<p><a href="https://www.kaggle.com/c/GiveMeSomeCredit">https://www.kaggle.com/c/GiveMeSomeCredit</a></p>
+<p><a href="https://www.kaggle.com/c/GiveMeSomeCredit" target="_blank">https://www.kaggle.com/c/GiveMeSomeCredit</a></p>
 
 </div>
 </div>
@@ -577,7 +578,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
@@ -604,10 +605,11 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&#39;Number of examples &#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -621,6 +623,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[&apos;target_names&apos;, &apos;cost_mat&apos;, &apos;name&apos;, &apos;DESCR&apos;, &apos;feature_names&apos;, &apos;data&apos;, &apos;target&apos;]
+Number of examples  112915
 </pre>
 </div>
 </div>
@@ -629,7 +632,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 </div>
 
 </div>
-        </div><div class="fragment" data-fragment-index="23">
+        </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -639,8 +642,7 @@ since the objective of credit scoring is to estimate a classifier $c_i$ to decid
 <h3 id="Class-Label">Class Label<a class="anchor-link" href="#Class-Label">&#182;</a></h3>
 </div>
 </div>
-</div>
-    </div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -684,7 +686,7 @@ Positive (Bad Customers)        7616    0.067449
 <h3 id="Features">Features<a class="anchor-link" href="#Features">&#182;</a></h3>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -772,10 +774,10 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Credit-scoring-as-a-standard-classification-problem">Credit scoring as a standard classification problem<a class="anchor-link" href="#Credit-scoring-as-a-standard-classification-problem">&#182;</a></h1>
+<h1 id="Credit-scoring-as-a--classification-problem">Credit scoring as a  classification problem<a class="anchor-link" href="#Credit-scoring-as-a--classification-problem">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -786,7 +788,7 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 </div>
 </div>
-        </div><div class="fragment" data-fragment-index="23">
+        </div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -810,10 +812,10 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Credit-scoring-as-a-standard-classification-problem">Credit scoring as a standard classification problem<a class="anchor-link" href="#Credit-scoring-as-a-standard-classification-problem">&#182;</a></h1>
+<h1 id="Credit-scoring-as-a-classification-problem">Credit scoring as a classification problem<a class="anchor-link" href="#Credit-scoring-as-a-classification-problem">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -824,7 +826,7 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 </div>
 </div>
-        </div><div class="fragment" data-fragment-index="23">
+        </div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -862,7 +864,7 @@ Positive (Bad Customers)        7616    0.067449
 <h1 id="Models-performance">Models performance<a class="anchor-link" href="#Models-performance">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -892,7 +894,7 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 
 </div>
-    </div><div class="fragment" data-fragment-index="23">
+    </div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -900,14 +902,29 @@ Positive (Bad Customers)        7616    0.067449
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
 <span class="n">measures</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;F1Score&quot;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">,</span> <span class="s">&quot;Precision&quot;</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">,</span> 
             <span class="s">&quot;Recall&quot;</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">,</span> <span class="s">&quot;Accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">}</span>
+
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">measures</span><span class="p">[</span><span class="n">measure</span><span class="p">](</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+</pre></div>
 
-<span class="k">def</span> <span class="nf">fig1</span><span class="p">():</span>
+</div>
+</div>
+</div>
+
+</div>
+        </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">fig1</span><span class="p">():</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">results</span><span class="p">,</span> <span class="s">&quot;-o&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">results</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
@@ -922,7 +939,7 @@ Positive (Bad Customers)        7616    0.067449
 </div>
 
 </div>
-        </div></section><section>
+    </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -932,7 +949,7 @@ Positive (Bad Customers)        7616    0.067449
 <h1 id="Models-performance">Models performance<a class="anchor-link" href="#Models-performance">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="23">
+</div><div class="fragment" data-fragment-index="21">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1615,7 +1632,12 @@ RU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nevertheless, none of these measures takes into account the <strong>business and economical realities</strong> that take place in credit scoring. Costs that the financial institution had incurred to acquire customers, or the <strong>expected profit</strong> due to a particular client, are not considered in the evaluation of the different models.</p>
+<ul>
+<li><p>None of these measures takes into account the <strong>business and economical realities</strong> that take place in credit scoring.</p>
+</li>
+<li><p>Costs that the financial institution had incurred to acquire customers, or the <strong>expected profit</strong> due to a particular client, are not considered in the evaluation of the different models.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -1640,7 +1662,7 @@ RU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h1><ul>
 <li>Typically, a credit risk model is evaluated using standard cost-insensitive measures.</li>
-<li>However, in practice, the cost associated with approving a bad customer is quite   different from the cost associated with declining a good customer.</li>
+<li>However, in practice, the cost associated with approving a bad customer (False Negative) is quite   different from the cost associated with declining a good customer (False Positive).</li>
 <li>Furthermore, the costs are not constant among customers. </li>
 </ul>
 
@@ -1696,21 +1718,6 @@ RU5ErkJggg==
 a loan to an alternative customer.</li>
 </ul>
 <p>For more info see <a href="http://albahnsen.com/files/Example-Dependent%20Cost-Sensitive%20Logistic%20Regression%20for%20Credit%20Scoring_publish.pdf" target="_blank">[Correa Bahnsen et al., 2014]</a></p>
-
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Financial-savings">Financial savings<a class="anchor-link" href="#Financial-savings">&#182;</a></h1><p>Let $\mathcal{S}$ be a set of $N$ examples $i$, where each example $\mathbf{x}_i$ is labeled as $y_i   \in \{0,1\}$. The financial cost of using a classifier $f$ on $\mathcal{S}$ is calculated by</p>
-<p>$$   Cost(f(\mathcal{S})) = \sum_{i=1}^N  y_i(c_i C_{TP_i} + (1-c_i)C_{FN_i}) + (1-y_i)(c_i C_{FP_i} + (1-c_i)C_{TN_i}).$$</p>
-<p>Then the financial savings are defined as the cost of the algorithm versus the cost of using no algorithm at all.</p>
-<p>$$    Savings(f(\mathcal{S})) = \frac{ Cost_l(\mathcal{S}) - Cost(f(\mathcal{S}))}   {Cost_l(\mathcal{S})},$$</p>
-<p>where $Cost_l(\mathcal{S})$ is the cost of the costless class</p>
 
 </div>
 </div>
@@ -1798,40 +1805,15 @@ a loan to an alternative customer.</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="46">
-        
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>costcla.metrics.savings_score(y_true, y_pred, cost_mat)</code></pre>
-<ul>
-<li><p>Parameters</p>
-<ul>
-<li><p><strong>y_true</strong> : Ground truth (correct) labels.</p>
-</li>
-<li><p><strong>y_pred</strong> : Predicted labels, as returned by a classifier.</p>
-</li>
-<li><p><strong>cost_mat</strong> : Cost matrix of the classification problem.</p>
-</li>
-</ul>
-</li>
-<li><p>Returns</p>
-<ul>
-<li><strong>score</strong> : Savings</li>
-</ul>
-</li>
-</ul>
+<h1 id="Financial-savings">Financial savings<a class="anchor-link" href="#Financial-savings">&#182;</a></h1><p>The financial cost of using a classifier $f$ on $\mathcal{S}$ is calculated by</p>
+<p>$$   Cost(f(\mathcal{S})) = \sum_{i=1}^N  y_i(1-c_i)C_{FN_i} + (1-y_i)c_i C_{FP_i}.$$</p>
+<p>Then the financial savings are defined as the cost of the algorithm versus the cost of using no algorithm at all.</p>
+<p>$$    Savings(f(\mathcal{S})) = \frac{ Cost_l(\mathcal{S}) - Cost(f(\mathcal{S}))}   {Cost_l(\mathcal{S})},$$</p>
+<p>where $Cost_l(\mathcal{S})$ is the cost of the costless class</p>
 
 </div>
 </div>
-</div>
-        </div></section><section>
+</div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1841,8 +1823,19 @@ a loan to an alternative customer.</li>
 <h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="46">
-        
+</div><div class="fragment" data-fragment-index="49">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="costcla.metrics.savings_score(y_true,-y_pred,-cost_mat)">costcla.metrics.savings_score(y_true, y_pred, cost_mat)<a class="anchor-link" href="#costcla.metrics.savings_score(y_true,-y_pred,-cost_mat)">&#182;</a></h2>
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="50">
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
@@ -1855,8 +1848,21 @@ a loan to an alternative customer.</li>
 <span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+</pre></div>
 
-<span class="c"># Plot the results</span>
+</div>
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Plot the results</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">fig2</span><span class="p">():</span>
@@ -1876,7 +1882,7 @@ a loan to an alternative customer.</li>
 </div>
 
 </div>
-        </div></section><section>
+    </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1886,7 +1892,7 @@ a loan to an alternative customer.</li>
 <h1 id="Models-Savings">Models Savings<a class="anchor-link" href="#Models-Savings">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="46">
+</div><div class="fragment" data-fragment-index="50">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -2432,7 +2438,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAADgS/n/AQ/z1iv7e7BqAAAAAElFTkSuQmCC
 </div>
 
 </div>
-        </div><div class="fragment" data-fragment-index="53">
+        </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2440,7 +2446,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAADgS/n/AQ/z1iv7e7BqAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>There are significant differences in the results when evaluating a model using a  traditional cost-insensitive measure such as the accuracy or F1Score</li>
+<li>There are significant differences in the results when evaluating a model using a  traditional cost-insensitive measures</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="55">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>~17% of savings is very bad!</li>
+</ul>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="56">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Train models that take into account the different financial costs</li>
 </ul>
 
 </div>
@@ -2465,17 +2498,70 @@ AAAAAAAAAAAAAAAAAAAAAAAAAADgS/n/AQ/z1iv7e7BqAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Bayes-minimum-risk-(BMR)">Bayes minimum risk (BMR)<a class="anchor-link" href="#Bayes-minimum-risk-(BMR)">&#182;</a></h1><p>The BMR classifier is a decision model based on quantifying tradeoffs between various decisions using probabilities and the costs that accompany such decisions.</p>
-<p>In the specific framework of binary classification, the risk of predicting the example $i$ as negative is</p>
-$$ R(c_i=0|\mathbf{x}_i)=C_{TN_i}(1-\hat p_i)+C_{FN_i} \cdot \hat p_i, $$<p>and
-$$ R(c_i=1|\mathbf{x}_i)=C_{TP_i} \cdot \hat p_i + C_{FP_i}(1- \hat p_i), $$</p>
-<p>is the risk when predicting the example as positive, where $\hat p_i$ is the estimated positive probability for example $i$. Subsequently, if</p>
-$$  R(c_i=0|\mathbf{x}_i) \le R(c_i=1|\mathbf{x}_i), $$<p>then  the example $i$ is classified as negative. This means that the risk associated with the 
-decision $c_i$ is lower than the risk associated with classifying it as positive.</p>
+<h2 id="*Why-&quot;Example-Dependent&quot;">*Why "Example-Dependent"<a class="anchor-link" href="#*Why-&quot;Example-Dependent&quot;">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="59">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cost-sensitive classification ussualy refers to class-dependent costs, where the cost dependends on the class but is assumed constant accross examples.</p>
 
 </div>
 </div>
-</div></section><section>
+</div>
+    </div><div class="fragment" data-fragment-index="60">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In credit scoring, different customers have different credit lines, which implies that the costs are not constant</p>
+
+</div>
+</div>
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bayes-minimum-risk-(BMR)">Bayes minimum risk (BMR)<a class="anchor-link" href="#Bayes-minimum-risk-(BMR)">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="62">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The BMR classifier is a decision model based on quantifying tradeoffs between various decisions using probabilities and the costs that accompany such decisions.</p>
+
+</div>
+</div>
+</div>
+    </div><div class="fragment" data-fragment-index="63">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In particular:</p>
+$$ R(c_i=0|\mathbf{x}_i)=C_{TN_i}(1-\hat p_i)+C_{FN_i} \cdot \hat p_i, $$<p>and
+$$ R(c_i=1|\mathbf{x}_i)=C_{TP_i} \cdot \hat p_i + C_{FP_i}(1- \hat p_i), $$</p>
+
+</div>
+</div>
+</div>
+    </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2485,7 +2571,7 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <h1 id="BMR-Code">BMR Code<a class="anchor-link" href="#BMR-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="57">
+</div><div class="fragment" data-fragment-index="65">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2494,17 +2580,11 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <div class="text_cell_render border-box-sizing rendered_html">
 
 <pre><code>costcla.models.BayesMinimumRiskClassifier(calibration=True)</code></pre>
-<ul>
-<li>Parameters<ul>
-<li><strong>calibration</strong> : bool, optional (default=True). Whenever or not to calibrate the probabilities.</li>
-</ul>
-</li>
-</ul>
 
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="58">
+    </div><div class="fragment" data-fragment-index="66">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2524,7 +2604,7 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 </div>
 </div>
 </div>
-    </div><div class="fragment" data-fragment-index="59">
+    </div><div class="fragment" data-fragment-index="67">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2560,7 +2640,7 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <h1 id="BMR-Code">BMR Code<a class="anchor-link" href="#BMR-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="59">
+</div><div class="fragment" data-fragment-index="67">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -2598,7 +2678,7 @@ decision $c_i$ is lower than the risk associated with classifying it as positive
 <h1 id="BMR-Results">BMR Results<a class="anchor-link" href="#BMR-Results">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="59">
+</div><div class="fragment" data-fragment-index="67">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3264,93 +3344,22 @@ zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMya5v+lvgXEmGAnmwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cost-Sensitive-Decision-Trees-(CSDT)">Cost-Sensitive Decision Trees (CSDT)<a class="anchor-link" href="#Cost-Sensitive-Decision-Trees-(CSDT)">&#182;</a></h1><ul>
-<li>Standard impurity measures take into account the distribution of classes to evaluate the predictive power of a splitting rule</li>
-<li>Leading to an impurity measure that is based on minimizing the misclassification rate </li>
-<li>However, minimizing misclassification does not lead to the same results than minimizing cost. </li>
-</ul>
+<h2 id="Cost-Sensitive-Decision-Trees-(CSDT)">Cost-Sensitive Decision Trees (CSDT)<a class="anchor-link" href="#Cost-Sensitive-Decision-Trees-(CSDT)">&#182;</a></h2><p>A a new cost-based impurity measure taking into account the costs when all the examples in a leaf</p>
+
+<pre><code>costcla.models.CostSensitiveDecisionTreeClassifier(criterion='direct_cost', criterion_weight=False, pruned=True)</code></pre>
 
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment" data-fragment-index="74">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cost-sensitive-impurity-measures">Cost-sensitive impurity measures<a class="anchor-link" href="#Cost-sensitive-impurity-measures">&#182;</a></h1><p>Taking into account the cost matrix of each example.</p>
-<p>A a new cost-based impurity measure taking into account the costs when all the examples
-in a leaf are classified both as negative using $f_0$ and positive using $f_1$</p>
-$$    I_c(\mathcal{S}) = \min \bigg\{ Cost(f_0(\mathcal{S})), Cost(f_1(\mathcal{S})) \bigg\}. $$<p>The objective of this measure is to evaluate the lowest expected cost of a splitting rule.</p>
+<h2 id="Cost-Sensitive-Random-Patches-(CSRP)">Cost-Sensitive Random Patches (CSRP)<a class="anchor-link" href="#Cost-Sensitive-Random-Patches-(CSRP)">&#182;</a></h2><p>Ensemble of CSDT</p>
 
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSDT-Code">CSDT Code<a class="anchor-link" href="#CSDT-Code">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="68">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>costcla.models.CostSensitiveDecisionTreeClassifier(criterion='direct_cost', criterion_weight=False, num_pct=100, max_features=None, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_gain=0.001, pruned=True)</code></pre>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="69">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>fit(X, y, cost_mat, check_input=False)</code></pre>
-<ul>
-<li>Parameters<ul>
-<li><strong>X</strong> : The input samples.</li>
-<li><strong>y</strong> : Ground truth (correct) labels.</li>
-<li><strong>cost_mat</strong> : Cost matrix of the classification problem.</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="70">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>predict(X)</code></pre>
-<ul>
-<li><p>Parameters</p>
-<ul>
-<li><strong>X</strong> : The input samples. </li>
-</ul>
-</li>
-<li><p>Returns</p>
-<ul>
-<li><strong>y_pred</strong> : Predicted class</li>
-</ul>
-</li>
-</ul>
+<pre><code>costcla.models.CostSensitiveRandomPatchesClassifier(n_estimators=10, max_samples=0.5, max_features=0.5,combination='majority_voting)</code></pre>
 
 </div>
 </div>
@@ -3362,759 +3371,31 @@ $$    I_c(\mathcal{S}) = \min \bigg\{ Cost(f_0(\mathcal{S})), Cost(f_1(\mathcal{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSDT-Code">CSDT Code<a class="anchor-link" href="#CSDT-Code">&#182;</a></h1>
+<h1 id="CSDT-&amp;-CSRP-Code">CSDT &amp; CSRP Code<a class="anchor-link" href="#CSDT-&amp;-CSRP-Code">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="70">
-        
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveDecisionTreeClassifier</span>
-
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;f&quot;</span><span class="p">:</span> <span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">()}</span>
-<span class="c"># Fit</span>
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">)</span>
-<span class="c"># Predict</span>
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="c"># Evaluate</span>
-<span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">,</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span> <span class="o">=</span> \
-<span class="p">[</span><span class="n">measures</span><span class="p">[</span><span class="n">measure</span><span class="p">](</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
-<span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSDT&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="n">cost_mat_test</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-        </div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSDT-Results">CSDT Results<a class="anchor-link" href="#CSDT-Results">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="70">
-        
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">fig2</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3oAAAHzCAYAAAB2c29BAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl83HWd+PHXJGmunul9AaXAh3IoILfcFKTlKP5Y1EXR
-1VUR1wM8WNfd9dr1WNcVwRNRVwGRVRC13KcgSAFB8GiBDy20lt5t0iPNnczvj+8EQshMJmkySaav
-5+ORx7eZz+f7/b5nEoa853O8QZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
-SZKkwknl2zGEcD7wYeAwoBxYDtwAXB5jbOrl3DnAC73c4r4Y4+n5xiNJkiRJ6llZPp1CCJ8HPgv8
-DbgK2A6cAXwROD2EcFqMsT2PS60AvpelbVU+sUiSJEmScus10QshHAJ8hmRE7vAY47ZM05dCCNcD
-FwCXAJfncb/VMcZ8+kmSJEmS+qkkjz4XkUzx/FqXJK/TZzPHDw5oVJIkSZKkfssn0TsVSAP3dG+I
-Ma4gmc45N4SwR743DSGUhRBmhBAm5B2pJEmSJCkvORO9EMIoYD+gHXgxS7fnSUb8DszjflNCCD8F
-tgJrgNoQwnMhhPfmH7IkSZIkKZfeRvTGZfrUxxjTWfrUZo41edzvIGAf4J+BtwJfBfYAfhBC+FIe
-50uSJEmSetHbZizVmWNLjj7N3fr2pJZkQ5d1Mcb/7fL4TSGEm4AlwKdCCNfEGGMvMUmSJEmScugt
-0WvIHMtz9Kns1vc1YozbgR5H7GKMT4YQbiTZvfM84L96iUmSJEmSlENvid42kvV5Y0MIZTHGth76
-TM4cN+9CHE+TJHp75erU2tqWLisr3YXbSJIkSb1LpVKpoY5B2hU5E70YY1sI4VmSjVYCsKyHbgeQ
-7Mr59C7EMT5zzDoqCFBXl7N52JsyZSybNu0Y6jB2W77+Q8fXfmj5+g8tX/+h42s/tHz9paGVT3mF
-u0h21VzQvSGEcBgwDXgqxph1RC+E8K8hhMdCCKdk6XJc5vhUHvFIkiRJknLIJ9G7CmgFPhZCmNL5
-YAihFPhy5tsruzy+ZwhhXgih6+YsG4Ajgf8OIYzuevEQwoXAScAm4OZ+PQtJkiRJ0st6W6NHjHF5
-COFTwOXAUyGE60mmWJ4LHArcGGO8rssp1wInAgtJRgMBfkJSTuF04NkQws3ARpLkbxFQD1wQYxzZ
-czMlSZIkaRjoNdEDiDFeEUJYAXwCuBgYBTwLXAJ8p1v3dJevzvPbQwhnAh8ELgTeQ7KT51rgh8BX
-Y4wrdu2pSJIkqbv29nZWrnyh4PetqxtDbW19Qe85Z85cSkvduE+CPBM9gBjjLcAtefTrcR1ejLEd
-+HbmS5IkSQWwcuULXPK1xVSPnzrUoQyqhm0bufKyReyzz35DHYo0LOSd6EmSJGlkqh4/lTE1s4Y6
-DEkFlM9mLJIkSZKkEcRET5IkSZKKjImeJEmSJBUZEz1JkiRJKjImepIkSZJUZEz0JEmSJKnImOhJ
-kiRJUpEx0ZMkSZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4kSZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQk
-SZIkqciY6EmSJElSkTHRkyRJkqQiY6InSZIkSUXGRE+SJEmSioyJniRJkiQVGRM9SZIkSSoyJnqS
-JEmSVGRM9CRJkiSpyJjoSZIkSVKRMdGTJEmSpCJjoidJkiRJRcZET5IkSZKKjImeJEmSJBUZEz1J
-kiRJKjImepIkSZJUZEz0JEmSJKnImOhJkiRJUpEx0ZMkSZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4k
-SZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQkSZIkqciY6EmSJElSkTHRkyRJkqQiY6InSZIkSUXGRE+S
-JEmSioyJniRJkiQVGRM9SZIkSSoyJnqSJEmSVGRM9CRJkiSpyJjoSZIkSVKRMdGTJEmSpCJjoidJ
-kiRJRcZET5IkSZKKjImeJEmSJBUZEz1JkiRJKjImepIkSZJUZEz0JEmSJKnImOhJkiRJUpEx0ZMk
-SZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4kSZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQkSZIkqciUDXUA
-krS7aG9vZ+XKFwp+37q6MdTW1hf0nnPmzKW0tLSg95QkSa8w0ZOkAlm58gUu+dpiqsdPHepQBlXD
-to1cedki9tlnv6EORZKk3ZaJniQVUPX4qYypmTXUYUiSpCLnGj1JkiRJKjImepIkSZJUZEz0JEmS
-JKnImOhJkiRJUpEx0ZMkSZKkImOiJ0mSJElFxkRPkiRJkopM3nX0QgjnAx8GDgPKgeXADcDlMcam
-/tw8hHATcB7wYIzxlP5cQ5IkSZL0anmN6IUQPg/8ApgDXAV8EajLHO8IIZT29cYhhHeSJHkA6b6e
-L0mSJEnqWa8jeiGEQ4DPAC8Ah8cYt2WavhRCuB64ALgEuDzfm4YQ9gC+BTwBHNHXoCVJkiRJ2eUz
-oncRkAK+1iXJ6/TZzPGD+d4whJACfpL59pP5nidJkiRJyk8+id6pJFMr7+neEGNcAfwNmJsZpcvH
-JcApwMeAVXmeI0mSJEnKU85EL4QwCtgPaAdezNLteZIRvwN7u1kI4QDgK8DiGOOPM+dJkiRJkgZQ
-byN64zJ96mOM2TZMqc0ca3JdKJM0/hTYBry/L0FKkiRJkvLX22Ys1ZljS44+zd36ZvNZktIMb44x
-bsojNkmSJElSP/Q2oteQOZbn6FPZre9rhBCOBv4F+HGMcXGXJssqSJIkSdIA6y3R20ayPm9sCCHb
-6N/kzHFzT40hhGrgOmAlyQYsXblGT5IkSZIGWM6pmzHGthDCsyQbrQRgWQ/dDiAZmXs6y2WOBPbN
-/HtrCKGnPieHEDqAVTHGvbPFU1NTTVlZn2uzDytTpowd6hB2a77+Q8fXHurqxgx1CAUzceIYf+Zd
-+FoMHV9733uk3VWvBdOBu4CDgAV0S/RCCIcB04A/xhh7HNEDVgNfp+dpmuNJNmZZDfycVzZ26VFd
-XdbZoSPClClj2bRpx1CHsdvy9R86vvaJ2tr6oQ6hYGpr6/2ZZ/j7P3R87RO+90i7p3wSvauAjwAf
-CyFc17mRSgihFPhyps+VnZ1DCHuSbMzytxhjQ4zxBeCyni4cQtiLJNFbEWP85/4/DUmSJElSp14L
-pscYlwOfAmYBT4UQvhpC+BzwB+AM4MYY43VdTrmWZOTvhDzu7xo9SZIkSRpgvSZ6ADHGK4BzgeXA
-xSSJH8AlwAXduqe7fEmSJEmSCiyfqZsAxBhvAW7Jo98pfbjmSvJMNiVJkiRJ+THJkiRJkqQiY6In
-SZIkSUXGRE+SJEmSioyJniRJkiQVGRM9SZIkSSoyJnqSJEmSVGRM9CRJkiSpyJjoSZIkSVKRMdGT
-JEmSpCJjoidJkiRJRcZET5IkSZKKjImeJEmSJBUZEz1JkiRJKjImepIkSZJUZEz0JEmSJKnImOhJ
-kiRJUpEx0ZMkSZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4kSZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQk
-SZIkqciY6EmSJElSkTHRkyRJkqQiY6InSZIkSUXGRE+SJEmSioyJniRJkiQVGRM9SZIkSSoyJnqS
-JEmSVGRM9CRJkiSpyJjoSZIkSVKRMdGTJEmSpCJjoidJkiRJRcZET5IkSZKKjImeJEmSJBUZEz1J
-kiRJKjImepIkSZJUZEz0JEmSJKnImOhJkiRJUpEx0ZMkSZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4k
-SZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQkSZIkqciY6EmSJElSkTHRkyRJkqQiY6InSZIkSUXGRE+S
-JEmSioyJniRJkiQVGRM9SZIkSSoyJnqSJEmSVGRM9CRJkiSpyJjoSZIkSVKRMdGTJEmSpCJjoidJ
-kiRJRcZET5IkSZKKjImeJEmSJBUZEz1JkiRJKjImepIkSZJUZEz0JEmSJKnImOhJkiRJUpEx0ZMk
-SZKkImOiJ0mSJElFxkRPkiRJkoqMiZ4kSZIkFRkTPUmSJEkqMiZ6kiRJklRkTPQkSZIkqciY6EmS
-JElSkTHRkyRJkqQiY6InSZIkSUWmrC+dQwjnAx8GDgPKgeXADcDlMcamPM5PAW8D3gscCEwG6oA/
-AFfFGG/rU/SSJEmSpNfIe0QvhPB54BfAHOAq4IskSdoXgTtCCKW9nF8C/AT4GbAPSYL4H8A9wOnA
-LSGEf+7rE5AkSZIkvVpeI3ohhEOAzwAvAIfHGLdlmr4UQrgeuAC4BLg8x2XeBrwTWAKcEmNs6XL9
-n5AkfJ8NIVwZY2zu6xORJEmSJCXyHdG7CEgBX+uS5HX6bOb4wV6usQH4T+CTXZM8gBjjfSSjg1XA
-lDxjkiRJkiT1IN81eqcCaZJRt1eJMa4IIfwNmBtC2CPGuLqnC8QY7wfu76kthLAHMBbYEGN8Kc+Y
-JEmSJEk96DXRCyGMAvYD2oEXs3R7HtiTZIOVHhO9btesAGYA44FjgH8DtgPvyitqSZIkSVJW+Yzo
-jSOZ4rk9xpjO0qc2c6zJ877H8urRvbuAi2OMq/I8X5IkSZKURT5r9Kozx5YcfTo3T6nO0aervwBv
-Bt5NsoPnscATIYSFeZ4vSZIkScoinxG9hsyxPEefym59c4oxbgEWZ769NoRwBfAE8LMQwn4xxs35
-XEeSJEmS9Fr5JHrbSNbnjQ0hlMUY23roMzlz7FeCFmOMIYQbgfcA5wI/6qlfTU01ZWU5y/UNe1Om
-jB3qEHZrvv5Dx9ce6urGDHUIBTNx4hh/5l34WgwdX3vfe6TdVa+JXoyxLYTwLMlGKwFY1kO3A0h2
-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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-        </div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cost-Sensitive-Random-Patches-(CSRP)">Cost-Sensitive Random Patches (CSRP)<a class="anchor-link" href="#Cost-Sensitive-Random-Patches-(CSRP)">&#182;</a></h1><ul>
-<li>Individual decision trees typically suffer from high variance.</li>
-<li>A very efficient and simple way to address this flaw is to use them in the context of ensemble methods.</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cost-Sensitive-Random-Patches-(CSRP)">Cost-Sensitive Random Patches (CSRP)<a class="anchor-link" href="#Cost-Sensitive-Random-Patches-(CSRP)">&#182;</a></h1><ul>
-<li>First create $T$ different random subsamples $\mathcal{S}_j$ for $j=1,\dots,T$, of the training  set $\mathcal{S}$, by  randomly  drawn bootstrap subsets of both examples and features. </li>
-<li>Then combine them using cost-sensitive weighted voting:</li>
-</ul>
-$$  f_{wv}(\mathcal{S},\mathcal{M}, \alpha)
-  =argmax_{c \in \{0,1\}} \sum_{j=1}^T \alpha_j \mathbf{1}_c(M_j(\mathcal{S})), $$<p>where  $\alpha_j$ is related to the performance of each classifier $M_j$ in the  out of bag set   $\mathcal{S}_j^{oob}=\mathcal{S}-\mathcal{S}_j$</p>
-$$  \alpha_j=\frac{Savings(M_j(\mathcal{S}_j^{oob}))}
-  {\sum_{j_1=1}^T Savings(M_{j_1}(\mathcal{S}_j^{oob}))}. $$
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSRP-Code">CSRP Code<a class="anchor-link" href="#CSRP-Code">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="78">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>costcla.models.CostSensitiveRandomPatchesClassifier(n_estimators=10, max_samples=0.5, max_features=0.5, combination='majority_voting', n_jobs=1, verbose=False, pruned=False)</code></pre>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="79">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>fit(X, y, cost_mat)</code></pre>
-<ul>
-<li>Parameters<ul>
-<li><strong>X</strong> : The input samples.</li>
-<li><strong>y</strong> : Ground truth (correct) labels.</li>
-<li><strong>cost_mat</strong> : Cost matrix of the classification problem.</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="80">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>predict(X)</code></pre>
-<ul>
-<li><p>Parameters</p>
-<ul>
-<li><strong>X</strong> : The input samples. </li>
-</ul>
-</li>
-<li><p>Returns</p>
-<ul>
-<li><strong>y_pred</strong> : Predicted class</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSRP-Code">CSRP Code<a class="anchor-link" href="#CSRP-Code">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="80">
+</div><div class="fragment" data-fragment-index="74">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveRandomPatchesClassifier</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveDecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveRandomPatchesClassifier</span>
 
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;f&quot;</span><span class="p">:</span> <span class="n">CostSensitiveRandomPatchesClassifier</span><span class="p">(</span><span class="n">combination</span><span class="o">=</span><span class="s">&#39;weighted_voting&#39;</span><span class="p">)}</span>
-<span class="c"># Fit</span>
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">)</span>
-<span class="c"># Predict</span>
-<span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="c"># Evaluate</span>
-<span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">,</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span> <span class="o">=</span> \
-<span class="p">[</span><span class="n">measures</span><span class="p">[</span><span class="n">measure</span><span class="p">](</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
-<span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="s">&quot;CSRP&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="n">cost_mat_test</span><span class="p">)</span>
+<span class="n">classifiers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;CSDT&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;f&quot;</span><span class="p">:</span> <span class="n">CostSensitiveDecisionTreeClassifier</span><span class="p">()},</span>
+               <span class="s">&quot;CSRP&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;f&quot;</span><span class="p">:</span> <span class="n">CostSensitiveRandomPatchesClassifier</span><span class="p">()}}</span>
+
+<span class="c"># Fit the classifiers using the training dataset</span>
+<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cost_mat_train</span><span class="p">)</span>
+    <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="c"># Evaluate</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model</span><span class="p">,</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span> <span class="o">=</span> \
+    <span class="p">[</span><span class="n">measures</span><span class="p">[</span><span class="n">measure</span><span class="p">](</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+    <span class="n">results</span><span class="p">[</span><span class="s">&quot;Savings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">[</span><span class="n">model</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="n">cost_mat_test</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -4129,10 +3410,10 @@ $$  \alpha_j=\frac{Savings(M_j(\mathcal{S}_j^{oob}))}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CSRP-Results">CSRP Results<a class="anchor-link" href="#CSRP-Results">&#182;</a></h1>
+<h1 id="CSDT-&amp;-CSRP-Results">CSDT &amp; CSRP Results<a class="anchor-link" href="#CSDT-&amp;-CSRP-Results">&#182;</a></h1>
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="80">
+</div><div class="fragment" data-fragment-index="74">
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -4727,7 +4008,18 @@ AAAASUVORK5CYII=
 </div>
 
 </div>
-        </div></section>
+        </div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lessons-Learned-(so-far-...)">Lessons Learned (so far ...)<a class="anchor-link" href="#Lessons-Learned-(so-far-...)">&#182;</a></h1><p>TODO: Finish</p>
+
+</div>
+</div>
+</div></section>
     </section><section>
     <section>
     
@@ -4736,8 +4028,9 @@ AAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img img class="logo" src="https://raw.githubusercontent.com/albahnsen/CostSensitiveClassification/master/logo.png" style="width: 600px;"></p>
-
+<center>
+<img src="https://raw.githubusercontent.com/albahnsen/CostSensitiveClassification/master/logo.png" style="width: 600px;" align="middle">
+</center>
 </div>
 </div>
 </div></section><section>
@@ -4749,10 +4042,6 @@ AAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="CostCla-Library">CostCla Library<a class="anchor-link" href="#CostCla-Library">&#182;</a></h1><ul>
 <li><p><strong>CostCla</strong> is a Python open source cost-sensitive classification library built on top of Scikit-learn, Pandas and Numpy.</p>
-</li>
-<li><p>It provides a wide range of state-of-the-art example-dependent cost-sensitive methods for binary classification tasks.</p>
-</li>
-<li><p>Moreover, the library also includes four different example-dependent cost-sensitive databases.</p>
 </li>
 <li><p>Source code, binaries and documentation are distributed under 3-Clause BSD license in the website <a href="http://albahnsen.com/CostSensitiveClassification/">http://albahnsen.com/CostSensitiveClassification/</a></p>
 </li>
@@ -4815,34 +4104,12 @@ AAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h1><p>CostCla requires some prerequisite packages to be previously installed. Nevertheless, all 
-are cross-platform an freely available online:</p>
-<ul>
-<li>Python version $\ge$ 2.7</li>
-<li>Numpy version $\ge$ 1.8.0</li>
-<li>Pandas version $\ge$ 0.14.0</li>
-<li>Scikit-learn version $\ge$ 0.15.0b2</li>
-<li>pyea version $\ge$ 0.1</li>
-</ul>
-<p>The easiest way to install CostCla  is with pip:</p>
-
-<pre><code>pip install costcla</code></pre>
-
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Future-Work">Future Work<a class="anchor-link" href="#Future-Work">&#182;</a></h1><ul>
-<li>Compatibility with Python $\ge$ 3.4</li>
 <li>CSDT in Cython</li>
 <li>Cost-sensitive class-dependent algorithms</li>
 <li>Sampling algorithms</li>
 <li>Probability calibration (Only ROCCH)</li>
+<li>Compatibility with Python $\ge$ 3.4</li>
 <li>Other algorithms</li>
 <li>More databases</li>
 </ul>
@@ -4858,73 +4125,6 @@ are cross-platform an freely available online:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 class="bigtitle">Conclusions</h1>
-</div>
-</div>
-</div></section><section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>CostCla is a easy to use Python library for example-dependent cost-sensitive classification problems.</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="93">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>It includes many example-dependent cost-sensitive algorithms. </li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="94">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Since it is part of the scientific Python ecosystem, it can be easily integrated with other machine learning libraries.  </li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div><div class="fragment" data-fragment-index="95">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Future work includes adding more cost-sensitive databases and algorithms, and support for Python $\ge$ 3.4.</li>
-</ul>
-
-</div>
-</div>
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 class="bigtitle">Thanks!</h1>
 </div>
 </div>
@@ -4932,7 +4132,7 @@ are cross-platform an freely available online:</p>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c">#Format from https://github.com/ellisonbg/talk-2013-scipy</span>
