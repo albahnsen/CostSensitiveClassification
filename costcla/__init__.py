@@ -24,7 +24,7 @@ You can install ``costcla`` with ``pip``::
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-__version__ = '0.04.dev2'
+__version__ = '0.4'
 
 from metrics import *
 from datasets import *
