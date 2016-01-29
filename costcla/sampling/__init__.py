@@ -9,9 +9,9 @@ In particular:
 
 """
 
-from cost_sampling import cost_sampling
-from sampling import undersampling
-from sampling import smote
+from .cost_sampling import cost_sampling
+from .sampling import undersampling
+from .sampling import smote
 
 __all__ = ['cost_sampling',
            'undersampling',

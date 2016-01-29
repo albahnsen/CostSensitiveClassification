@@ -74,9 +74,9 @@ def _SMOTE(T, N, k, h = 1.0):
     neigh.fit(T)
 
     #Calculate synthetic samples
-    for i in xrange(n_minority_samples):
+    for i in range(n_minority_samples):
         nn = neigh.kneighbors(T[i], return_distance=False)
-        for n in xrange(N):
+        for n in range(int(N)):
             nn_index = choice(nn[0])
             #NOTE: nn includes T[i], we don't want to select it
             while nn_index == i:
@@ -120,7 +120,7 @@ def _borderlineSMOTE(X, y, minority_target, N, k):
     safe_minority_indices = list()
     danger_minority_indices = list()
 
-    for i in xrange(n_samples):
+    for i in range(n_samples):
         if y[i] != minority_target: continue
 
         nn = neigh.kneighbors(X[i], return_distance=False)

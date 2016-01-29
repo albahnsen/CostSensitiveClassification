@@ -6,7 +6,7 @@ This module include the sampling methods
 # License: BSD 3 clause
 
 import numpy as np
-from costcla.sampling._smote import _SMOTE
+from ._smote import _SMOTE
 
 def undersampling(X, y, cost_mat=None, per=0.5):
     """Under-sampling.
@@ -89,10 +89,10 @@ def smote(X, y, cost_mat=None, per=0.5):
     >>> data = load_creditscoring1()
     >>> data_smote, target_smote = smote(data.data, data.target, per=0.7)
     >>> # Size of each training set
-    >>> print data.data.shape[0], data_smote.shape[0]
+    >>> print(data.data.shape[0], data_smote.shape[0])
     112915 204307
     >>> # Percentage of positives in each training set
-    >>> print data.target.mean(), target_smote.mean()
+    >>> print(data.target.mean(), target_smote.mean())
     0.0674489660364 0.484604051746
     """
     #TODO: Add random state
