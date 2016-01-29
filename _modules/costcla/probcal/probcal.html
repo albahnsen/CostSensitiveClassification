@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,22 +125,24 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.probcal.probcal</h1><div class="highlight"><pre>
-<span class="c"># coding=utf-8</span>
+<span class="c1"># coding=utf-8</span>
 <span class="sd">&quot;&quot;&quot;Methods to calibrate the estimated probabilities.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
-<span class="c">#TODO: Add isotonic regression from sklearn</span>
-<span class="c">#TODO: Add Platt calibration</span>
-<span class="c"># http://ift.tt/XuMk3s</span>
+<span class="c1">#TODO: Add isotonic regression from sklearn</span>
+<span class="c1">#TODO: Add Platt calibration</span>
+<span class="c1"># http://ift.tt/XuMk3s</span>
 
 <div class="viewcode-block" id="ROCConvexHull"><a class="viewcode-back" href="../../../Probcal.html#costcla.probcal.ROCConvexHull">[docs]</a><span class="k">class</span> <span class="nc">ROCConvexHull</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Implementation the the calibration method ROCConvexHull</span>
@@ -201,10 +180,10 @@
 <span class="sd">    &gt;&gt;&gt; f_cal.fit(y_test, y_prob_test)</span>
 <span class="sd">    &gt;&gt;&gt; y_prob_test_cal = f_cal.predict_proba(y_prob_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Brier score using only RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print brier_score_loss(y_test, y_prob_test[:, 1])</span>
+<span class="sd">    &gt;&gt;&gt; print(brier_score_loss(y_test, y_prob_test[:, 1]))</span>
 <span class="sd">    0.0577615264881</span>
 <span class="sd">    &gt;&gt;&gt; # Brier score using calibrated RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print brier_score_loss(y_test, y_prob_test_cal)</span>
+<span class="sd">    &gt;&gt;&gt; print(brier_score_loss(y_test, y_prob_test_cal))</span>
 <span class="sd">    0.0553677407894</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -228,19 +207,19 @@
 <span class="sd">            Returns self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># TODO: Check input</span>
+        <span class="c1"># TODO: Check input</span>
         <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
         <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-        <span class="c">#works with sklearn 0.11</span>
+        <span class="c1">#works with sklearn 0.11</span>
         <span class="k">if</span> <span class="n">fpr</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">tpr</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">fpr</span><span class="p">))</span>
             <span class="n">tpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">tpr</span><span class="p">))</span>
             <span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="mf">1.01</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">))</span>
 
         <span class="k">def</span> <span class="nf">prob_freq</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">predict_proba</span><span class="p">):</span>
-            <span class="c">#calculate distribution and return in inverse order</span>
+            <span class="c1">#calculate distribution and return in inverse order</span>
             <span class="n">proba_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predict_proba</span><span class="p">)</span>
             <span class="n">freq_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">proba_bins</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">predict_proba</span><span class="p">))</span>
             <span class="n">freq_0_tempa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predict_proba</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]])</span>
@@ -253,7 +232,7 @@
             <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">proba_bins</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
             <span class="n">pr</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">freq</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">pr</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="c">#fix when no negatives in range</span>
+            <span class="c1">#fix when no negatives in range</span>
             <span class="n">pr</span><span class="p">[</span><span class="n">pr</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">freq</span><span class="p">,</span> <span class="n">pr</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">freq</span>
@@ -262,7 +241,7 @@
         <span class="n">temp_hull</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fpr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">temp_hull</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">fpr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tpr</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-        <span class="c">#close the plane</span>
+        <span class="c1">#close the plane</span>
         <span class="n">temp_hull</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="n">rocch_</span> <span class="o">=</span> <span class="n">_convexhull</span><span class="p">(</span><span class="n">temp_hull</span><span class="p">)</span>
         <span class="n">rocch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">rocch_</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
@@ -271,7 +250,7 @@
             <span class="n">rocch_find</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">rocch</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">fpr</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
                                       <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">rocch</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">tpr</span><span class="p">)[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="n">rocch_thresholds</span> <span class="o">=</span> <span class="n">thresholds</span><span class="p">[</span><span class="n">rocch_find</span><span class="p">]</span>
-        <span class="c">#calibrated probabilities using ROCCH</span>
+        <span class="c1">#calibrated probabilities using ROCCH</span>
         <span class="n">f_cal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rocch_thresholds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rocch_thresholds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">f_cal</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">rocch_thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -280,12 +259,12 @@
             <span class="n">f_cal</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">join_elements</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
             <span class="n">f_cal</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">join_elements</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="n">f_cal</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_cal</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="n">f_cal</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c">#fix to add 0</span>
+        <span class="c1">#fix to add 0</span>
         <span class="n">f_cal</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">calibrated_map</span> <span class="o">=</span> <span class="n">f_cal</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="n">calibrated_map</span>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span> <span class="o">=</span> <span class="n">calibrated_map</span></div>
+
 <div class="viewcode-block" id="ROCConvexHull.predict_proba"><a class="viewcode-back" href="../../../Probcal.html#costcla.probcal.ROCConvexHull.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Calculate the calibrated probabilities</span>
 
@@ -300,7 +279,7 @@
 <span class="sd">            Predicted calibrated probabilities</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># TODO: Check input</span>
+        <span class="c1"># TODO: Check input</span>
         <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
@@ -309,10 +288,10 @@
             <span class="n">calibrated_proba</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">p</span><span class="p">)]</span> <span class="o">=</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">calibration_map</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 
-        <span class="c"># TODO: return 2D and refactor</span>
-        <span class="k">return</span> <span class="n">calibrated_proba</span>
+        <span class="c1"># TODO: return 2D and refactor</span>
+        <span class="k">return</span> <span class="n">calibrated_proba</span></div></div>
 
-</div></div>
+
 <span class="k">def</span> <span class="nf">_convexhull</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Private function that calculate the convex hull of a set of points</span>
 <span class="sd">    The algorithm was taken from [1].</span>
@@ -332,16 +311,16 @@
 <span class="sd">        a directed vector from p to q.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># We use Sarrus&#39; Rule to calculate the determinant.</span>
-        <span class="c"># (could also use the Numeric package...)</span>
+        <span class="c1"># We use Sarrus&#39; Rule to calculate the determinant.</span>
+        <span class="c1"># (could also use the Numeric package...)</span>
         <span class="n">sum1</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">sum2</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">sum1</span> <span class="o">-</span> <span class="n">sum2</span>
 
 
-    <span class="k">def</span> <span class="nf">isrightturn</span><span class="p">((</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)):</span>
-        <span class="s">&quot;Do the vectors pq:qr form a right turn, or not?&quot;</span>
+    <span class="k">def</span> <span class="nf">isrightturn</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="s2">&quot;Do the vectors pq:qr form a right turn, or not?&quot;</span>
 
         <span class="k">assert</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">q</span> <span class="ow">and</span> <span class="n">q</span> <span class="o">!=</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">r</span>
 
@@ -350,33 +329,34 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
 
-    <span class="c"># Get a local list copy of the points and sort them lexically.</span>
-    <span class="n">points</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+    <span class="c1"># Get a local list copy of the points and sort them lexically.</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
     <span class="n">points</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
-    <span class="c"># Build upper half of the hull.</span>
+    <span class="c1"># Build upper half of the hull.</span>
     <span class="n">upper</span> <span class="o">=</span> <span class="p">[</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
         <span class="n">upper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isrightturn</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]):</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isrightturn</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">0</span><span class="p">],</span><span class="n">upper</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">1</span><span class="p">],</span><span class="n">upper</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">2</span><span class="p">]):</span>
             <span class="k">del</span> <span class="n">upper</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="c"># Build lower half of the hull.</span>
+    <span class="c1"># Build lower half of the hull.</span>
     <span class="n">points</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
     <span class="n">lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
         <span class="n">lower</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isrightturn</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]):</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isrightturn</span><span class="p">(</span><span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">0</span><span class="p">],</span><span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">1</span><span class="p">],</span><span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:][</span><span class="mi">2</span><span class="p">]):</span>
             <span class="k">del</span> <span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="c"># Remove duplicates.</span>
+    <span class="c1"># Remove duplicates.</span>
     <span class="k">del</span> <span class="n">lower</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">del</span> <span class="n">lower</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="c"># Concatenate both halfs and return.</span>
+    <span class="c1"># Concatenate both halfs and return.</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">upper</span> <span class="o">+</span> <span class="n">lower</span><span class="p">)</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -385,10 +365,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

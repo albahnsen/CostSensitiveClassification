@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,14 +125,15 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.models.bagging</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;Bagging meta-estimator.&quot;&quot;&quot;</span>
 
-<span class="c"># https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/ensemble/bagging.py</span>
-<span class="c"># Author: Gilles Louppe &lt;g.louppe@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/ensemble/bagging.py</span>
+<span class="c1"># Author: Gilles Louppe &lt;g.louppe@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
@@ -180,22 +158,22 @@
 <span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">CostSensitiveLogisticRegression</span>
 <span class="kn">from</span> <span class="nn">costcla.models</span> <span class="kn">import</span> <span class="n">BayesMinimumRiskClassifier</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;BaggingClassifier&quot;</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BaggingClassifier&quot;</span><span class="p">,</span> <span class="p">]</span>
 
 <span class="n">MAX_INT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>
 
 
-<span class="c"># Is different in 0.15, copy version from 0.16-git</span>
+<span class="c1"># Is different in 0.15, copy version from 0.16-git</span>
 <span class="k">def</span> <span class="nf">_partition_estimators</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Private function used to partition estimators between jobs.&quot;&quot;&quot;</span>
-    <span class="c"># Compute the number of jobs</span>
+    <span class="c1"># Compute the number of jobs</span>
     <span class="k">if</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
         <span class="n">n_jobs</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="n">n_estimators</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="n">n_jobs</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">)</span>
 
-    <span class="c"># Partition estimators between jobs</span>
+    <span class="c1"># Partition estimators between jobs</span>
     <span class="n">n_estimators_per_job</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_estimators</span> <span class="o">//</span> <span class="n">n_jobs</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">,</span>
                                                               <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
     <span class="n">n_estimators_per_job</span><span class="p">[:</span><span class="n">n_estimators</span> <span class="o">%</span> <span class="n">n_jobs</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -207,7 +185,7 @@
 <span class="k">def</span> <span class="nf">_parallel_build_estimators</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span>
                                <span class="n">seeds</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Private function used to build a batch of estimators within a job.&quot;&quot;&quot;</span>
-    <span class="c"># Retrieve settings</span>
+    <span class="c1"># Retrieve settings</span>
     <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">max_samples</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">max_samples</span>
     <span class="n">max_features</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">max_features</span>
@@ -223,25 +201,25 @@
     <span class="n">bootstrap</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">bootstrap</span>
     <span class="n">bootstrap_features</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">bootstrap_features</span>
 
-    <span class="c"># Build estimators</span>
+    <span class="c1"># Build estimators</span>
     <span class="n">estimators</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">estimators_samples</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">estimators_features</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&quot;building estimator </span><span class="si">%d</span><span class="s"> of </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;building estimator </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">))</span>
 
         <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">seeds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="n">seed</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">))</span>
         <span class="n">estimator</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">_make_estimator</span><span class="p">(</span><span class="n">append</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-        <span class="k">try</span><span class="p">:</span>  <span class="c"># Not all estimator accept a random_state</span>
+        <span class="k">try</span><span class="p">:</span>  <span class="c1"># Not all estimator accept a random_state</span>
             <span class="n">estimator</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span>
 
-        <span class="c"># Draw features</span>
+        <span class="c1"># Draw features</span>
         <span class="k">if</span> <span class="n">bootstrap_features</span><span class="p">:</span>
             <span class="n">features</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">max_features</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -249,7 +227,7 @@
                                                   <span class="n">max_features</span><span class="p">,</span>
                                                   <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-        <span class="c"># Draw samples, using a mask, and then fit</span>
+        <span class="c1"># Draw samples, using a mask, and then fit</span>
         <span class="k">if</span> <span class="n">bootstrap</span><span class="p">:</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">max_samples</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -276,7 +254,7 @@
 
     <span class="k">for</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">estimators</span><span class="p">,</span> <span class="n">estimators_features</span><span class="p">,</span> <span class="n">estimators_weight</span><span class="p">):</span>
         <span class="n">proba_estimator</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;weighted_voting&#39;</span><span class="p">,</span> <span class="s">&#39;weighted_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;weighted_voting&#39;</span><span class="p">,</span> <span class="s1">&#39;weighted_bmr&#39;</span><span class="p">]:</span>
             <span class="n">proba</span> <span class="o">+=</span> <span class="n">proba_estimator</span> <span class="o">*</span> <span class="n">weight</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">proba</span> <span class="o">+=</span> <span class="n">proba_estimator</span>
@@ -291,18 +269,18 @@
     <span class="n">n_estimators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">estimators</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">estimators</span><span class="p">,</span> <span class="n">estimators_features</span><span class="p">,</span> <span class="n">estimators_weight</span><span class="p">):</span>
-        <span class="c"># Resort to voting</span>
+        <span class="c1"># Resort to voting</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">combination</span> <span class="o">==</span> <span class="s">&#39;weighted_voting&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">combination</span> <span class="o">==</span> <span class="s1">&#39;weighted_voting&#39;</span><span class="p">:</span>
                 <span class="n">pred</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">weight</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">pred</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="k">return</span> <span class="n">pred</span>
 
-<span class="c">#TODO: Create stacking set in parallel</span>
+<span class="c1">#TODO: Create stacking set in parallel</span>
 <span class="k">def</span> <span class="nf">_create_stacking_set</span><span class="p">(</span><span class="n">estimators</span><span class="p">,</span> <span class="n">estimators_features</span><span class="p">,</span> <span class="n">estimators_weight</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">combination</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Private function used to create the stacking training set.&quot;&quot;&quot;</span>
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -312,9 +290,9 @@
     <span class="n">X_stacking</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_valid_estimators</span><span class="p">))</span>
 
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_valid_estimators</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;stacking&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;stacking&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_bmr&#39;</span><span class="p">]:</span>
             <span class="n">X_stacking</span><span class="p">[:,</span> <span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">estimators</span><span class="p">[</span><span class="n">valid_estimators</span><span class="p">[</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">estimators_features</span><span class="p">[</span><span class="n">valid_estimators</span><span class="p">[</span><span class="n">e</span><span class="p">]]])</span>
-        <span class="k">elif</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
             <span class="n">X_stacking</span><span class="p">[:,</span> <span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">estimators</span><span class="p">[</span><span class="n">valid_estimators</span><span class="p">[</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">estimators_features</span><span class="p">[</span><span class="n">valid_estimators</span><span class="p">[</span><span class="n">e</span><span class="p">]]])[:,</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">X_stacking</span>
@@ -335,7 +313,7 @@
                  <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                  <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -382,36 +360,36 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 
-        <span class="c"># Convert data</span>
-        <span class="c"># X, y = check_X_y(X, y, [&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Not in sklearn verion 0.15</span>
+        <span class="c1"># Convert data</span>
+        <span class="c1"># X, y = check_X_y(X, y, [&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Not in sklearn verion 0.15</span>
 
-        <span class="c"># Remap output</span>
+        <span class="c1"># Remap output</span>
         <span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
-        <span class="c"># Check parameters</span>
+        <span class="c1"># Check parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_estimator</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span><span class="p">,</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
             <span class="n">max_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span>
-        <span class="k">else</span><span class="p">:</span>  <span class="c"># float</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># float</span>
             <span class="n">max_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_samples</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">max_samples</span> <span class="o">&lt;=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;max_samples must be in (0, n_samples]&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;max_samples must be in (0, n_samples]&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
             <span class="n">max_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span>
-        <span class="k">else</span><span class="p">:</span>  <span class="c"># float</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># float</span>
             <span class="n">max_features</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">max_features</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;max_features must be in (0, n_features]&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;max_features must be in (0, n_features]&quot;</span><span class="p">)</span>
 
-        <span class="c"># Free allocated memory, if any</span>
+        <span class="c1"># Free allocated memory, if any</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span> <span class="o">=</span> <span class="bp">None</span>
 
-        <span class="c"># Parallel loop</span>
+        <span class="c1"># Parallel loop</span>
         <span class="n">n_jobs</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">,</span> <span class="n">starts</span> <span class="o">=</span> <span class="n">_partition_estimators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
                                                              <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
         <span class="n">seeds</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">)</span>
@@ -427,7 +405,7 @@
                 <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">))</span>
 
-        <span class="c"># Reduce</span>
+        <span class="c1"># Reduce</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
             <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimators_samples_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
@@ -437,10 +415,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_oob_savings</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;stacking&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;stacking&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_fit_stacking_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;majority_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;weighted_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;majority_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;weighted_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_fit_bmr_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span>
@@ -460,25 +438,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">f_staking</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_stacking</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="c">#TODO: _evaluate_oob_savings in parallel</span>
+    <span class="c1">#TODO: _evaluate_oob_savings in parallel</span>
     <span class="k">def</span> <span class="nf">_evaluate_oob_savings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Private function used to calculate the OOB Savings of each estimator.&quot;&quot;&quot;</span>
         <span class="n">estimators_weight</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">features</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_samples_</span><span class="p">,</span>
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span><span class="p">):</span>
-            <span class="c"># Test if all examples where used for training</span>
+            <span class="c1"># Test if all examples where used for training</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">samples</span><span class="p">):</span>
-                <span class="c"># Then use training</span>
+                <span class="c1"># Then use training</span>
                 <span class="n">oob_pred</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">])</span>
                 <span class="n">oob_savings</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">oob_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c"># Then use OOB</span>
+                <span class="c1"># Then use OOB</span>
                 <span class="n">oob_pred</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">samples</span><span class="p">])[:,</span> <span class="n">features</span><span class="p">])</span>
                 <span class="n">oob_savings</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">savings_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">samples</span><span class="p">],</span> <span class="n">oob_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">[</span><span class="o">~</span><span class="n">samples</span><span class="p">]))</span>
 
             <span class="n">estimators_weight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">oob_savings</span><span class="p">)</span>
 
-        <span class="c"># Control in case were all weights are 0</span>
+        <span class="c1"># Control in case were all weights are 0</span>
         <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">estimators_weight</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">estimators_weight_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">estimators_weight</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">estimators_weight</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -487,7 +465,7 @@
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">_validate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="c"># Default implementation</span>
+        <span class="c1"># Default implementation</span>
         <span class="k">return</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
@@ -612,7 +590,7 @@
                  <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                  <span class="n">bootstrap_features</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;voting&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;voting&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -664,25 +642,25 @@
 <span class="sd">        pred : array of shape = [n_samples]</span>
 <span class="sd">            The predicted classes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># Check data</span>
-        <span class="c"># X = check_array(X, accept_sparse=[&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Dont in version 0.15</span>
+        <span class="c1"># Check data</span>
+        <span class="c1"># X = check_array(X, accept_sparse=[&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Dont in version 0.15</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Number of features of the model must &quot;</span>
-                             <span class="s">&quot;match the input. Model n_features is {0} and &quot;</span>
-                             <span class="s">&quot;input n_features is {1}.&quot;</span>
-                             <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of features of the model must &quot;</span>
+                             <span class="s2">&quot;match the input. Model n_features is {0} and &quot;</span>
+                             <span class="s2">&quot;input n_features is {1}.&quot;</span>
+                             <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-        <span class="c">#TODO: check if combination in possible combinations</span>
+        <span class="c1">#TODO: check if combination in possible combinations</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;stacking&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;stacking&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba&#39;</span><span class="p">]:</span>
 
             <span class="n">X_stacking</span> <span class="o">=</span> <span class="n">_create_stacking_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span><span class="p">,</span>
                                               <span class="bp">self</span><span class="o">.</span><span class="n">estimators_weight_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_staking</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_stacking</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span> <span class="s">&#39;weighted_voting&#39;</span><span class="p">]:</span>
-            <span class="c"># Parallel loop</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span> <span class="s1">&#39;weighted_voting&#39;</span><span class="p">]:</span>
+            <span class="c1"># Parallel loop</span>
             <span class="n">n_jobs</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">,</span> <span class="n">starts</span> <span class="o">=</span> <span class="n">_partition_estimators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
 
@@ -696,13 +674,13 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">estimators_weight_</span><span class="p">[</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">))</span>
 
-            <span class="c"># Reduce</span>
+            <span class="c1"># Reduce</span>
             <span class="n">pred</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">all_pred</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span>
 
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;majority_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;weighted_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
-            <span class="c">#TODO: Add check if cost_mat == None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;majority_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;weighted_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
+            <span class="c1">#TODO: Add check if cost_mat == None</span>
             <span class="n">X_bmr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_bmr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_bmr</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
 
@@ -728,16 +706,16 @@
 <span class="sd">            The class probabilities of the input samples. The order of the</span>
 <span class="sd">            classes corresponds to that in the attribute `classes_`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># Check data</span>
-        <span class="c"># X = check_array(X, accept_sparse=[&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Dont in version 0.15</span>
+        <span class="c1"># Check data</span>
+        <span class="c1"># X = check_array(X, accept_sparse=[&#39;csr&#39;, &#39;csc&#39;, &#39;coo&#39;])  # Dont in version 0.15</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Number of features of the model must &quot;</span>
-                             <span class="s">&quot;match the input. Model n_features is {0} and &quot;</span>
-                             <span class="s">&quot;input n_features is {1}.&quot;</span>
-                             <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of features of the model must &quot;</span>
+                             <span class="s2">&quot;match the input. Model n_features is {0} and &quot;</span>
+                             <span class="s2">&quot;input n_features is {1}.&quot;</span>
+                             <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-        <span class="c"># Parallel loop</span>
+        <span class="c1"># Parallel loop</span>
         <span class="n">n_jobs</span><span class="p">,</span> <span class="n">n_estimators</span><span class="p">,</span> <span class="n">starts</span> <span class="o">=</span> <span class="n">_partition_estimators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
 
         <span class="n">all_proba</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)(</span>
@@ -750,12 +728,12 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">estimators_weight_</span><span class="p">[</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">))</span>
 
-        <span class="c"># Reduce</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span> <span class="s">&#39;majority_bmr&#39;</span><span class="p">]:</span>
+        <span class="c1"># Reduce</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span> <span class="s1">&#39;majority_bmr&#39;</span><span class="p">]:</span>
             <span class="n">proba</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">all_proba</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;weighted_voting&#39;</span><span class="p">,</span> <span class="s">&#39;weighted_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;weighted_voting&#39;</span><span class="p">,</span> <span class="s1">&#39;weighted_bmr&#39;</span><span class="p">]:</span>
             <span class="n">proba</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">all_proba</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;stacking&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;stacking&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_bmr&#39;</span><span class="p">,</span> <span class="s1">&#39;stacking_proba_bmr&#39;</span><span class="p">]:</span>
             <span class="n">X_stacking</span> <span class="o">=</span> <span class="n">_create_stacking_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span><span class="p">,</span>
                                               <span class="bp">self</span><span class="o">.</span><span class="n">estimators_weight_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span><span class="p">)</span>
             <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_staking</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_stacking</span><span class="p">)</span>
@@ -763,6 +741,7 @@
         <span class="k">return</span> <span class="n">proba</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -771,10 +750,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

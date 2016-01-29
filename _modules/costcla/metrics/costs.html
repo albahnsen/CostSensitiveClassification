@@ -34,7 +34,7 @@
         <link rel="up" title="costcla.metrics" href="../metrics.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -150,7 +127,8 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.metrics.costs</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;Metrics to assess performance on cost-sensitive classification tasks</span>
@@ -163,16 +141,16 @@
 <span class="sd">the lower the better</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">column_or_1d</span>
-<span class="c"># from sklearn.utils import check_consistent_length  # Not in 0.15.1</span>
+<span class="c1"># from sklearn.utils import check_consistent_length  # Not in 0.15.1</span>
 
 
 <div class="viewcode-block" id="cost_loss"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.cost_loss">[docs]</a><span class="k">def</span> <span class="nf">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
-    <span class="c">#TODO: update description</span>
+    <span class="c1">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Cost classification loss.</span>
 
 <span class="sd">    This function calculates the cost of using y_pred on y_true with</span>
@@ -225,7 +203,7 @@
 <span class="sd">    3</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c">#TODO: Check consistency of cost_mat</span>
+    <span class="c1">#TODO: Check consistency of cost_mat</span>
 
     <span class="n">y_true</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
     <span class="n">y_true</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
@@ -233,11 +211,11 @@
     <span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
     <span class="n">cost</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_pred</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
     <span class="n">cost</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="savings_score"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.savings_score">[docs]</a><span class="k">def</span> <span class="nf">savings_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">):</span>
-    <span class="c">#TODO: update description</span>
+    <span class="c1">#TODO: update description</span>
     <span class="sd">&quot;&quot;&quot;Savings score.</span>
 
 <span class="sd">    This function calculates the savings cost of using y_pred on y_true with</span>
@@ -285,22 +263,22 @@
 <span class="sd">    0.5</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c">#TODO: Check consistency of cost_mat</span>
+    <span class="c1">#TODO: Check consistency of cost_mat</span>
     <span class="n">y_true</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
     <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
 
-    <span class="c"># Calculate the cost of naive prediction</span>
+    <span class="c1"># Calculate the cost of naive prediction</span>
     <span class="n">cost_base</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">cost_mat</span><span class="p">),</span>
                     <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">cost_mat</span><span class="p">))</span>
 
     <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cost</span> <span class="o">/</span> <span class="n">cost_base</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cost</span> <span class="o">/</span> <span class="n">cost_base</span></div>
 
 
-<span class="c"># from https://github.com/agramfort/scikit-learn/blob/isotonic_calibration/sklearn/metrics/classification.py</span>
-<span class="c"># Waiting for https://github.com/scikit-learn/scikit-learn/pull/1176</span>
-<span class="c">#TODO: Remove when #1176 is merged</span></div>
+<span class="c1"># from https://github.com/agramfort/scikit-learn/blob/isotonic_calibration/sklearn/metrics/classification.py</span>
+<span class="c1"># Waiting for https://github.com/scikit-learn/scikit-learn/pull/1176</span>
+<span class="c1">#TODO: Remove when #1176 is merged</span>
 <div class="viewcode-block" id="brier_score_loss"><a class="viewcode-back" href="../../../Metrics.html#costcla.metrics.brier_score_loss">[docs]</a><span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the Brier score</span>
 
@@ -355,6 +333,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_prob</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -363,10 +342,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,18 +125,19 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.sampling.sampling</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module include the sampling methods</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">costcla.sampling._smote</span> <span class="kn">import</span> <span class="n">_SMOTE</span>
+<span class="kn">from</span> <span class="nn">._smote</span> <span class="kn">import</span> <span class="n">_SMOTE</span>
 
 <div class="viewcode-block" id="undersampling"><a class="viewcode-back" href="../../../Sampling.html#costcla.sampling.undersampling">[docs]</a><span class="k">def</span> <span class="nf">undersampling</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Under-sampling.</span>
@@ -182,13 +160,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c">#TODO: allow y different from (0, 1)</span>
+    <span class="c1">#TODO: allow y different from (0, 1)</span>
     <span class="n">num_y1</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">num_y0</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="n">num_y1</span>
 
     <span class="n">filter_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num_y1</span> <span class="o">+</span> <span class="n">num_y0</span><span class="p">))</span>
 
-    <span class="c">#TODO: rewrite in a more readable way</span>
+    <span class="c1">#TODO: rewrite in a more readable way</span>
     <span class="k">if</span> <span class="n">num_y1</span> <span class="o">&lt;</span> <span class="n">num_y0</span><span class="p">:</span>
         <span class="n">num_y0_new</span> <span class="o">=</span> <span class="n">num_y1</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">per</span> <span class="o">-</span> <span class="n">num_y1</span>
         <span class="n">num_y0_new_per</span> <span class="o">=</span> <span class="n">num_y0_new</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">num_y0</span>
@@ -207,9 +185,9 @@
         <span class="n">cost_mat_u</span> <span class="o">=</span> <span class="n">cost_mat</span><span class="p">[</span><span class="n">filter_</span><span class="p">,</span> <span class="p">:]</span>
         <span class="k">return</span> <span class="n">X_u</span><span class="p">,</span> <span class="n">y_u</span><span class="p">,</span> <span class="n">cost_mat_u</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">X_u</span><span class="p">,</span> <span class="n">y_u</span>
+        <span class="k">return</span> <span class="n">X_u</span><span class="p">,</span> <span class="n">y_u</span></div>
     
-</div>
+
 <div class="viewcode-block" id="smote"><a class="viewcode-back" href="../../../Sampling.html#costcla.sampling.smote">[docs]</a><span class="k">def</span> <span class="nf">smote</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;SMOTE: synthetic minority over-sampling technique</span>
 
@@ -242,20 +220,20 @@
 <span class="sd">    &gt;&gt;&gt; data = load_creditscoring1()</span>
 <span class="sd">    &gt;&gt;&gt; data_smote, target_smote = smote(data.data, data.target, per=0.7)</span>
 <span class="sd">    &gt;&gt;&gt; # Size of each training set</span>
-<span class="sd">    &gt;&gt;&gt; print data.data.shape[0], data_smote.shape[0]</span>
+<span class="sd">    &gt;&gt;&gt; print(data.data.shape[0], data_smote.shape[0])</span>
 <span class="sd">    112915 204307</span>
 <span class="sd">    &gt;&gt;&gt; # Percentage of positives in each training set</span>
-<span class="sd">    &gt;&gt;&gt; print data.target.mean(), target_smote.mean()</span>
+<span class="sd">    &gt;&gt;&gt; print(data.target.mean(), target_smote.mean())</span>
 <span class="sd">    0.0674489660364 0.484604051746</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c">#TODO: Add random state</span>
-    <span class="c">#TODO: Check input</span>
+    <span class="c1">#TODO: Add random state</span>
+    <span class="c1">#TODO: Check input</span>
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c">#TODO: allow y different from (0, 1)</span>
+    <span class="c1">#TODO: allow y different from (0, 1)</span>
     <span class="n">num_y1</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">num_y0</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="n">num_y1</span>
 
-    <span class="c">#TODO: rewrite in a more readable way</span>
+    <span class="c1">#TODO: rewrite in a more readable way</span>
     <span class="k">if</span> <span class="n">num_y1</span> <span class="o">&lt;</span> <span class="n">num_y0</span><span class="p">:</span>
         <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">num_y0</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">per</span><span class="p">)</span> <span class="o">-</span> <span class="n">num_y0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_y1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
         <span class="n">X_m</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
@@ -276,11 +254,12 @@
     <span class="n">y_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_samples_s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">minority</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">y_s</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">num_y1</span><span class="p">,</span> <span class="n">num_y0</span><span class="p">):]</span> <span class="o">=</span> <span class="n">minority</span>
 
-    <span class="c">#TODO: Include cost_mat</span>
+    <span class="c1">#TODO: Include cost_mat</span>
 
     <span class="k">return</span> <span class="n">X_s</span><span class="p">,</span> <span class="n">y_s</span></div>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -289,10 +268,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,7 +125,8 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.datasets.base</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -156,11 +134,11 @@
 <span class="sd">https://github.com/scikit-learn/scikit-learn/blob/56057c9630dd13f3c61fbb4c7debdff6ba8e9e8c/sklearn/datasets/base.py</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Copyright (c) 2007 David Cournapeau &lt;cournape@gmail.com&gt;</span>
-<span class="c">#               2010 Fabian Pedregosa &lt;fabian.pedregosa@inria.fr&gt;</span>
-<span class="c">#               2010 Olivier Grisel &lt;olivier.grisel@ensta.org&gt;</span>
-<span class="c">#               2014 Alejandro CORREA BAHNSEN &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Copyright (c) 2007 David Cournapeau &lt;cournape@gmail.com&gt;</span>
+<span class="c1">#               2010 Fabian Pedregosa &lt;fabian.pedregosa@inria.fr&gt;</span>
+<span class="c1">#               2010 Olivier Grisel &lt;olivier.grisel@ensta.org&gt;</span>
+<span class="c1">#               2014 Alejandro CORREA BAHNSEN &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
@@ -215,69 +193,69 @@
 <span class="sd">           [ 1.        ,  5.11141597,  1.        ,  0.        ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">module_path</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;bankmarketing.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">&#39;gzip&#39;</span><span class="p">)</span>
-    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;descr&#39;</span><span class="p">,</span> <span class="s">&#39;bankmarketing.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;bankmarketing.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;descr&#39;</span><span class="p">,</span> <span class="s1">&#39;bankmarketing.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c">#only use features pre-contact:</span>
-    <span class="c"># 1 - age (numeric)</span>
-    <span class="c"># 2 - job : type of job (categorical: &quot;admin.&quot;,&quot;unknown&quot;,&quot;unemployed&quot;,&quot;management&quot;,&quot;housemaid&quot;,&quot;entrepreneur&quot;,</span>
-    <span class="c">#                        &quot;student&quot;,&quot;blue-collar&quot;,&quot;self-employed&quot;,&quot;retired&quot;,&quot;technician&quot;,&quot;services&quot;)</span>
-    <span class="c"># 3 - marital : marital status (categorical: &quot;married&quot;,&quot;divorced&quot;,&quot;single&quot;;</span>
-    <span class="c">#                               note: &quot;divorced&quot; means divorced or widowed)</span>
-    <span class="c"># 4 - education (categorical: &quot;unknown&quot;,&quot;secondary&quot;,&quot;primary&quot;,&quot;tertiary&quot;)</span>
-    <span class="c"># 5 - default: has credit in default? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
-    <span class="c"># 6 - balance: average yearly balance, in euros (numeric)</span>
-    <span class="c"># 7 - housing: has housing loan? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
-    <span class="c"># 8 - loan: has personal loan? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
-    <span class="c"># 15 - previous: number of contacts performed before this campaign and for this client (numeric)</span>
-    <span class="c"># 16 - poutcome: outcome of the previous marketing campaign (categorical: &quot;unknown&quot;,&quot;other&quot;,&quot;failure&quot;,&quot;success&quot;)</span>
+    <span class="c1">#only use features pre-contact:</span>
+    <span class="c1"># 1 - age (numeric)</span>
+    <span class="c1"># 2 - job : type of job (categorical: &quot;admin.&quot;,&quot;unknown&quot;,&quot;unemployed&quot;,&quot;management&quot;,&quot;housemaid&quot;,&quot;entrepreneur&quot;,</span>
+    <span class="c1">#                        &quot;student&quot;,&quot;blue-collar&quot;,&quot;self-employed&quot;,&quot;retired&quot;,&quot;technician&quot;,&quot;services&quot;)</span>
+    <span class="c1"># 3 - marital : marital status (categorical: &quot;married&quot;,&quot;divorced&quot;,&quot;single&quot;;</span>
+    <span class="c1">#                               note: &quot;divorced&quot; means divorced or widowed)</span>
+    <span class="c1"># 4 - education (categorical: &quot;unknown&quot;,&quot;secondary&quot;,&quot;primary&quot;,&quot;tertiary&quot;)</span>
+    <span class="c1"># 5 - default: has credit in default? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
+    <span class="c1"># 6 - balance: average yearly balance, in euros (numeric)</span>
+    <span class="c1"># 7 - housing: has housing loan? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
+    <span class="c1"># 8 - loan: has personal loan? (binary: &quot;yes&quot;,&quot;no&quot;)</span>
+    <span class="c1"># 15 - previous: number of contacts performed before this campaign and for this client (numeric)</span>
+    <span class="c1"># 16 - poutcome: outcome of the previous marketing campaign (categorical: &quot;unknown&quot;,&quot;other&quot;,&quot;failure&quot;,&quot;success&quot;)</span>
 
-    <span class="c">#Folloring features exclude because are collected after the contact event</span>
-    <span class="c"># # related with the last contact of the current campaign:</span>
-    <span class="c"># 9 - contact: contact communication type (categorical: &quot;unknown&quot;,&quot;telephone&quot;,&quot;cellular&quot;)</span>
-    <span class="c"># 10 - day: last contact day of the month (numeric)</span>
-    <span class="c"># 11 - month: last contact month of year (categorical: &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, ..., &quot;nov&quot;, &quot;dec&quot;)</span>
-    <span class="c"># 12 - duration: last contact duration, in seconds (numeric)</span>
-    <span class="c"># # other attributes:</span>
-    <span class="c"># 13 - campaign: number of contacts performed during this campaign and for this client</span>
-    <span class="c"># 14 - pdays: number of days that passed by after the client was last contacted from a</span>
-    <span class="c">#       previous campaign (numeric, -1 means client was not previously contacted)</span>
+    <span class="c1">#Folloring features exclude because are collected after the contact event</span>
+    <span class="c1"># # related with the last contact of the current campaign:</span>
+    <span class="c1"># 9 - contact: contact communication type (categorical: &quot;unknown&quot;,&quot;telephone&quot;,&quot;cellular&quot;)</span>
+    <span class="c1"># 10 - day: last contact day of the month (numeric)</span>
+    <span class="c1"># 11 - month: last contact month of year (categorical: &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, ..., &quot;nov&quot;, &quot;dec&quot;)</span>
+    <span class="c1"># 12 - duration: last contact duration, in seconds (numeric)</span>
+    <span class="c1"># # other attributes:</span>
+    <span class="c1"># 13 - campaign: number of contacts performed during this campaign and for this client</span>
+    <span class="c1"># 14 - pdays: number of days that passed by after the client was last contacted from a</span>
+    <span class="c1">#       previous campaign (numeric, -1 means client was not previously contacted)</span>
 
-    <span class="c">#Filter if balance&gt;0</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;balance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#Filter if balance&gt;0</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
-    <span class="n">target</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="s">&#39;yes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">target</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="c"># Create dummies</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span> <span class="s">&#39;balance&#39;</span><span class="p">,</span> <span class="s">&#39;previous&#39;</span><span class="p">]]</span>
-    <span class="n">cols_dummies</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;job&#39;</span><span class="p">,</span> <span class="s">&#39;marital&#39;</span><span class="p">,</span> <span class="s">&#39;education&#39;</span><span class="p">,</span> <span class="s">&#39;default&#39;</span><span class="p">,</span> <span class="s">&#39;housing&#39;</span><span class="p">,</span> <span class="s">&#39;loan&#39;</span><span class="p">,</span> <span class="s">&#39;poutcome&#39;</span><span class="p">]</span>
+    <span class="c1"># Create dummies</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">,</span> <span class="s1">&#39;previous&#39;</span><span class="p">]]</span>
+    <span class="n">cols_dummies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;job&#39;</span><span class="p">,</span> <span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;housing&#39;</span><span class="p">,</span> <span class="s1">&#39;loan&#39;</span><span class="p">,</span> <span class="s1">&#39;poutcome&#39;</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">col_</span> <span class="ow">in</span> <span class="n">cols_dummies</span><span class="p">:</span>
         <span class="n">temp_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="n">col_</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col_</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp_</span><span class="p">)</span>
 
-    <span class="c"># Calculate cost_mat (see[1])</span>
+    <span class="c1"># Calculate cost_mat (see[1])</span>
     <span class="k">if</span> <span class="n">cost_mat_parameters</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;per_balance&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s">&#39;ca&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.02463333</span><span class="p">}</span>
+        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;per_balance&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;ca&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.02463333</span><span class="p">}</span>
 
-    <span class="n">per_balance</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;per_balance&#39;</span><span class="p">]</span>
-    <span class="n">ca</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;ca&#39;</span><span class="p">]</span>
-    <span class="n">int_r</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;int_r&#39;</span><span class="p">]</span>
+    <span class="n">per_balance</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;per_balance&#39;</span><span class="p">]</span>
+    <span class="n">ca</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;ca&#39;</span><span class="p">]</span>
+    <span class="n">int_r</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;int_r&#39;</span><span class="p">]</span>
 
-    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c"># cost_mat[FP,FN,TP,TN]</span>
+    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># cost_mat[FP,FN,TP,TN]</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ca</span>
-    <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">int_r</span> <span class="o">*</span> <span class="n">per_balance</span><span class="p">,</span> <span class="n">ca</span><span class="p">)</span>  <span class="c"># C_FN &gt;= C_TN Elkan</span>
+    <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">int_r</span> <span class="o">*</span> <span class="n">per_balance</span><span class="p">,</span> <span class="n">ca</span><span class="p">)</span>  <span class="c1"># C_FN &gt;= C_TN Elkan</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ca</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="n">cost_mat</span><span class="p">,</span>
-                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;no&#39;</span><span class="p">,</span> <span class="s">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
-                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;DirectMarketing&#39;</span><span class="p">)</span>
+                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
+                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DirectMarketing&#39;</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="load_creditscoring1"><a class="viewcode-back" href="../../../Datasets.html#costcla.datasets.load_creditscoring1">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring1</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring Kaggle Credit competition dataset (classification).</span>
 
@@ -318,35 +296,35 @@
 <span class="sd">           [  1004.32819923,  17990.25      ,      0.        ,      0.        ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">module_path</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;creditscoring1.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">&#39;gzip&#39;</span><span class="p">)</span>
-    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;descr&#39;</span><span class="p">,</span> <span class="s">&#39;creditscoring1.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;creditscoring1.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;descr&#39;</span><span class="p">,</span> <span class="s1">&#39;creditscoring1.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c"># Exclude MonthlyIncome = nan or =0 or DebtRatio &gt;1</span>
+    <span class="c1"># Exclude MonthlyIncome = nan or =0 or DebtRatio &gt;1</span>
     <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;MonthlyIncome&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;DebtRatio&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;MonthlyIncome&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;DebtRatio&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)]</span>
 
-    <span class="n">target</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;SeriousDlqin2yrs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;SeriousDlqin2yrs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">&#39;SeriousDlqin2yrs&#39;</span><span class="p">,</span> <span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;SeriousDlqin2yrs&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="c"># Calculate cost_mat (see[1])</span>
+    <span class="c1"># Calculate cost_mat (see[1])</span>
     <span class="k">if</span> <span class="n">cost_mat_parameters</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.0479</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
-                               <span class="s">&#39;int_cf&#39;</span><span class="p">:</span> <span class="mf">0.0294</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
-                               <span class="s">&#39;cl_max&#39;</span><span class="p">:</span> <span class="mi">25000</span><span class="p">,</span>
-                               <span class="s">&#39;n_term&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
-                               <span class="s">&#39;k&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-                               <span class="s">&#39;lgd&#39;</span><span class="p">:</span> <span class="o">.</span><span class="mi">75</span><span class="p">}</span>
+        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.0479</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
+                               <span class="s1">&#39;int_cf&#39;</span><span class="p">:</span> <span class="mf">0.0294</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
+                               <span class="s1">&#39;cl_max&#39;</span><span class="p">:</span> <span class="mi">25000</span><span class="p">,</span>
+                               <span class="s1">&#39;n_term&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+                               <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                               <span class="s1">&#39;lgd&#39;</span><span class="p">:</span> <span class="o">.</span><span class="mi">75</span><span class="p">}</span>
 
     <span class="n">pi_1</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">_creditscoring_costmat</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;MonthlyIncome&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;DebtRatio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pi_1</span><span class="p">,</span> <span class="n">cost_mat_parameters</span><span class="p">)</span>
+    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">_creditscoring_costmat</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MonthlyIncome&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;DebtRatio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pi_1</span><span class="p">,</span> <span class="n">cost_mat_parameters</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="n">cost_mat</span><span class="p">,</span>
-                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;no&#39;</span><span class="p">,</span> <span class="s">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
-                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;CreditScoring_Kaggle2011&#39;</span><span class="p">)</span>
+                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
+                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;CreditScoring_Kaggle2011&#39;</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="load_creditscoring2"><a class="viewcode-back" href="../../../Datasets.html#costcla.datasets.load_creditscoring2">[docs]</a><span class="k">def</span> <span class="nf">load_creditscoring2</span><span class="p">(</span><span class="n">cost_mat_parameters</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load and return the credit scoring PAKDD 2009 competition dataset (classification).</span>
 
@@ -387,50 +365,50 @@
 <span class="sd">           [  89.   ,  371.25 ,    0.   ,    0.   ]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">module_path</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;creditscoring2.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">&#39;gzip&#39;</span><span class="p">)</span>
-    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s">&#39;descr&#39;</span><span class="p">,</span> <span class="s">&#39;creditscoring2.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;creditscoring2.csv.gz&#39;</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+    <span class="n">descr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;descr&#39;</span><span class="p">,</span> <span class="s1">&#39;creditscoring2.rst&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c"># Exclude TARGET_LABEL_BAD=1 == &#39;N&#39;</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;TARGET_LABEL_BAD=1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;N&#39;</span><span class="p">]</span>
+    <span class="c1"># Exclude TARGET_LABEL_BAD=1 == &#39;N&#39;</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;TARGET_LABEL_BAD=1&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;N&#39;</span><span class="p">]</span>
 
-    <span class="c"># Exclude 100&lt;PERSONAL_NET_INCOME&lt;10000</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)]</span>
-    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)]</span>
+    <span class="c1"># Exclude 100&lt;PERSONAL_NET_INCOME&lt;10000</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)]</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)]</span>
 
-    <span class="n">target</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="s">&#39;TARGET_LABEL_BAD=1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;TARGET_LABEL_BAD=1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 
-    <span class="c"># Continuous features</span>
-    <span class="n">cols_con</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ID_SHOP&#39;</span><span class="p">,</span> <span class="s">&#39;AGE&#39;</span><span class="p">,</span> <span class="s">&#39;AREA_CODE_RESIDENCIAL_PHONE&#39;</span><span class="p">,</span> <span class="s">&#39;PAYMENT_DAY&#39;</span><span class="p">,</span> <span class="s">&#39;SHOP_RANK&#39;</span><span class="p">,</span>
-                <span class="s">&#39;MONTHS_IN_RESIDENCE&#39;</span><span class="p">,</span> <span class="s">&#39;MONTHS_IN_THE_JOB&#39;</span><span class="p">,</span> <span class="s">&#39;PROFESSION_CODE&#39;</span><span class="p">,</span> <span class="s">&#39;MATE_INCOME&#39;</span><span class="p">,</span>
-                <span class="s">&#39;QUANT_ADDITIONAL_CARDS_IN_THE_APPLICATION&#39;</span><span class="p">,</span> <span class="s">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span>
+    <span class="c1"># Continuous features</span>
+    <span class="n">cols_con</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID_SHOP&#39;</span><span class="p">,</span> <span class="s1">&#39;AGE&#39;</span><span class="p">,</span> <span class="s1">&#39;AREA_CODE_RESIDENCIAL_PHONE&#39;</span><span class="p">,</span> <span class="s1">&#39;PAYMENT_DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;SHOP_RANK&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;MONTHS_IN_RESIDENCE&#39;</span><span class="p">,</span> <span class="s1">&#39;MONTHS_IN_THE_JOB&#39;</span><span class="p">,</span> <span class="s1">&#39;PROFESSION_CODE&#39;</span><span class="p">,</span> <span class="s1">&#39;MATE_INCOME&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;QUANT_ADDITIONAL_CARDS_IN_THE_APPLICATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">cols_con</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-    <span class="n">cols_dummies</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;SEX&#39;</span><span class="p">,</span> <span class="s">&#39;MARITAL_STATUS&#39;</span><span class="p">,</span> <span class="s">&#39;FLAG_RESIDENCIAL_PHONE&#39;</span><span class="p">,</span> <span class="s">&#39;RESIDENCE_TYPE&#39;</span><span class="p">,</span>
-                    <span class="s">&#39;FLAG_MOTHERS_NAME&#39;</span><span class="p">,</span> <span class="s">&#39;FLAG_FATHERS_NAME&#39;</span><span class="p">,</span> <span class="s">&#39;FLAG_RESIDENCE_TOWN_eq_WORKING_TOWN&#39;</span><span class="p">,</span>
-                    <span class="s">&#39;FLAG_RESIDENCE_STATE_eq_WORKING_STATE&#39;</span><span class="p">,</span> <span class="s">&#39;FLAG_RESIDENCIAL_ADDRESS_eq_POSTAL_ADDRESS&#39;</span><span class="p">]</span>
+    <span class="n">cols_dummies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SEX&#39;</span><span class="p">,</span> <span class="s1">&#39;MARITAL_STATUS&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_RESIDENCIAL_PHONE&#39;</span><span class="p">,</span> <span class="s1">&#39;RESIDENCE_TYPE&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;FLAG_MOTHERS_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_FATHERS_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_RESIDENCE_TOWN_eq_WORKING_TOWN&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;FLAG_RESIDENCE_STATE_eq_WORKING_STATE&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG_RESIDENCIAL_ADDRESS_eq_POSTAL_ADDRESS&#39;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">col_</span> <span class="ow">in</span> <span class="n">cols_dummies</span><span class="p">:</span>
         <span class="n">temp_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="n">col_</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col_</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp_</span><span class="p">)</span>
 
-    <span class="c"># Calculate cost_mat (see[1])</span>
+    <span class="c1"># Calculate cost_mat (see[1])</span>
     <span class="k">if</span> <span class="n">cost_mat_parameters</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.63</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
-                               <span class="s">&#39;int_cf&#39;</span><span class="p">:</span> <span class="mf">0.165</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
-                               <span class="s">&#39;cl_max&#39;</span><span class="p">:</span> <span class="mi">25000</span> <span class="o">*</span> <span class="mf">0.33</span><span class="p">,</span>
-                               <span class="s">&#39;n_term&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
-                               <span class="s">&#39;k&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-                               <span class="s">&#39;lgd&#39;</span><span class="p">:</span> <span class="o">.</span><span class="mi">75</span><span class="p">}</span>
+        <span class="n">cost_mat_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;int_r&#39;</span><span class="p">:</span> <span class="mf">0.63</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
+                               <span class="s1">&#39;int_cf&#39;</span><span class="p">:</span> <span class="mf">0.165</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span>
+                               <span class="s1">&#39;cl_max&#39;</span><span class="p">:</span> <span class="mi">25000</span> <span class="o">*</span> <span class="mf">0.33</span><span class="p">,</span>
+                               <span class="s1">&#39;n_term&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+                               <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                               <span class="s1">&#39;lgd&#39;</span><span class="p">:</span> <span class="o">.</span><span class="mi">75</span><span class="p">}</span>
 
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">pi_1</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">monthly_income</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mf">0.33</span>
+    <span class="n">monthly_income</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;PERSONAL_NET_INCOME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mf">0.33</span>
     <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">_creditscoring_costmat</span><span class="p">(</span><span class="n">monthly_income</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">pi_1</span><span class="p">,</span> <span class="n">cost_mat_parameters</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">cost_mat</span><span class="o">=</span><span class="n">cost_mat</span><span class="p">,</span>
-                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;no&#39;</span><span class="p">,</span> <span class="s">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
-                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;CreditScoring_PAKDD2009&#39;</span><span class="p">)</span>
+                 <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">],</span> <span class="n">DESCR</span><span class="o">=</span><span class="n">descr</span><span class="p">,</span>
+                 <span class="n">feature_names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;CreditScoring_PAKDD2009&#39;</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">_creditscoring_costmat</span><span class="p">(</span><span class="n">income</span><span class="p">,</span> <span class="n">debt</span><span class="p">,</span> <span class="n">pi_1</span><span class="p">,</span> <span class="n">cost_mat_parameters</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Private function to calculate the cost matrix of credit scoring models.</span>
 
@@ -467,7 +445,7 @@
         <span class="sd">&quot;&quot;&quot; Private function &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">int_</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">int_</span><span class="p">)</span> <span class="o">**</span> <span class="n">n_term</span><span class="p">)</span>
 
-    <span class="c">#Calculate credit line Cl</span>
+    <span class="c1">#Calculate credit line Cl</span>
     <span class="k">def</span> <span class="nf">calculate_cl</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">inc_i</span><span class="p">,</span> <span class="n">cl_max</span><span class="p">,</span> <span class="n">debt_i</span><span class="p">,</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">n_term</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Private function &quot;&quot;&quot;</span>
         <span class="n">cl_k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">inc_i</span>
@@ -475,7 +453,7 @@
         <span class="n">Cl_debt</span> <span class="o">=</span> <span class="n">calculate_pv</span><span class="p">(</span><span class="n">inc_i</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">A</span> <span class="o">/</span> <span class="n">inc_i</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">debt_i</span><span class="p">),</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">n_term</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">cl_k</span><span class="p">,</span> <span class="n">cl_max</span><span class="p">,</span> <span class="n">Cl_debt</span><span class="p">)</span>
 
-    <span class="c">#calculate costs</span>
+    <span class="c1">#calculate costs</span>
     <span class="k">def</span> <span class="nf">calculate_cost_fn</span><span class="p">(</span><span class="n">cl_i</span><span class="p">,</span> <span class="n">lgd</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">cl_i</span> <span class="o">*</span> <span class="n">lgd</span>
 
@@ -492,19 +470,19 @@
 
     <span class="n">v_calculate_cl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">calculate_cl</span><span class="p">)</span>
 
-    <span class="c"># Parameters</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;k&#39;</span><span class="p">]</span>
-    <span class="n">int_r</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;int_r&#39;</span><span class="p">]</span>
-    <span class="n">n_term</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;n_term&#39;</span><span class="p">]</span>
-    <span class="n">int_cf</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;int_cf&#39;</span><span class="p">]</span>
-    <span class="n">lgd</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;lgd&#39;</span><span class="p">]</span>
-    <span class="n">cl_max</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s">&#39;cl_max&#39;</span><span class="p">]</span>
+    <span class="c1"># Parameters</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span>
+    <span class="n">int_r</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;int_r&#39;</span><span class="p">]</span>
+    <span class="n">n_term</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;n_term&#39;</span><span class="p">]</span>
+    <span class="n">int_cf</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;int_cf&#39;</span><span class="p">]</span>
+    <span class="n">lgd</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;lgd&#39;</span><span class="p">]</span>
+    <span class="n">cl_max</span> <span class="o">=</span> <span class="n">cost_mat_parameters</span><span class="p">[</span><span class="s1">&#39;cl_max&#39;</span><span class="p">]</span>
 
     <span class="n">cl</span> <span class="o">=</span> <span class="n">v_calculate_cl</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">income</span><span class="p">,</span> <span class="n">cl_max</span><span class="p">,</span> <span class="n">debt</span><span class="p">,</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">n_term</span><span class="p">)</span>
     <span class="n">cl_avg</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
     <span class="n">n_samples</span> <span class="o">=</span> <span class="n">income</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c">#cost_mat[FP,FN,TP,TN]</span>
+    <span class="n">cost_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1">#cost_mat[FP,FN,TP,TN]</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_calculate_cost_fp</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">n_term</span><span class="p">,</span> <span class="n">int_cf</span><span class="p">,</span> <span class="n">pi_1</span><span class="p">,</span> <span class="n">lgd</span><span class="p">,</span> <span class="n">cl_avg</span><span class="p">)</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_calculate_cost_fn</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">lgd</span><span class="p">)</span>
     <span class="n">cost_mat</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -513,6 +491,7 @@
     <span class="k">return</span> <span class="n">cost_mat</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -521,10 +500,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

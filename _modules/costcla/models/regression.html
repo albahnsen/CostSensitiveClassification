@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,28 +125,29 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.models.regression</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module include the cost-sensitive logistic regression method.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
-<span class="c"># from sklearn.linear_model.logistic import _intercept_dot</span>
+<span class="c1"># from sklearn.linear_model.logistic import _intercept_dot</span>
 <span class="kn">from</span> <span class="nn">pyea</span> <span class="kn">import</span> <span class="n">GeneticAlgorithmOptimizer</span>
 <span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">cost_loss</span>
 
-<span class="c"># Not in sklearn 0.15, is in 0.16-git</span>
-<span class="c">#TODO: replace once sklearn 0.16 is release</span>
-<span class="c"># The one in sklearn 0.16 return yz instead of z, therefore,</span>
-<span class="c"># the impact on the code should be addressed before making the change.</span>
+<span class="c1"># Not in sklearn 0.15, is in 0.16-git</span>
+<span class="c1">#TODO: replace once sklearn 0.16 is release</span>
+<span class="c1"># The one in sklearn 0.16 return yz instead of z, therefore,</span>
+<span class="c1"># the impact on the code should be addressed before making the change.</span>
 <span class="k">def</span> <span class="nf">_intercept_dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes y * np.dot(X, w).</span>
 
@@ -237,11 +215,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">w</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
-        <span class="c"># Only evaluating one w</span>
+        <span class="c1"># Only evaluating one w</span>
         <span class="k">return</span> <span class="n">_logistic_cost_loss_i</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="c"># Evaluating a set of w</span>
+        <span class="c1"># Evaluating a set of w</span>
         <span class="n">n_w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_w</span><span class="p">)</span>
 
@@ -319,10 +297,10 @@
 <span class="sd">    &gt;&gt;&gt; f.fit(X_train, y_train, cost_mat_train)</span>
 <span class="sd">    &gt;&gt;&gt; y_pred_test_cslr = f.predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using Logistic Regression</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_lr, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_lr, cost_mat_test))</span>
 <span class="sd">    0.00283419465107</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using Cost Sensitive Logistic Regression</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_cslr, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_cslr, cost_mat_test))</span>
 <span class="sd">    0.142872237978</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
@@ -330,7 +308,7 @@
                  <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                  <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">solver</span><span class="o">=</span><span class="s">&#39;ga&#39;</span><span class="p">,</span>
+                 <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;ga&#39;</span><span class="p">,</span>
                  <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 
@@ -366,7 +344,7 @@
 <span class="sd">            Returns self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c">#TODO: Check input</span>
+        <span class="c1">#TODO: Check input</span>
 
         <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
@@ -374,12 +352,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">==</span> <span class="s">&#39;ga&#39;</span><span class="p">:</span>
-            <span class="c">#TODO: add n_jobs</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;ga&#39;</span><span class="p">:</span>
+            <span class="c1">#TODO: add n_jobs</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">GeneticAlgorithmOptimizer</span><span class="p">(</span><span class="n">_logistic_cost_loss</span><span class="p">,</span>
                                             <span class="n">w0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                             <span class="n">iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span>
-                                            <span class="n">type_</span><span class="o">=</span><span class="s">&#39;cont&#39;</span><span class="p">,</span>
+                                            <span class="n">type_</span><span class="o">=</span><span class="s1">&#39;cont&#39;</span><span class="p">,</span>
                                             <span class="n">n_chromosomes</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                                             <span class="n">per_mutations</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
                                             <span class="n">n_elite</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -389,7 +367,7 @@
                                             <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
             <span class="n">res</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">==</span> <span class="s">&#39;bfgs&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;bfgs&#39;</span><span class="p">:</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">disp</span> <span class="o">=</span> <span class="bp">True</span>
@@ -398,17 +376,17 @@
 
             <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">_logistic_cost_loss</span><span class="p">,</span>
                            <span class="n">w0</span><span class="p">,</span>
-                           <span class="n">method</span><span class="o">=</span><span class="s">&#39;BFGS&#39;</span><span class="p">,</span>
+                           <span class="n">method</span><span class="o">=</span><span class="s1">&#39;BFGS&#39;</span><span class="p">,</span>
                            <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cost_mat</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">),</span>
                            <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
-                           <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;maxiter&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="s">&#39;disp&#39;</span><span class="p">:</span> <span class="n">disp</span><span class="p">})</span>
+                           <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;maxiter&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="n">disp</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
-</div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span></div>
+
 <div class="viewcode-block" id="CostSensitiveLogisticRegression.predict_proba"><a class="viewcode-back" href="../../../CostSensitiveLogisticRegression.html#costcla.models.CostSensitiveLogisticRegression.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Probability estimates.</span>
 
@@ -426,8 +404,8 @@
         <span class="n">y_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">_sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
         <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y_prob</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">y_prob</span>
-</div>
+        <span class="k">return</span> <span class="n">y_prob</span></div>
+
 <div class="viewcode-block" id="CostSensitiveLogisticRegression.predict"><a class="viewcode-back" href="../../../CostSensitiveLogisticRegression.html#costcla.models.CostSensitiveLogisticRegression.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">cut_point</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Predicted class.</span>
 
@@ -443,6 +421,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cut_point</span><span class="p">))</span></div></div>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -451,10 +430,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 

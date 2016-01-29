@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,17 +44,23 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="../../../index.html" class="icon icon-home"> costcla
-        
+          
+            <a href="../../../index.html" class="icon icon-home"> costcla
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -63,62 +69,27 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul>
+            
+            
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../BayesMinimumRiskClassifier.html">BayesMinimumRiskClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../ThresholdingOptimization.html">ThresholdingOptimization</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveLogisticRegression.html">CostSensitiveLogisticRegression</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveDecisionTreeClassifier.html">CostSensitiveDecisionTreeClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomForestClassifier.html">CostSensitiveRandomForestClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveBaggingClassifier.html">CostSensitiveBaggingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitivePastingClassifier.html">CostSensitivePastingClassifier</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../CostSensitiveRandomPatchesClassifier.html">CostSensitiveRandomPatchesClassifier</a><ul class="simple">
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Probcal.html">Probcal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Sampling.html">Sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Tutorials.html#tutorial-example-dependent-cost-sensitive-credit-scoring-using-costcla">Tutorial: Example-Dependent Cost-Sensitive Credit Scoring using CostCla</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-4-2015-05-26">Version 0.4 <em>(2015-05-26)</em></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#version-0-03-2014-09-19">Version 0.03 <em>(2014-09-19)</em></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials.html">CostCla Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -133,7 +104,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
@@ -148,15 +125,16 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for costcla.models.cost_ensemble</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module include the cost sensitive ensemble methods.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
-<span class="c"># License: BSD 3 clause</span>
+<span class="c1"># Authors: Alejandro Correa Bahnsen &lt;al.bahnsen@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">..models</span> <span class="kn">import</span> <span class="n">CostSensitiveDecisionTreeClassifier</span>
@@ -255,16 +233,16 @@
 <span class="sd">    &gt;&gt;&gt; f = CostSensitiveRandomForestClassifier()</span>
 <span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_rf, cost_mat_test))</span>
 <span class="sd">    0.12454256594</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))</span>
 <span class="sd">    0.499390945808</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
-                 <span class="n">max_features</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                  <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -279,9 +257,9 @@
             <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
             <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span></div>
 
-</div>
+
 <div class="viewcode-block" id="CostSensitiveBaggingClassifier"><a class="viewcode-back" href="../../../CostSensitiveBaggingClassifier.html#costcla.models.CostSensitiveBaggingClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveBaggingClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive bagging  classifier.</span>
 
@@ -365,16 +343,16 @@
 <span class="sd">    &gt;&gt;&gt; f = CostSensitiveBaggingClassifier()</span>
 <span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_rf, cost_mat_test))</span>
 <span class="sd">    0.12454256594</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))</span>
 <span class="sd">    0.478964004931</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                  <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -389,9 +367,9 @@
             <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
             <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span></div>
 
-</div>
+
 <div class="viewcode-block" id="CostSensitivePastingClassifier"><a class="viewcode-back" href="../../../CostSensitivePastingClassifier.html#costcla.models.CostSensitivePastingClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitivePastingClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive pasting  classifier.</span>
 
@@ -475,16 +453,16 @@
 <span class="sd">    &gt;&gt;&gt; f = CostSensitivePastingClassifier()</span>
 <span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_rf, cost_mat_test))</span>
 <span class="sd">    0.12454256594</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))</span>
 <span class="sd">    0.479633754848</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                  <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -499,9 +477,9 @@
             <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
             <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span></div>
 
-</div>
+
 <div class="viewcode-block" id="CostSensitiveRandomPatchesClassifier"><a class="viewcode-back" href="../../../CostSensitiveRandomPatchesClassifier.html#costcla.models.CostSensitiveRandomPatchesClassifier">[docs]</a><span class="k">class</span> <span class="nc">CostSensitiveRandomPatchesClassifier</span><span class="p">(</span><span class="n">BaggingClassifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A example-dependent cost-sensitive pasting  classifier.</span>
 
@@ -590,17 +568,17 @@
 <span class="sd">    &gt;&gt;&gt; f = CostSensitiveRandomPatchesClassifier(combination=&#39;weighted_voting&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using only RandomForest</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_rf, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_rf, cost_mat_test))</span>
 <span class="sd">    0.12454256594</span>
 <span class="sd">    &gt;&gt;&gt; # Savings using CostSensitiveRandomForestClassifier</span>
-<span class="sd">    &gt;&gt;&gt; print savings_score(y_test, y_pred_test_csdt, cost_mat_test)</span>
+<span class="sd">    &gt;&gt;&gt; print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))</span>
 <span class="sd">    0.499548618518</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="n">max_samples</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                  <span class="n">max_features</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                 <span class="n">combination</span><span class="o">=</span><span class="s">&#39;majority_voting&#39;</span><span class="p">,</span>
+                 <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;majority_voting&#39;</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                  <span class="n">pruned</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -615,26 +593,27 @@
             <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
             <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
             <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pruned</span> <span class="o">=</span> <span class="n">pruned</span></div>
 
 
-<span class="c">#TODO not working in parallel, without error</span>
+<span class="c1">#TODO not working in parallel, without error</span>
 
-<span class="c"># from costcla.datasets import load_creditscoring1</span>
-<span class="c"># data = load_creditscoring1()</span>
-<span class="c"># x=data.data</span>
-<span class="c"># y=data.target</span>
-<span class="c"># c=data.cost_mat</span>
-<span class="c">#</span>
-<span class="c"># print &#39;start&#39;</span>
-<span class="c"># f = BaggingClassifier(n_estimators=10, verbose=100, n_jobs=2)</span>
-<span class="c"># f.fit(x[0:1000],y[0:1000],c[0:1000])</span>
-<span class="c"># print &#39;predict proba&#39;</span>
-<span class="c"># f.__setattr__(&#39;n_jobs&#39;, 4)</span>
-<span class="c"># f.predict(x)</span>
-<span class="c"># print &#39;predict END&#39;</span></div>
+<span class="c1"># from costcla.datasets import load_creditscoring1</span>
+<span class="c1"># data = load_creditscoring1()</span>
+<span class="c1"># x=data.data</span>
+<span class="c1"># y=data.target</span>
+<span class="c1"># c=data.cost_mat</span>
+<span class="c1">#</span>
+<span class="c1"># print &#39;start&#39;</span>
+<span class="c1"># f = BaggingClassifier(n_estimators=10, verbose=100, n_jobs=2)</span>
+<span class="c1"># f.fit(x[0:1000],y[0:1000],c[0:1000])</span>
+<span class="c1"># print &#39;predict proba&#39;</span>
+<span class="c1"># f.__setattr__(&#39;n_jobs&#39;, 4)</span>
+<span class="c1"># f.predict(x)</span>
+<span class="c1"># print &#39;predict END&#39;</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -643,10 +622,11 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Alejandro Correa Bahnsen.
+        &copy; Copyright 2016, Alejandro Correa Bahnsen.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
