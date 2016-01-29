@@ -166,10 +166,10 @@ class CostSensitiveLogisticRegression(BaseEstimator):
     >>> f.fit(X_train, y_train, cost_mat_train)
     >>> y_pred_test_cslr = f.predict(X_test)
     >>> # Savings using Logistic Regression
-    >>> print savings_score(y_test, y_pred_test_lr, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_lr, cost_mat_test))
     0.00283419465107
     >>> # Savings using Cost Sensitive Logistic Regression
-    >>> print savings_score(y_test, y_pred_test_cslr, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_cslr, cost_mat_test))
     0.142872237978
     """
     def __init__(self,

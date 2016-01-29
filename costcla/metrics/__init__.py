@@ -6,9 +6,9 @@ Functions named as ``*_score`` return a scalar value to maximize: the higher the
 Function named as ``*_error`` or ``*_loss`` return a scalar value to minimize: the lower the better
 """
 
-from costs import cost_loss
-from costs import savings_score
-from costs import brier_score_loss
+from .costs import cost_loss
+from .costs import savings_score
+from .costs import brier_score_loss
 
 import numpy as np
 from sklearn.utils import column_or_1d

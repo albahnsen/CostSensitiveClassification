@@ -44,10 +44,10 @@ class BayesMinimumRiskClassifier(BaseEstimator):
     >>> f_bmr.fit(y_test, y_prob_test)
     >>> y_pred_test_bmr = f_bmr.predict(y_prob_test, cost_mat_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using RandomForest and Bayes Minimum Risk
-    >>> print savings_score(y_test, y_pred_test_bmr, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_bmr, cost_mat_test))
     0.413425845555
     """
     def __init__(self, calibration=True):
@@ -186,10 +186,10 @@ class ThresholdingOptimization():
     >>> f_t = ThresholdingOptimization().fit(y_prob_train, cost_mat_train, y_train)
     >>> y_pred_test_rf_t = f_t.predict(y_prob_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
-    >>> # Savings using RandomForest and Bayes Minimum Risk
-    >>> print savings_score(y_test, y_pred_test_rf_t, cost_mat_test)
+    >>> # Savings using RandomForest and ThresholdingOptimization
+    >>> print(savings_score(y_test, y_pred_test_rf_t, cost_mat_test))
     0.401816361581
     """
 

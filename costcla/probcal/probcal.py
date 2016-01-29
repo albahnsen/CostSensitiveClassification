@@ -7,6 +7,7 @@
 
 from sklearn.metrics import roc_curve
 import numpy as np
+import copy
 
 #TODO: Add isotonic regression from sklearn
 #TODO: Add Platt calibration
@@ -48,10 +49,10 @@ class ROCConvexHull:
     >>> f_cal.fit(y_test, y_prob_test)
     >>> y_prob_test_cal = f_cal.predict_proba(y_prob_test)
     >>> # Brier score using only RandomForest
-    >>> print brier_score_loss(y_test, y_prob_test[:, 1])
+    >>> print(brier_score_loss(y_test, y_prob_test[:, 1]))
     0.0577615264881
     >>> # Brier score using calibrated RandomForest
-    >>> print brier_score_loss(y_test, y_prob_test_cal)
+    >>> print(brier_score_loss(y_test, y_prob_test_cal))
     0.0553677407894
     """
 
@@ -187,7 +188,7 @@ def _convexhull(P):
         return sum1 - sum2
 
 
-    def isrightturn((p, q, r)):
+    def isrightturn(p, q, r):
         "Do the vectors pq:qr form a right turn, or not?"
 
         assert p != q and q != r and p != r
@@ -198,14 +199,14 @@ def _convexhull(P):
             return 0
 
     # Get a local list copy of the points and sort them lexically.
-    points = map(None, P)
+    points = copy.copy(P)
     points.sort()
 
     # Build upper half of the hull.
     upper = [points[0], points[1]]
     for p in points[2:]:
         upper.append(p)
-        while len(upper) > 2 and not isrightturn(upper[-3:]):
+        while len(upper) > 2 and not isrightturn(upper[-3:][0],upper[-3:][1],upper[-3:][2]):
             del upper[-2]
 
     # Build lower half of the hull.
@@ -213,7 +214,7 @@ def _convexhull(P):
     lower = [points[0], points[1]]
     for p in points[2:]:
         lower.append(p)
-        while len(lower) > 2 and not isrightturn(lower[-3:]):
+        while len(lower) > 2 and not isrightturn(lower[-3:][0],lower[-3:][1],lower[-3:][2]):
             del lower[-2]
 
     # Remove duplicates.

@@ -102,10 +102,10 @@ class CostSensitiveRandomForestClassifier(BaggingClassifier):
     >>> f = CostSensitiveRandomForestClassifier()
     >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using CostSensitiveRandomForestClassifier
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))
     0.499390945808
     """
     def __init__(self,
@@ -212,10 +212,10 @@ class CostSensitiveBaggingClassifier(BaggingClassifier):
     >>> f = CostSensitiveBaggingClassifier()
     >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using CostSensitiveRandomForestClassifier
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))
     0.478964004931
     """
     def __init__(self,
@@ -322,10 +322,10 @@ class CostSensitivePastingClassifier(BaggingClassifier):
     >>> f = CostSensitivePastingClassifier()
     >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using CostSensitiveRandomForestClassifier
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))
     0.479633754848
     """
     def __init__(self,
@@ -437,10 +437,10 @@ class CostSensitiveRandomPatchesClassifier(BaggingClassifier):
     >>> f = CostSensitiveRandomPatchesClassifier(combination='weighted_voting')
     >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using CostSensitiveRandomForestClassifier
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))
     0.499548618518
     """
     def __init__(self,

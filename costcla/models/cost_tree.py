@@ -99,10 +99,10 @@ class CostSensitiveDecisionTreeClassifier(BaseEstimator):
     >>> f = CostSensitiveDecisionTreeClassifier()
     >>> y_pred_test_csdt = f.fit(X_train, y_train, cost_mat_train).predict(X_test)
     >>> # Savings using only RandomForest
-    >>> print savings_score(y_test, y_pred_test_rf, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_rf, cost_mat_test))
     0.12454256594
     >>> # Savings using CSDecisionTree
-    >>> print savings_score(y_test, y_pred_test_csdt, cost_mat_test)
+    >>> print(savings_score(y_test, y_pred_test_csdt, cost_mat_test))
     0.481916135529
     """
     def __init__(self,
