@@ -1,3 +1,8 @@
+.. image:: https://badge.fury.io/py/costcla.svg  
+.. image:: https://img.shields.io/badge/python-2.7-blue.svg  
+.. image:: https://img.shields.io/badge/python-3.5-blue.svg  
+.. image:: https://img.shields.io/badge/license-BSD-blue.svg  
+
 .. image:: https://raw.githubusercontent.com/albahnsen/CostSensitiveClassification/master/logo.png
 
 CostSensitiveClassification
