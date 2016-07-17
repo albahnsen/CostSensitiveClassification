@@ -77,6 +77,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Intro.html">Introduction to Example-Dependent Cost-Sensitive Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Models.html">Models</a></li>
@@ -193,7 +194,7 @@ in Seventeenth International Joint Conference on Artificial Intelligence,
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.sampling</span> <span class="kn">import</span> <span class="n">cost_sampling</span><span class="p">,</span> <span class="n">undersampling</span>
@@ -303,7 +304,7 @@ Journal of Artificial Intelligence Research, 16, 321-357, 2002.</td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.datasets</span> <span class="kn">import</span> <span class="n">load_creditscoring1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">costcla.sampling</span> <span class="kn">import</span> <span class="n">smote</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">load_creditscoring1</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data_smote</span><span class="p">,</span> <span class="n">target_smote</span> <span class="o">=</span> <span class="n">smote</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
