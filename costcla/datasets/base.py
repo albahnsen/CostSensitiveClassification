@@ -37,6 +37,11 @@ def load_churn():
         'target_names', the meaning of the labels, 'feature_names', the
         meaning of the features, and 'DESCR', the full description of the dataset.
 
+    References
+    ----------
+    .. [1] A. Correa Bahnsen, D.Aouada, B, Ottersten,
+           `"A novel cost-sensitive framework for customer churn predictive modeling" <http://www.decisionanalyticsjournal.com/content/pdf/s40165-015-0014-6.pdf>`__,
+           Decision Analytics, 2:5, 2015.
 
     Examples
     --------
