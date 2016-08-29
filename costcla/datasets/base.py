@@ -23,6 +23,56 @@ class Bunch(dict):
         self.__dict__ = self
 
 
+def load_churn():
+    """Load and return the churn dataset (classification).
+
+    The bank marketing is a easily transformable example-dependent cost-sensitive classification dataset.
+
+    Returns
+    -------
+    data : Bunch
+        Dictionary-like object, the interesting attributes are:
+        'data', the data to learn, 'target', the classification labels,
+        'cost_mat', the cost matrix of each example,
+        'target_names', the meaning of the labels, 'feature_names', the
+        meaning of the features, and 'DESCR', the full description of the dataset.
+
+
+    Examples
+    --------
+    Let's say you are interested in the samples 10, 25, and 50
+
+    >>> from costcla.datasets import load_churn
+    >>> data = load_churn()
+    >>> data.target[[10, 18, 24]]
+    array([0, 0, 1])
+    >>> data.cost_mat[[10, 18, 24]]
+    array([[   70.571429,  1371.428571,   109.657143,     0.      ],
+           [   79.142857,   857.142857,   141.542857,     0.      ],
+           [   79.142857,  1542.857143,   123.114286,     0.      ]])
+    """
+    module_path = dirname(__file__)
+    raw_data = pd.read_csv(join(module_path, 'data', 'churn_tv_subscriptions.csv.gz'),
+                           delimiter=',', compression='gzip')
+    descr = open(join(module_path, 'descr', 'churn_tv_subscriptions.rst')).read()
+
+    target = raw_data['target'].values.astype(np.int)
+    n_samples = raw_data.shape[0]
+
+    # Continous features
+    data = raw_data.ix[:, 1:-5]
+
+    cost_mat = np.ones((n_samples, 4))  #cost_mat[FP,FN,TP,TN]
+    cost_mat[:, 0] = raw_data.C_FP
+    cost_mat[:, 1] = raw_data.C_FN
+    cost_mat[:, 2] = raw_data.C_TP
+    cost_mat[:, 3] = raw_data.C_TN
+
+    return Bunch(data=data.values, target=target, cost_mat=cost_mat,
+                 target_names=['no', 'yes'], DESCR=descr,
+                 feature_names=data.columns.values, name='Churn')
+
+
 def load_bankmarketing(cost_mat_parameters=None):
     """Load and return the bank marketing dataset (classification).
 
