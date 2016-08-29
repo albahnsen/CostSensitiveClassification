@@ -1,6 +1,14 @@
 Change Log
 ===============================================================================
 
+Version 0.6.dev
+----------------------------
+
+* New Cost-Sensitive Churn dataset
+* Introduction to Example-Dependent Cost-Sensitive Classification
+* Slides costcla for fraud detection
+
+
 Version 0.5 *(2016-01-29)*
 ----------------------------
 
