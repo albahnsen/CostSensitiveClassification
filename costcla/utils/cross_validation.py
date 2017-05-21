@@ -8,8 +8,8 @@ validation and performance evaluation.
 #         Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
-from __future__ import print_function
-from __future__ import division
+
+
 
 import warnings
 from itertools import chain, combinations
@@ -29,6 +29,7 @@ from .externals.joblib import Parallel, delayed, logger
 from .externals.six import with_metaclass
 from .externals.six.moves import zip
 from .metrics.scorer import check_scoring
+import collections
 
 __all__ = ['Bootstrap',
            'KFold',
@@ -153,7 +154,7 @@ class LeaveOneOut(_PartitionIterator):
     """
 
     def _iter_test_indices(self):
-        return range(self.n)
+        return list(range(self.n))
 
     def __repr__(self):
         return '%s.%s(n=%i)' % (
@@ -215,7 +216,7 @@ class LeavePOut(_PartitionIterator):
         self.p = p
 
     def _iter_test_indices(self):
-        for comb in combinations(range(self.n), self.p):
+        for comb in combinations(list(range(self.n)), self.p):
             yield np.array(comb)
 
     def __repr__(self):
@@ -425,7 +426,7 @@ class StratifiedKFold(_BaseKFold):
             KFold(max(c, self.n_folds), self.n_folds, shuffle=self.shuffle,
                   random_state=rng) for c in label_counts]
         test_folds = np.zeros(n_samples, dtype=np.int)
-        for test_fold_idx, per_label_splits in enumerate(zip(*per_label_cvs)):
+        for test_fold_idx, per_label_splits in enumerate(list(zip(*per_label_cvs))):
             for label, (_, test_split) in zip(unique_labels, per_label_splits):
                 label_test_folds = test_folds[y == label]
                 # the test split can be too big because we used
@@ -584,7 +585,7 @@ class LeavePLabelOut(_PartitionIterator):
         self.p = p
 
     def _iter_test_masks(self):
-        comb = combinations(range(self.n_unique_labels), self.p)
+        comb = combinations(list(range(self.n_unique_labels)), self.p)
         for idx in comb:
             test_index = self._empty_mask()
             idx = np.array(idx)
@@ -1214,7 +1215,7 @@ def _fit_and_score(estimator, X, y, scorer, train, test, verbose, parameters,
             msg = "no parameters to be set"
         else:
             msg = '%s' % (', '.join('%s=%s' % (k, v)
-                          for k, v in parameters.items()))
+                          for k, v in list(parameters.items())))
         print("[CV] %s %s" % (msg, (64 - len(msg)) * '.'))
 
     # Adjust lenght of sample weights
@@ -1222,7 +1223,7 @@ def _fit_and_score(estimator, X, y, scorer, train, test, verbose, parameters,
     fit_params = fit_params if fit_params is not None else {}
     fit_params = dict([(k, np.asarray(v)[train]
                        if hasattr(v, '__len__') and len(v) == n_samples else v)
-                       for k, v in fit_params.items()])
+                       for k, v in list(fit_params.items())])
 
     if parameters is not None:
         estimator.set_params(**parameters)
@@ -1256,7 +1257,7 @@ def _fit_and_score(estimator, X, y, scorer, train, test, verbose, parameters,
 
 def _safe_split(estimator, X, y, indices, train_indices=None):
     """Create subset of dataset and properly handle kernels."""
-    if hasattr(estimator, 'kernel') and callable(estimator.kernel):
+    if hasattr(estimator, 'kernel') and isinstance(estimator.kernel, collections.Callable):
         # cannot compute the kernel values with custom function
         raise ValueError("Cannot use a custom kernel function. "
                          "Precompute the kernel matrix instead.")
