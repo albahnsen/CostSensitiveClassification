@@ -4,7 +4,7 @@
 # Author: Gilles Louppe <g.louppe@gmail.com>
 # License: BSD 3 clause
 
-from __future__ import division
+
 
 import itertools
 import numbers
@@ -77,7 +77,7 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
     for i in range(n_estimators):
         if verbose > 1:
-            print("building estimator %d of %d" % (i + 1, n_estimators))
+            print(("building estimator %d of %d" % (i + 1, n_estimators)))
 
         random_state = check_random_state(seeds[i])
         seed = check_random_state(random_state.randint(MAX_INT))

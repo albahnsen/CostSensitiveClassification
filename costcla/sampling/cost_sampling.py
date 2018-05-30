@@ -93,7 +93,7 @@ def cost_sampling(X, y, cost_mat, method='RejectionSampling', oversampling_norm=
 
     n_samples = X.shape[0]
 
-    filter_ = range(n_samples)
+    filter_ = list(range(n_samples))
 
     if method == 'RejectionSampling':
         # under-sampling by rejection [1]
