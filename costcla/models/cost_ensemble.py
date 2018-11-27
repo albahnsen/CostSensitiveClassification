@@ -5,7 +5,7 @@ This module include the cost sensitive ensemble methods.
 # Authors: Alejandro Correa Bahnsen <al.bahnsen@gmail.com>
 # License: BSD 3 clause
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from ..models import CostSensitiveDecisionTreeClassifier
 from ..models.bagging import BaggingClassifier
 
