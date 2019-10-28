@@ -33,7 +33,8 @@ Documentation is available at
 http://albahnsen.github.com/CostSensitiveClassification
 
 Tutorials are available at
-http://albahnsen.com/CostSensitiveClassification/Tutorials.html
+http://albahnsen.github.io/CostSensitiveClassification/Tutorials.html
+
 
 Development
 =============
