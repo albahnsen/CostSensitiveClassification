@@ -4,6 +4,7 @@ Change Log
 Version 0.6 *(2020-04-11)*
 ----------------------------
 
+* Fix issue with sklearn.cross_validation
 * New Cost-Sensitive Churn dataset
 * Introduction to Example-Dependent Cost-Sensitive Classification
 * Slides costcla for fraud detection
