@@ -5,7 +5,6 @@
 # License: BSD 3 clause
 
 
-
 import itertools
 import numbers
 import numpy as np
@@ -13,15 +12,14 @@ from abc import ABCMeta, abstractmethod
 from inspect import getargspec
 
 from sklearn.base import ClassifierMixin
-from sklearn.externals.joblib import Parallel, delayed
-from sklearn.externals.six import with_metaclass
-from sklearn.externals.six.moves import zip
+from joblib import Parallel, delayed, cpu_count
+from six import with_metaclass
+from six.moves import zip
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils import check_random_state, column_or_1d
 from sklearn.utils.random import sample_without_replacement
 
-from sklearn.ensemble.base import BaseEnsemble
-from sklearn.externals.joblib import cpu_count
+from sklearn.ensemble import BaseEnsemble
 
 from ..metrics import savings_score
 from costcla.models import CostSensitiveLogisticRegression
@@ -106,7 +104,8 @@ def _parallel_build_estimators(n_estimators, ensemble, X, y, cost_mat,
 
         sample_counts = np.bincount(indices, minlength=n_samples)
 
-        estimator.fit((X[indices])[:, features], y[indices], cost_mat[indices, :])
+        estimator.fit((X[indices])[:, features],
+                      y[indices], cost_mat[indices, :])
         samples = sample_counts > 0.
 
         estimators.append(estimator)
@@ -149,7 +148,9 @@ def _parallel_predict(estimators, estimators_features, X, n_classes, combination
 
     return pred
 
-#TODO: Create stacking set in parallel
+# TODO: Create stacking set in parallel
+
+
 def _create_stacking_set(estimators, estimators_features, estimators_weight, X, combination):
     """Private function used to create the stacking training set."""
     n_samples = X.shape[0]
@@ -160,9 +161,11 @@ def _create_stacking_set(estimators, estimators_features, estimators_weight, X, 
 
     for e in range(n_valid_estimators):
         if combination in ['stacking', 'stacking_bmr']:
-            X_stacking[:, e] = estimators[valid_estimators[e]].predict(X[:, estimators_features[valid_estimators[e]]])
+            X_stacking[:, e] = estimators[valid_estimators[e]].predict(
+                X[:, estimators_features[valid_estimators[e]]])
         elif combination in ['stacking_proba', 'stacking_proba_bmr']:
-            X_stacking[:, e] = estimators[valid_estimators[e]].predict_proba(X[:, estimators_features[valid_estimators[e]]])[:, 1]
+            X_stacking[:, e] = estimators[valid_estimators[e]].predict_proba(
+                X[:, estimators_features[valid_estimators[e]]])[:, 1]
 
     return X_stacking
 
@@ -299,9 +302,10 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
         self.f_bmr.fit(y, X_bmr)
         return self
 
-    def _fit_stacking_model(self,X, y, cost_mat, max_iter=100):
+    def _fit_stacking_model(self, X, y, cost_mat, max_iter=100):
         """Private function used to fit the stacking model."""
-        self.f_staking = CostSensitiveLogisticRegression(verbose=self.verbose, max_iter=max_iter)
+        self.f_staking = CostSensitiveLogisticRegression(
+            verbose=self.verbose, max_iter=max_iter)
         X_stacking = _create_stacking_set(self.estimators_, self.estimators_features_,
                                           self.estimators_weight_, X, self.combination)
         self.f_staking.fit(X_stacking, y, cost_mat)
@@ -321,15 +325,18 @@ class BaseBagging(with_metaclass(ABCMeta, BaseEnsemble)):
             else:
                 # Then use OOB
                 oob_pred = estimator.predict((X[~samples])[:, features])
-                oob_savings = max(0, savings_score(y[~samples], oob_pred, cost_mat[~samples]))
+                oob_savings = max(0, savings_score(
+                    y[~samples], oob_pred, cost_mat[~samples]))
 
             estimators_weight.append(oob_savings)
 
         # Control in case were all weights are 0
         if sum(estimators_weight) == 0:
-            self.estimators_weight_ = np.ones(len(estimators_weight)) / len(estimators_weight)
+            self.estimators_weight_ = np.ones(
+                len(estimators_weight)) / len(estimators_weight)
         else:
-            self.estimators_weight_ = (np.array(estimators_weight) / sum(estimators_weight)).tolist()
+            self.estimators_weight_ = (
+                np.array(estimators_weight) / sum(estimators_weight)).tolist()
 
         return self
 
@@ -452,6 +459,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
     .. [4] G. Louppe and P. Geurts, "Ensembles on Random Patches", Machine
            Learning and Knowledge Discovery in Databases, 346-361, 2012.
     """
+
     def __init__(self,
                  base_estimator=None,
                  n_estimators=10,
@@ -520,7 +528,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "input n_features is {1}."
                              "".format(self.n_features_, X.shape[1]))
 
-        #TODO: check if combination in possible combinations
+        # TODO: check if combination in possible combinations
 
         if self.combination in ['stacking', 'stacking_proba']:
 
@@ -549,7 +557,7 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
             return self.classes_.take(np.argmax(pred, axis=1), axis=0)
 
         elif self.combination in ['majority_bmr', 'weighted_bmr', 'stacking_bmr', 'stacking_proba_bmr']:
-            #TODO: Add check if cost_mat == None
+            # TODO: Add check if cost_mat == None
             X_bmr = self.predict_proba(X)
             return self.f_bmr.predict(X_bmr, cost_mat)
 
@@ -585,7 +593,8 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
                              "".format(self.n_features_, X.shape[1]))
 
         # Parallel loop
-        n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators, self.n_jobs)
+        n_jobs, n_estimators, starts = _partition_estimators(
+            self.n_estimators, self.n_jobs)
 
         all_proba = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
             delayed(_parallel_predict_proba)(
